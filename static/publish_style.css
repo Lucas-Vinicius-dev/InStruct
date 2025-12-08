@@ -1,0 +1,142 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    font-size: 0.625rem;
+}
+
+button {
+    border: none;
+}
+
+body {
+    background-color: #ffffff !important;
+}
+
+.rounded-circle {
+    width: 5rem;
+    height: 5rem;
+}
+
+.nav-orange {
+    background-color: #E08552 !important;
+}
+
+.navbar {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.line-hr {
+    background-color: #E08552;
+    width: 100%;
+    height: 4px;
+}
+
+.container-fluid:first-child {
+    color: white;
+    margin-top: 5px !important;
+    
+}
+
+
+.btn-create {
+    color: #ffffff !important;
+    background-color: transparent !important;
+    border: 2px solid white !important;
+    transition: 0.2s ease-in-out !important;
+    font-size: 1.4rem !important;
+}
+
+.btn-create:hover {
+    background-color: white !important;
+    color: #ff8800 !important;
+}
+
+.aside-area {
+    background-color: #ffffff;
+    min-height: 100%;
+    border-right: 2px solid #dddddd;
+}
+
+
+    
+.aside-area .nav-link {
+    font-size: 1.1rem;
+    color: #444;
+    transition: 0.2s;
+}
+
+.aside-area .nav-link:hover {
+    color: #ff8800;
+}
+
+.publish-text h1 {
+    margin-left: 2rem;
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.nav-link.homepage {
+    margin-top: 0.5rem;
+}
+
+.nav-link.homepage, .nav-link.preferences {
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+}
+
+.nav-link.description, .nav-link.images, .nav-link.privacy {
+    font-size: 1.2rem;
+}
+
+
+@media (min-width: 768px) {
+    .main-area > * {
+        margin-left: 5rem; 
+    }
+}
+
+@media (max-width: 767px) {
+    .main-area > * {
+        margin-left: 2rem;
+    }
+    
+    .publish-text h1 {
+        margin-left: 2rem; 
+    }
+}
+
+.max-height25 {
+    max-height: 37rem;
+}
+
+.title-container > p, .description-container > p {
+    text-align: end;
+}
+
+.title-container input {
+    min-height: 5rem;
+}
+
+
+.containter-type .choice {
+    font-size: 1.2rem;
+}
+
+.finish-bar input {
+    width:  7rem;
+    height: 3.2rem;
+}
+
+.clear-selection {
+    width:  9rem;
+    height: 3.2rem;
+}
+
+.visibility {
+    font-size: 1.3rem;
+}
