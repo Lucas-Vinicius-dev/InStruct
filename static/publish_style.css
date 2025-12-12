@@ -16,6 +16,7 @@ body {
     background-color: #ffffff !important;
 }
 
+
 .rounded-circle {
     width: 5rem;
     height: 5rem;
@@ -139,4 +140,11 @@ body {
 
 .visibility {
     font-size: 1.3rem;
+}
+
+footer {
+    background-color: #E08552;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
 }

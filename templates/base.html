@@ -22,7 +22,7 @@
     <!-- Cabeçalho — navegue pelo site -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-rosy" role="navigation" aria-label="Navegação principal">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('index') }}">
+            <a class="navbar-brand" href="{{ url_for('landing') }}">
                 <i></i> InStruct { }
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
@@ -31,7 +31,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link {% block nav_home %}{% endblock %}" href="{{ url_for('index') }}">
+                        <a class="nav-link {% block nav_home %}{% endblock %}" href="{{ url_for('landing') }}">
                             <i class="bi bi-house"></i> Início
                         </a>
                     </li>
