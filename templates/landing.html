@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block title %}InStruct — De estudantes para entusiastas{% endblock %}
+
+{% block nav_items %}
+<!-- navbar vazio na landing page pq usuário ainda não tem conta -->
+{% endblock %}
+
+{% block content %}
+<div class="landing">
+    <section class="hero-section">
+        <div class="hero-copy">
+            <span class="tag-pill"><i class="bi bi-stars"></i> Feito por quem ainda estuda</span>
+            <h1>Aprender código fica mais leve quando a gente divide as travas.</h1>
+            <p class="lead">
+                Conte o que está pegando no LeetCode, compartilhe vitórias pequenas e receba feedback de quem também está virando noites nos estudos.
+            </p>
+            <div class="hero-actions">
+                <a href="{{ url_for('home') }}" class="btn btn-lg btn-primary">Começar agora</a>
+                <a href="{{ url_for('home') }}" class="btn btn-lg btn-outline-secondary">Já faço parte</a>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+                <div class="avatar-list">
+                    <img class="avatar" src="https://api.dicebear.com/9.x/lorelei/svg?backgroundColor=b6e3f4,c0aede,d1d4f9" alt="Avatar Felix">
+                    <img class="avatar" src="https://api.dicebear.com/9.x/lorelei/svg?seed=Sawyer&backgroundColor=c0aede" alt="Avatar Aneka">
+                    <img class="avatar" src="https://api.dicebear.com/9.x/lorelei/svg?seed=Sophia&backgroundColor=ffd5dc" alt="Avatar Bob">
+                </div>
+                <small class="community-note">Menos palco, mais conversas honestas sobre código.</small>
+            </div>
+        </div>
+        <div>
+            <div class="hero-card">
+                <div class="feed-meta">
+                    <img class="avatar" src="https://api.dicebear.com/9.x/lorelei/svg?seed=Jameson&backgroundColor=d1d4f9" alt="Avatar bia.codes">
+                    <div>
+                        <p class="mb-0 fw-semibold">amanda.codes</p>
+                        <small class="text-muted">Hoje • Desafio Two Sum</small>
+                    </div>
+                </div>
+                <p class="feed-question">"Minha solução ainda é O(n²) e o Codeforces reclama. O que vocês fariam?"</p>
+                <pre class="code-card"><code><span class="keyword">for</span> i <span class="keyword">in</span> <span class="fn">range</span>(len(nums)):
+    search = target - nums[i]
+    <span class="keyword">if</span> search <span class="keyword">in</span> nums[i+1:]:
+        <span class="keyword">return</span> [i, i+1]</code></pre>
+                <div class="feed-actions">
+                    <span><i class="bi bi-chat-dots"></i> 3 Respostas </span>
+                    <span><i class="bi bi-heart"></i> 18 Incentivos</span>
+                    <span><i class="bi bi-bookmark"></i> Salvar</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="text-center mb-5">
+            <h2 class="fw-bold">Menos vibe, mais prática</h2>
+            <p class="text-muted">O que a galera mais comenta sobre o InStruct.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-people-fill"></i></div>
+                    <h4>Gente de verdade</h4>
+                    <p class="text-muted mb-0">Feedback sincero de quem também está aprendendo. Sem julgamentos, só trocas honestas.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-code-square"></i></div>
+                    <h4>DSA no centro</h4>
+                    <p class="text-muted mb-0">Posts curtos sobre LeetCode, Codeforces e aquelas técnicas que finalmente fazem sentido.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="bi bi-chat-heart"></i></div>
+                    <h4>Mentoria entre pares</h4>
+                    <p class="text-muted mb-0">Quando alguém destrava um problema, explica o porquê e deixa o caminho claro para o próximo.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="community-panel">
+            <h3 class="fw-bold">Topa postar seu próximo código?</h3>
+            <p class="text-muted mb-4">Conta em minutos, comunidade para sempre. Priorize o processo e não só o resultado.</p>
+            <div class="d-flex justify-content-center gap-3 flex-wrap">
+                <a href="{{ url_for('home') }}" class="btn btn-primary btn-lg">Quero entrar</a>
+                <a href="{{ url_for('home') }}" class="btn btn-outline-secondary btn-lg">Espiar a comunidade</a>
+            </div>
+        </div>
+    </section>
+</div>
+
+{% endblock %}
