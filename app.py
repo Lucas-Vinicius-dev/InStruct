@@ -1,6 +1,11 @@
-from flask import Flask, render_template
+import csv, os
+from flask import Flask, render_template, request, redirect, url_for, flash
+from dotenv import load_dotenv
 
+load_dotenv()
 app = Flask(__name__)
+
+app.secret_key = os.environ.get('FLASK_SECRET_KEY')
 
 CSV_LOC = 'data/publish_data.csv'
 COLLUMN_HEADER = ['username','title','description','topico_principal','tipo_de_post','linguagem_selecionada','image','visibility']
@@ -55,6 +60,7 @@ def send_publish_data():
     }
 
     save_publish_data(publish_data)
+    flash('Publicação realizada!', 'success')
     return redirect(url_for('home'))
 
 

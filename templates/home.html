@@ -43,6 +43,15 @@
                     <p class="text-muted">Veja o que a galera está compartilhando</p>
                 </div>
 
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                       {% for category, message in messages %}  
+                            <div class="alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+
                 {% if posts %}
                     <div class="posts-list">
                         {% for post in posts %}
