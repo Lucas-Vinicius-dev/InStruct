@@ -1,0 +1,54 @@
+username,title,description,topico_principal,tipo_de_post,linguagem_selecionada,image,visibility
+ana.silva,"Consegui resolver o Two Sum usando HashMap!","def twoSum(nums, target):
+    hashmap = {}  # valor -> índice
+    
+    for i, num in enumerate(nums):
+        complemento = target - num
+        
+        if complemento in hashmap:
+            return [hashmap[complemento], i]
+        
+        hashmap[num] = i
+    
+    return None",Programação Competitiva,Discussão,Python,,public
+carlos.dev,"Estou travado no problema de Binary Search Tree","class Node:
+    def __init__(self, v):
+        self.v = v
+        self.left = None
+        self.right = None
+
+class BST:
+    def __init__(self):
+        self.root = None
+
+    def insert(self, v):
+        if self.root is None:
+            self.root = Node(v)
+            return
+        cur = self.root
+        while True:
+            if v < cur.v:
+                if cur.left is None:
+                    cur.left = Node(v)
+                    return
+                cur = cur.left
+            else:
+                if cur.right is None:
+                    cur.right = Node(v)
+                    return
+                cur = cur.right
+
+    def search(self, v):
+        cur = self.root
+        while cur is not None:
+            if v == cur.v:
+                return True
+            if v > cur.v:
+                cur = cur.left   
+            else:
+                cur = cur.right  
+        return False  ",Programação Competitiva,Discussão,Python,,public
+maria.codes,"Finalmente entendi como funciona o algoritmo de Dijkstra","Depois de implementar 3 vezes consegui. A persistência vale a pena!",Programação Competitiva,Discussão,C++,,public
+
+anônimo,testando,"for i in range(10):
+print(i)",Programação Competitiva,Discussão,Python,WhatsApp Image 2025-12-13 at 18.15.08.jpeg,public

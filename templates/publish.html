@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+
+{% block title %}Criar Publicação — InStruct{% endblock %}
+
+{% block main_class %}{% endblock %}
+{% block container_start %}{% endblock %}
+{% block container_end %}{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='publish_script.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <div class="row g-0">
+        <!-- Sidebar compartilhada com a do Home :D     -->
+        <aside class="col-12 col-md-3 col-lg-2 aside-area px-2 border-bottom border-md-0">
+            <ul class="nav flex-column p-3">
+                <li class="nav-item mb-2">
+                    <a class="nav-link" href="{{ url_for('home') }}">
+                        <i class="bi bi-house"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link active" href="{{ url_for('publish') }}">
+                        <i class="bi bi-plus-circle"></i> Criar Post
+                    </a>
+                </li>
+                    <li class="nav-item mb-2">
+                        <a class="nav-link" href="#">
+                            <i class="bi bi-people"></i> Comunidades
+                        </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-gear"></i> Preferências
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Area -->
+        <section class="col-12 col-md-9 col-lg-10 main-area"> 
+            <section class="publish-text">
+                <h1>Criar Publicação</h1>
+            </section>
+
+            <div class="p-3 post-type">
+                <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link active description" 
+                        id="description-tab" 
+                        data-bs-toggle="tab" 
+                        data-bs-target="#description-tab-pane" 
+                        type="button" 
+                        role="tab" 
+                        aria-controls="description-tab-pane" 
+                        aria-selected="true" 
+                        href="#">Descrição</a>
+                    </li>
+                    
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link images" 
+                        id="images-tab" 
+                        data-bs-toggle="tab" 
+                        data-bs-target="#images-tab-pane" 
+                        type="button" 
+                        role="tab" 
+                        aria-controls="images-tab-pane" 
+                        aria-selected="false" 
+                        href="#">Imagens</a>
+                    </li>
+                    
+                    <li class="nav-item" role="presentation">
+                        <a class="nav-link privacy" 
+                        id="privacy-tab" 
+                        data-bs-toggle="tab" 
+                        data-bs-target="#privacy-tab-pane" 
+                        type="button" 
+                        role="tab" 
+                        aria-controls="privacy-tab-pane" 
+                        aria-selected="false" 
+                        href="#">Visibilidade</a>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Forms -->
+            <form action="{{ url_for('send_publish_data') }}" method="POST">
+            <div class="tab-content">
+                <div class="tab-pane fade show active" id="description-tab-pane" role="tabpanel" aria-labelledby="description-tab" tabindex="0">
+                    
+                    <div class="p-3">
+                        <h3>Descrição</h3>
+                        <div class="title-container col-md-6 mb-3"> 
+                            <div class="input-group">
+                                <span class="input-group-text" id="title-addon">Título</span>
+                                <input type="text" name="title" id="titleInput" class="form-control" placeholder="Insira o título da sua publicação aqui..." maxlength="300" aria-label="title" aria-describedby="title-addon" required/>
+                            </div>
+                            <p id="titleCount">0/300</p>
+                        </div>
+                    </div>
+                    
+                    <div class="d-flex flex-wrap p-3 border-bottom gap-3">
+                        
+                        <div class="containter-type" style="min-width: 240px;"> 
+                            <select class="form-select choice" name="topico_principal" aria-label="Tópico Principal">
+                                <option value="Programação Competitiva">Programação Competitiva</option>
+                                <option value="Projetos Pessoais">Projetos Pessoais</option>
+                                <option value="Outros">Outros</option>
+                            </select>
+                        </div>
+                        
+                        <div class="containter-type" style="min-width: 200px;">
+                            <select class="form-select choice" name="tipo_de_post" aria-label="Tipo de Post">
+                                <option value="Discussão">Discussão</option>
+                                    <option value="Tutorial / Guia">Tutorial / Guia</option>
+                                    <option value="Dúvidas">Dúvidas</option>
+                                    <option value="Outros">Outros</option>
+                            </select>
+                        </div>
+                        
+                        <div class="containter-type" style="min-width: 200px;">
+                            <select class="form-select choice" name="linguagem_selecionada" aria-label="Linguagem">
+                                <option value="C/C++">C/C++</option>
+                                <option value="Python">Python</option>
+                                <option value="JavaScript">JavaScript</option>
+                                <option value="C#">C#</option>
+                                <option value="Java">Java</option>
+                                <option value="Rust">Rust</option>
+                                <option value="Ruby">Ruby</option>
+                                <option value="Go">Go</option>
+                                <option value="Outros">Outros</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="p-3">
+                        <div class="description-container col-md-6 mb-4">
+                            <div class="input-group">
+                                <span class="input-group-text" id="desc-addon">Descrição</span> 
+                                <textarea class="form-control max-height25"
+                                    id="descInput"
+                                    name="description"
+                                    placeholder="Insira o corpo da sua publicação aqui..." 
+                                    aria-label="Descrição do Post" 
+                                    aria-describedby="desc-addon"
+                                    maxlength="2000"
+                                    rows="8"
+                                    required></textarea>
+                            </div>
+                            <p id="descCount">0/2000</p>
+                        </div>
+                    </div>
+                    
+                    <div class="p-3">
+                        <div class="finish-bar col-md-6 mb-4 d-flex justify-content-end gap-4">
+                            <input class="btn btn-primary publish-content" type="submit" value="Submit">
+                        </div>
+                    </div>
+                    
+                </div>
+                
+                <div class="tab-pane fade" id="images-tab-pane" role="tabpanel" aria-labelledby="images-tab" tabindex="0">
+                    <div class="p-3">
+                        <h3>Upload de Imagens</h3>
+                        <p class="text-muted">Adicione imagens para complementar a sua publicação. Você pode arrastar e soltar ou usar o botão abaixo.</p>
+                        
+                        <div class="col-6 col-md-6 border p-4 rounded bg-light">
+                            <label for="imageUpload" class="form-label">Selecionar Arquivo </label>
+                            <input class="form-control" name="image" type="file" id="imageUpload" accept="image/*" required>
+                            <div class="mt-2 form-text">Formatos permitidos: JPG, PNG.</div>
+                        </div>
+                        
+                        <div class="mt-4">
+                            <div class="finish-bar col-md-6 mb-4 d-flex justify-content-end gap-4">
+                                <button class="btn btn-outline-secondary clear-selection" type="button">Limpar Seleção</button>
+                                <input class="btn btn-primary publish-content" type="submit" value="Submit">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="tab-pane fade" id="privacy-tab-pane" role="tabpanel" aria-labelledby="privacy-tab" tabindex="0">
+                    <div class="p-3">
+                        <h3>Configurações de Visibilidade</h3>
+                        <div class="form-check visibility ">
+                            <input class="form-check-input" type="radio" name="visibility" value="public" id="publicRadio" checked required>
+                            <label class="form-check-label" for="public">
+                                Público (Visível para todos)
+                            </label>
+                        </div>
+                        <div class="form-check visibility">
+                            <input class="form-check-input" type="radio" name="visibility" value="private" id="privateRadio" required>
+                            <label class="form-check-label" for="private">
+                                Privado (Visível apenas para você)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="p-3">
+                        <div class="finish-bar col-md-6 mb-6 d-flex justify-content-end gap-4">
+                            <input class="btn btn-primary publish-content" type="submit" value="Submit">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </form>
+        </section>
+    </div>
+</div>
+{% endblock %}
