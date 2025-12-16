@@ -17,7 +17,6 @@ def ler_publicacoes():
         return [] 
     return publicacoes
 
-
 def save_publish_data(dados_da_nova_pub):
     with open(CSV_LOC, 'a', newline='', encoding='utf-8') as arquivo:
         escritor = csv.DictWriter(arquivo, fieldnames=COLLUMN_HEADER)

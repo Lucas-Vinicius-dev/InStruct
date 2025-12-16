@@ -463,6 +463,21 @@ main {
     font-size: 1rem;
 }
 
+/* Página de Cadastro */
+.cadastro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+.cadastro-container {
+    width: clamp(28rem, 80%, 50rem);
+    /*minimo: 28rem;*/
+    /*normal: 50%*/
+    /*maximo: 50rem;*/
+}
+
 /* Media queries */
 @media (min-width: 768px) {
     .main-area > * {
