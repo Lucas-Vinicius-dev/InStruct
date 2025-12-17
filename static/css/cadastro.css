@@ -1,0 +1,12 @@
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (max-width: 479px) {
+    main {
+        display: block;
+        margin-top: 3rem;
+    }
+}

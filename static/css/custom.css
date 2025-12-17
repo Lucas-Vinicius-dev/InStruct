@@ -464,18 +464,47 @@ main {
 }
 
 /* Página de Cadastro */
+
 .cadastro {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 80vh;
 }
 
 .cadastro-container {
-    width: clamp(28rem, 80%, 50rem);
-    /*minimo: 28rem;*/
-    /*normal: 50%*/
-    /*maximo: 50rem;*/
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cadastro-container label::after{
+    content: "*";
+}
+
+.cadastro-titulo {
+    text-align: center;
+    color: var(--brand-rose-dark);
+}
+
+.cadastro-container button{
+    width: 100%;
+    background-color: var(--brand-rose);
+    border-color: var(--brand-rose);
+}
+
+.cadastro-container button:hover{
+    background-color: var(--brand-rose-dark);
+    border-color: var(--brand-rose-dark);
+}
+
+.cadastro-container .icon-link{
+    color: var(--brand-rose);
+    text-decoration-color: var(--brand-rose);
+}
+
+.cadastro-container .icon-link:hover{
+    color: var(--brand-rose-dark);
+    text-decoration-color: var(--brand-rose-dark);
 }
 
 /* Media queries */
