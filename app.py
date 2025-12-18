@@ -1,7 +1,12 @@
-from flask import Flask, render_template, request, redirect, url_for
-import csv
+import csv, os
+from flask import Flask, render_template, request, redirect, url_for, flash, session
+from dotenv import load_dotenv
 
+load_dotenv()
 app = Flask(__name__)
+
+app.secret_key = os.environ.get('FLASK_SECRET_KEY')
+
 
 CSV_LOC = 'data/publish_data.csv'
 COLLUMN_HEADER = ['username','title','description','topico_principal','tipo_de_post','linguagem_selecionada','image','visibility']
@@ -26,6 +31,7 @@ def save_publish_data(dados_da_nova_pub):
 
 @app.route('/')
 def landing():
+    session.pop('username', None)
     return render_template('landing.html')      
 # vai ser nossa primeira página. Landing page :D
 
@@ -60,6 +66,7 @@ def profile_edit():
 
 @app.route('/send_publish_data', methods=['POST'])
 def send_publish_data():
+    session['username'] = 'anônimo'
     nomes_das_colunas = ['titulo', 'descricao', 'categoria', 'image','visibility']
     
     publish_data = {
@@ -74,8 +81,30 @@ def send_publish_data():
     }
 
     save_publish_data(publish_data)
+    flash('Publicação realizada!', 'success')
     return redirect(url_for('home'))
 
+
+@app.route('/delete_post', methods=['POST'])
+def delete_post():
+    titulo_para_deletar = request.form.get('titulo_post')
+    caminho_csv = 'data/publish_data.csv'
+    
+    postagens_restantes = []
+
+    with open(caminho_csv, mode='r', encoding='utf-8') as file:
+        reader = csv.DictReader(file)
+        fieldnames = reader.fieldnames
+        for row in reader:
+            if row['title'] != titulo_para_deletar:
+                postagens_restantes.append(row)
+
+    with open(caminho_csv, mode='w', encoding='utf-8', newline='') as file:
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(postagens_restantes)
+
+    return redirect('/home')
 
 if __name__ == "__main__":
     app.run(debug=True)
