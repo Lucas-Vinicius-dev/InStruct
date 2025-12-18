@@ -1,4 +1,5 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
+import csv
 
 app = Flask(__name__)
 
@@ -38,6 +39,24 @@ def home():
 def publish():
     return render_template('publish.html')
 # vai ser a página relacionada à publicações :) 
+
+@app.route('/profile', methods=['GET'])
+def profile():
+    return render_template('profile.html')
+# vai ser a página de edição de perfil do usuário
+
+@app.route('/profile/edit', methods=['POST'])
+def profile_edit():
+    full_name = request.form.get('full_name')
+    email = request.form.get('email')
+    username = request.form.get('username')
+    bio = request.form.get('bio')
+    location = request.form.get('location')
+    github = request.form.get('github')
+
+    # TODO: salvar os dados do perfil no banco de dados, esperando o PR de Claudino ser mergeado para a develop
+
+    return redirect(url_for('profile'))
 
 @app.route('/send_publish_data', methods=['POST'])
 def send_publish_data():
