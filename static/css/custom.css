@@ -463,8 +463,31 @@ main {
     font-size: 1rem;
 }
 
-/* Página de Cadastro */
+.link-cadastro {
+    border: 1px solid white;
+    border-radius: 0.5rem;;
+}
 
+/* Mensagens Flash */
+.alert {
+    padding: 0.75rem 1.25rem;
+    border-radius: 0.3rem;
+    margin-bottom: 3.125rem;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.alert-error {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Página de Cadastro */
 .cadastro {
     display: flex;
     justify-content: center;
