@@ -100,7 +100,7 @@ def cadastro():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    pass
+    return render_template("login.html")
 
 @app.route('/logout')
 def logout():

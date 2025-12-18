@@ -488,44 +488,72 @@ main {
 }
 
 /* Página de Cadastro */
-.cadastro {
+.cadastro,
+.login {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.cadastro-container {
+.cadastro-container,
+.login-container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.cadastro-container label::after{
+.cadastro-container label::after,
+.login-container label::after {
     content: "*";
 }
 
-.cadastro-titulo {
+.cadastro-titulo,
+.login-titulo {
     text-align: center;
     color: var(--brand-rose-dark);
 }
 
-.cadastro-container button{
+.login-container {
+    flex: 1;
+}
+
+.login-container > * {
+    width: 100%;
+    max-width: 37.5rem;
+}
+
+.login-container .icon-link {
+    display: block;
+    text-align: center;
+}
+
+.cadastro-container button,
+.login-container button {
     width: 100%;
     background-color: var(--brand-rose);
     border-color: var(--brand-rose);
 }
 
-.cadastro-container button:hover{
+.cadastro-container button:hover,
+.login-container button:hover {
     background-color: var(--brand-rose-dark);
     border-color: var(--brand-rose-dark);
 }
 
-.cadastro-container .icon-link{
+.cadastro-container button:active,
+.login-container button:active {
+    background-color: var(--brand-rose-dark) !important;
+    border-color: var(--brand-rose-dark) !important;
+}
+
+.cadastro-container .icon-link,
+.login-container .icon-link {
     color: var(--brand-rose);
     text-decoration-color: var(--brand-rose);
 }
 
-.cadastro-container .icon-link:hover{
+.cadastro-container .icon-link:hover,
+.login-container .icon-link:hover {
     color: var(--brand-rose-dark);
     text-decoration-color: var(--brand-rose-dark);
 }
