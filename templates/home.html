@@ -6,6 +6,10 @@
 {% block container_start %}{% endblock %}
 {% block container_end %}{% endblock %}
 
+{% block extra_js %}
+<script src="{{ url_for('static', filename='publish_script.js') }}"></script>
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid p-0">
     <div class="row g-0">
@@ -57,12 +61,17 @@
                         {% for post in posts %}
                         <article class="post-card-vertical">
                             <div class="post-header">
-                                <div class="d-flex align-items-center gap-3">
+                                <div class="publish-header d-flex align-items-center gap-3">
+                                    <div class="publish-header d-flex align-items-center gap-3">
                                     <img class="user-avatar" 
                                          src="https://api.dicebear.com/9.x/lorelei/svg?seed={{ post.username }}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" 
                                          alt="Avatar {{ post.username }}">
                                     <div class="user-info">
+                                        
+                                        
                                         <p class="username mb-0">{{ post.username if post.username else 'anônimo' }}</p>
+                                        
+
                                         <small class="post-meta text-muted">
                                             {% if post.topico_principal %}
                                                 {{ post.topico_principal }}
@@ -71,6 +80,16 @@
                                             {% endif %}
                                         </small>
                                     </div>
+                                    </div>
+                                    {% if post.username == session.get('username') %}
+                                    <div class="pos-f-t">
+                                        <nav class="navbar navbar-dark">
+                                            <button class="navbar-toggler" type="button" onclick="OpenModal('{{ post.title|e }}')">
+                                                <span class="navbar-toggler-icon"></span>
+                                            </button>
+                                        </nav>
+                                    </div>
+                                    {% endif %}
                                 </div>
                             </div>
                             
@@ -95,6 +114,20 @@
                             </div>
                         </article>
                         {% endfor %}
+                        
+                        <div id="overlay" class="overlay" onclick="CloseModal()"></div>
+                        
+                        <div id="modal" class="modal">
+                            <h3 id="modal-title"></h3>
+                            <p>Deseja excluir esta publicação?</p>
+                            
+                            <form id="delete-form" action=" {{ url_for('delete_post') }}" method="POST">
+                                <input type="hidden" name="titulo_post" id="input-delete-title">
+
+                                <button type="button" id="delete_button" class="btn btn-danger" onclick="Confirm_delete()">Confirmar Exclusão</button>
+                                <button type="button" onclick="CloseModal()" class="btn btn-secondary">Cancelar</button>
+                            </form>
+                        </div>
                     </div>
                     
                 {% else %}
