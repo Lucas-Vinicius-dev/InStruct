@@ -10,7 +10,7 @@ CSV_LOC = 'data/publish_data.csv'
 COLLUMN_HEADER = ['username','title','description','topico_principal','tipo_de_post','linguagem_selecionada','image','visibility']
 
 # @gabrielcarvalho, isso aqui lê csv caso você vá fazer o feed
-def ler_publicacoes(): 
+def ler_publicacoes():
     publicacoes = []
     try:
         with open(CSV_LOC, 'r', newline='', encoding='utf-8') as arquivo:
@@ -33,16 +33,25 @@ def landing():
 # Homepage do app com os posts dos usuários
 @app.route('/home')
 def home():
+    if not session.get('usuario_logado'):
+        return redirect(url_for('login'))
+    
     publicacoes = ler_publicacoes()
     return render_template('home.html', posts=publicacoes)
 
 # Página de criação de publicações
 @app.route('/publish', methods=['GET'])
 def publish():
+    if not session.get('usuario_logado'):
+        return redirect(url_for('login'))
+    
     return render_template('publish.html')
 
 @app.route('/send_publish_data', methods=['POST'])
 def send_publish_data():
+    if not session.get('usuario_logado'):
+        return redirect(url_for('login'))
+    
     nomes_das_colunas = ['titulo', 'descricao', 'categoria', 'image','visibility']
     
     publish_data = {
@@ -80,7 +89,7 @@ def cadastro():
             with open("usuarios.csv", "r", encoding="utf-8") as arquivo_usuarios:
                 linhas = arquivo_usuarios.readlines()
                 for linha in linhas:
-                    registro = linha.split(';')
+                    registro = linha.strip().split(';')
                     usuario_registrado = registro[1]
                     email_registrado = registro[2]
                     if usuario == usuario_registrado or email == email_registrado:
@@ -100,6 +109,35 @@ def cadastro():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    if request.method == 'POST':
+        identificador = request.form.get('identificador')
+        senha = request.form.get('senha')
+
+        pode_autenticar_usuario = False
+
+        if not os.path.exists("usuarios.csv"):
+            flash('Nome de usuário/email ou senha incorretos.', 'error')
+            return redirect(url_for('login'))
+        
+        with open("usuarios.csv", "r", encoding="utf-8") as arquivo_usuarios:
+            linhas = arquivo_usuarios.readlines()
+            for linha in linhas:
+                registro = linha.strip().split(';')
+                usuario_registrado = registro[1]
+                email_registrado = registro[2]
+                senha_registrada = registro[3]
+
+                if (identificador == usuario_registrado or identificador == email_registrado) and senha == senha_registrada:
+                    pode_autenticar_usuario = True
+                    break
+            
+            if pode_autenticar_usuario:
+                session['usuario_logado'] = usuario_registrado
+                return redirect(url_for('home'))
+            else:
+                flash('Nome de usuário/email ou senha incorretos.', 'error')
+                return redirect(url_for('login'))
+        
     return render_template("login.html")
 
 @app.route('/logout')
