@@ -77,7 +77,7 @@ def send_publish_data():
     nomes_das_colunas = ['titulo', 'descricao', 'categoria', 'image','visibility']
     
     publish_data = {
-        'username': request.form.get('username', 'anônimo'),  # default para anonymous pois ainda nao temos cadastro/login, claudino está encarregado disso :D
+        'username': session['usuario_logado'],
         'title': request.form.get('title'),
         'description': request.form.get('description'),
         'topico_principal': request.form.get('topico_principal'),
@@ -100,8 +100,8 @@ def cadastro():
         senha = request.form.get('senha')
 
         #Verifica se o arquivo usuarios.csv não existe
-        if not os.path.exists("usuarios.csv"):
-            with open('usuarios.csv', 'x', encoding="utf-8") as arquivo_usuarios:
+        if not os.path.exists("data/usuarios.csv"):
+            with open('data/usuarios.csv', 'x', encoding="utf-8") as arquivo_usuarios:
                 arquivo_usuarios.write(f'{nome_completo};{usuario};{email};{senha}\n')
                 session['usuario_logado'] = usuario
                 return redirect(url_for('home'))
@@ -109,7 +109,7 @@ def cadastro():
             pode_cadastrar_usuario = True
 
             # Impede que a pessoa crie sua conta se já houver alguém com o mesmo nome de usuário ou email
-            with open("usuarios.csv", "r", encoding="utf-8") as arquivo_usuarios:
+            with open("data/usuarios.csv", "r", encoding="utf-8") as arquivo_usuarios:
                 linhas = arquivo_usuarios.readlines()
                 for linha in linhas:
                     registro = linha.strip().split(';')
@@ -120,7 +120,7 @@ def cadastro():
                         break
             
             if pode_cadastrar_usuario:
-                with open("usuarios.csv", "a", encoding="utf-8") as arquivo_usuarios:
+                with open("data/usuarios.csv", "a", encoding="utf-8") as arquivo_usuarios:
                     arquivo_usuarios.write(f"{nome_completo};{usuario};{email};{senha}\n")
                     session['usuario_logado'] = usuario
                     return redirect(url_for('home'))
@@ -138,11 +138,12 @@ def login():
 
         pode_autenticar_usuario = False
 
-        if not os.path.exists("usuarios.csv"):
+        if not os.path.exists("data/usuarios.csv"):
             flash('Nome de usuário/email ou senha incorretos.', 'error')
+            print("sem csv")
             return redirect(url_for('login'))
         
-        with open("usuarios.csv", "r", encoding="utf-8") as arquivo_usuarios:
+        with open("data/usuarios.csv", "r", encoding="utf-8") as arquivo_usuarios:
             linhas = arquivo_usuarios.readlines()
             for linha in linhas:
                 registro = linha.strip().split(';')
@@ -159,6 +160,8 @@ def login():
                 return redirect(url_for('home'))
             else:
                 flash('Nome de usuário/email ou senha incorretos.', 'error')
+                print(identificador, usuario_registrado)
+                print(senha, senha_registrada)
                 return redirect(url_for('login'))
         
     return render_template("login.html")
