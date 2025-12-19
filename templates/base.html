@@ -42,16 +42,35 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('logout') }}">
-                            Sair
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link nav-avatar" href="#" title="Perfil do usuário">
-                            <img class="navbar-avatar" 
-                                 src="https://api.dicebear.com/9.x/lorelei/svg?seed=user&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" 
-                                 alt="Avatar do usuário">
-                        </a>
+                        <details class="profile-menu">
+                            <summary class="nav-link nav-avatar" title="Perfil do usuário">
+                                <img class="navbar-avatar" 
+                                     src="https://api.dicebear.com/9.x/lorelei/svg?seed=user&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" 
+                                     alt="Avatar do usuário">
+                            </summary>
+                            <div class="profile-modal-content">
+                                <div class="profile-modal-body">
+                                    <a href="{{ url_for('profile') }}" class="profile-modal-item">
+                                        <i class="bi bi-person"></i>
+                                        <span>Profile</span>
+                                    </a>
+                                    <a href="#" class="profile-modal-item">
+                                        <i class="bi bi-gear"></i>
+                                        <span>Settings</span>
+                                    </a>
+                                    <a href="#" class="profile-modal-item">
+                                        <i class="bi bi-question-circle"></i>
+                                        <span>Help & Support</span>
+                                    </a>
+                                </div>
+                                <div class="profile-modal-footer">
+                                    <a href="{{ url_for('landing') }}" class="profile-modal-logout">
+                                        <i class="bi bi-box-arrow-right"></i>
+                                        <span>Log Out</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </details>
                     </li>
                     {% else %}
                     <li class="nav-item">
