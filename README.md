@@ -7,6 +7,7 @@ InStruct é uma plataforma comunitária focada no aprendizado colaborativo de al
 ## Executando o projeto localmente
 ```
 git clone https://github.com/Lucas-Vinicius-dev/InStruct.git
+cd InStruct
 python -m venv venv
 
 # ativação no Windows
