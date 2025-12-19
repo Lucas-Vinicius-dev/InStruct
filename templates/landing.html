@@ -2,6 +2,10 @@
 
 {% block title %}InStruct — De estudantes para entusiastas{% endblock %}
 
+{% block nav_items %}
+<!-- navbar vazio na landing page pq usuário ainda não tem conta -->
+{% endblock %}
+
 {% block content %}
 <div class="landing">
     <section class="hero-section">
@@ -12,8 +16,8 @@
                 Conte o que está pegando no LeetCode, compartilhe vitórias pequenas e receba feedback de quem também está virando noites nos estudos.
             </p>
             <div class="hero-actions">
-                <a href="{{ url_for('landing') }}" class="btn btn-lg btn-primary">Começar agora</a>
-                <a href="{{ url_for('landing') }}" class="btn btn-lg btn-outline-secondary">Já faço parte</a>
+                <a href="{{ url_for('home') }}" class="btn btn-lg btn-primary">Começar agora</a>
+                <a href="{{ url_for('home') }}" class="btn btn-lg btn-outline-secondary">Já faço parte</a>
             </div>
             <div class="d-flex align-items-center gap-3">
                 <div class="avatar-list">
@@ -29,7 +33,7 @@
                 <div class="feed-meta">
                     <img class="avatar" src="https://api.dicebear.com/9.x/lorelei/svg?seed=Jameson&backgroundColor=d1d4f9" alt="Avatar bia.codes">
                     <div>
-                        <p class="mb-0 fw-semibold">bia.codes</p>
+                        <p class="mb-0 fw-semibold">amanda.codes</p>
                         <small class="text-muted">Hoje • Desafio Two Sum</small>
                     </div>
                 </div>
@@ -82,8 +86,8 @@
             <h3 class="fw-bold">Topa postar seu próximo código?</h3>
             <p class="text-muted mb-4">Conta em minutos, comunidade para sempre. Priorize o processo e não só o resultado.</p>
             <div class="d-flex justify-content-center gap-3 flex-wrap">
-                <a href="{{ url_for('landing') }}" class="btn btn-primary btn-lg">Quero entrar</a>
-                <a href="{{ url_for('landing') }}" class="btn btn-outline-secondary btn-lg">Espiar a comunidade</a>
+                <a href="{{ url_for('home') }}" class="btn btn-primary btn-lg">Quero entrar</a>
+                <a href="{{ url_for('home') }}" class="btn btn-outline-secondary btn-lg">Espiar a comunidade</a>
             </div>
         </div>
     </section>

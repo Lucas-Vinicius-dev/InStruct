@@ -1,0 +1,147 @@
+{% extends 'base.html' %}
+
+{% block title %}InStruct — Feed da Comunidade{% endblock %}
+
+{% block main_class %}{% endblock %}
+{% block container_start %}{% endblock %}
+{% block container_end %}{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='publish_script.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <div class="row g-0">
+        <!-- Sidebar -->
+        <aside class="col-12 col-md-3 col-lg-2 home-sidebar px-2 border-bottom border-md-0">
+            <ul class="nav flex-column p-3">
+                <li class="nav-item mb-2">
+                    <a class="nav-link active" href="{{ url_for('home') }}">
+                        <i class="bi bi-house"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link" href="{{ url_for('publish') }}">
+                        <i class="bi bi-plus-circle"></i> Criar Post
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                     <a class="nav-link" href="#">
+                        <i class="bi bi-people"></i> Comunidades
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-gear"></i> Preferências
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Feed Area -->
+        <section class="col-12 col-md-9 col-lg-10 home-main-area">
+            <div class="feed-container">
+                <div class="feed-header">
+                    <h1 class="fw-bold">Feed da Comunidade</h1>
+                    <p class="text-muted">Veja o que a galera está compartilhando</p>
+                </div>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                       {% for category, message in messages %}
+                            <div class="alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+
+                {% if posts %}
+                    <div class="posts-list">
+                        {% for post in posts %}
+                        <article class="post-card-vertical">
+                            <div class="post-header">
+                                <div class="publish-header d-flex align-items-center gap-3">
+                                    <div class="publish-header d-flex align-items-center gap-3">
+                                    <img class="user-avatar" 
+                                         src="https://api.dicebear.com/9.x/lorelei/svg?seed={{ post.username }}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" 
+                                         alt="Avatar {{ post.username }}">
+                                    <div class="user-info">
+                                        
+                                        
+                                        <p class="username mb-0">{{ post.username if post.username else 'anônimo' }}</p>
+                                        
+
+                                        <small class="post-meta text-muted">
+                                            {% if post.topico_principal %}
+                                                {{ post.topico_principal }}
+                                            {% endif %}
+                                            {% if post.linguagem_selecionada %} • {{ post.linguagem_selecionada }}
+                                            {% endif %}
+                                        </small>
+                                    </div>
+                                    </div>
+                                    {% if post.username == session.get('username') %}
+                                    <div class="pos-f-t">
+                                        <nav class="navbar navbar-dark">
+                                            <button class="navbar-toggler" type="button" onclick="OpenModal('{{ post.title|e }}')">
+                                                <span class="navbar-toggler-icon"></span>
+                                            </button>
+                                        </nav>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="post-content">
+                                <h3 class="post-title">{{ post.title }}</h3>
+                                
+                                {% if post.description %}
+                                <pre class="code-card"><code>{{ post.description }}</code></pre>
+                                {% endif %}
+                            </div>
+                            
+                            <div class="post-actions">
+                                <button class="action-btn" type="button">
+                                    <i class="bi bi-chat-dots"></i> Responder
+                                </button>
+                                <button class="action-btn" type="button">
+                                    <i class="bi bi-heart"></i> Incentivar
+                                </button>
+                                <button class="action-btn" type="button">
+                                    <i class="bi bi-bookmark"></i> Salvar
+                                </button>
+                            </div>
+                        </article>
+                        {% endfor %}
+                        
+                        <div id="overlay" class="overlay" onclick="CloseModal()"></div>
+                        
+                        <div id="modal" class="modal">
+                            <h3 id="modal-title"></h3>
+                            <p>Deseja excluir esta publicação?</p>
+                            
+                            <form id="delete-form" action=" {{ url_for('delete_post') }}" method="POST">
+                                <input type="hidden" name="titulo_post" id="input-delete-title">
+
+                                <button type="button" id="delete_button" class="btn btn-danger" onclick="Confirm_delete()">Confirmar Exclusão</button>
+                                <button type="button" onclick="CloseModal()" class="btn btn-secondary">Cancelar</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                {% else %}
+                    <div class="empty text-center py-5">
+                        <i class="bi bi-inbox display-1 text-muted mb-3"></i>
+                        <h3 class="fw-bold">Ainda não há posts</h3>
+                        <p class="text-muted mb-4">Seja o primeiro a compartilhar algo com a comunidade!</p>
+                        <a href="{{ url_for('publish') }}" class="btn btn-primary btn-lg">
+                            <i class="bi bi-plus-lg"></i> Criar Primeiro Post
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
