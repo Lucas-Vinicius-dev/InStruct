@@ -3,7 +3,7 @@
 {% block title %}InStruct — Crie sua conta{% endblock %}
 
 {% block extra_css %}
-<link href="{{ url_for('static', filename='css/cadastro.css') }}" rel="stylesheet">
+<link href="{{ url_for('static', filename='css/autenticacao.css') }}" rel="stylesheet">
 {% endblock %}
 
 {% block content %}
@@ -49,7 +49,7 @@
 
             <button type="submit" class="btn btn-primary mb-4">Criar conta</button>
         </form>
-        <a class="icon-link icon-link-hover" href="">
+        <a class="icon-link icon-link-hover" href="{{ url_for('login') }}">
             Já tem uma conta? Entre
             <svg xmlns="http://www.w3.org/2000/svg" class="bi" viewBox="0 0 16 16" aria-hidden="true">
                 <path d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
