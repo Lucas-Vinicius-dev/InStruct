@@ -10,7 +10,7 @@ git clone https://github.com/Lucas-Vinicius-dev/InStruct.git
 python -m venv venv
 
 # ativação no Windows
-.venv\Scripts\activate
+.\venv\Scripts\activate
 
 # ativação no Linux/macOS
 source venv/bin/activate
