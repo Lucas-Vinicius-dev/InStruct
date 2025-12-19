@@ -23,7 +23,6 @@ def ler_publicacoes():
         return [] 
     return publicacoes
 
-
 def save_publish_data(dados_da_nova_pub):
     with open(CSV_LOC, 'a', newline='', encoding='utf-8') as arquivo:
         escritor = csv.DictWriter(arquivo, fieldnames=COLLUMN_HEADER)
@@ -35,16 +34,16 @@ def landing():
     return render_template('landing.html')      
 # vai ser nossa primeira página. Landing page :D
 
+# Homepage do app com os posts dos usuários
 @app.route('/home')
 def home():
     publicacoes = ler_publicacoes()
     return render_template('home.html', posts=publicacoes)
-# vai ser a homepage do app onde aparecem os posts dos usuários
 
+# Página de criação de publicações
 @app.route('/publish', methods=['GET'])
 def publish():
     return render_template('publish.html')
-# vai ser a página relacionada à publicações :) 
 
 @app.route('/profile', methods=['GET'])
 def profile():
@@ -84,6 +83,53 @@ def send_publish_data():
     flash('Publicação realizada!', 'success')
     return redirect(url_for('home'))
 
+@app.route('/cadastro', methods=['GET', 'POST'])
+def cadastro():
+    if request.method == 'POST':
+        nome_completo = request.form.get('nome-completo')
+        usuario = request.form.get('nome-usuario')
+        email = request.form.get('email')
+        senha = request.form.get('senha')
+
+        #Verifica se o arquivo usuarios.csv não existe
+        if not os.path.exists("usuarios.csv"):
+            with open('usuarios.csv', 'x', encoding="utf-8") as arquivo_usuarios:
+                arquivo_usuarios.write(f'{nome_completo};{usuario};{email};{senha}\n')
+                session['usuario_logado'] = usuario
+                return redirect(url_for('home'))
+        else:
+            pode_cadastrar_usuario = True
+
+            # Impede que a pessoa crie sua conta se já houver alguém com o mesmo nome de usuário ou email
+            with open("usuarios.csv", "r", encoding="utf-8") as arquivo_usuarios:
+                linhas = arquivo_usuarios.readlines()
+                for linha in linhas:
+                    registro = linha.split(';')
+                    usuario_registrado = registro[1]
+                    email_registrado = registro[2]
+                    if usuario == usuario_registrado or email == email_registrado:
+                        pode_cadastrar_usuario = False
+                        break
+            
+            if pode_cadastrar_usuario:
+                with open("usuarios.csv", "a", encoding="utf-8") as arquivo_usuarios:
+                    arquivo_usuarios.write(f"{nome_completo};{usuario};{email};{senha}\n")
+                    session['usuario_logado'] = usuario
+                    return redirect(url_for('home'))
+            else:
+                flash('Nome de usuário ou email já existe.', 'error')
+                return redirect(url_for('cadastro'))
+        
+    return render_template("cadastro.html")
+
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    pass
+
+@app.route('/logout')
+def logout():
+    session.pop('usuario_logado', None)
+    return redirect(url_for('landing'))
 
 @app.route('/delete_post', methods=['POST'])
 def delete_post():
@@ -108,3 +154,4 @@ def delete_post():
 
 if __name__ == "__main__":
     app.run(debug=True)
+

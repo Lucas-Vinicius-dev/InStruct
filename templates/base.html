@@ -30,7 +30,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    {% block nav_items %}
+                    {% if session.get('usuario_logado') %}
                     <li class="nav-item">
                         <a class="nav-link {% block nav_home %}{% endblock %}" href="{{ url_for('home') }}">
                             <i class="bi bi-house-fill"></i> Feed
@@ -72,7 +72,18 @@
                             </div>
                         </details>
                     </li>
-                    {% endblock %}
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}">
+                            Entrar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link-cadastro" href="{{ url_for('cadastro') }}">
+                            Cadastre-se
+                        </a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
