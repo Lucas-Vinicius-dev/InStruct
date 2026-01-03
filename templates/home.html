@@ -47,6 +47,55 @@
                     <p class="text-muted">Veja o que a galera está compartilhando</p>
                 </div>
 
+                <h3>Buscar publicações</h3>
+                <div class="input-group rounded">
+                <input type="search" class="form-control rounded" placeholder="Pesquisar..." aria-label="Search" aria-describedby="search-addon" />
+                <span class="input-group-text border-0" id="search-addon">
+                    <i class="fas fa-search"></i>
+                </span>
+                </div>
+                <form action=" {{ url_for('home') }}" method="POST">
+                    <div class="d-flex flex-wrap p-3 border-bottom gap-3">
+                        
+                        <div class="containter-type" style="min-width: 14rem;"> 
+                            <select class="form-select choice" name="filtro_topico_principal" aria-label="Tópico Principal">
+                                <option value="Todos"                   {% if f_topico_principal == "Todos" %}selected{% endif %}>Todos</option> 
+                                <option value="Programação Competitiva" {% if f_topico_principal == "Programação Competitiva" %}selected{% endif %}>Programação Competitiva</option>
+                                <option value="Projetos Pessoais"       {% if f_topico_principal == "Projetos Pessoais" %}selected{% endif %}>Projetos Pessoais</option>
+                                <option value="Outros"                  {% if f_topico_principal == "Outros" %}selected{% endif %}>Outros</option>
+                            </select>
+                        </div>
+                        
+                        <div class="containter-type" style="min-width: 10rem;">
+                            <select class="form-select choice" name="filtro_tipo_de_post" aria-label="Tipo de Post">
+                                    <option value="Todos"           {% if f_tipo_de_post == "Todos" %}selected{% endif %}>Todos</option>
+                                    <option value="Discussão"       {% if f_tipo_de_post == "Discussão" %}selected{% endif %}>Discussão</option>
+                                    <option value="Tutorial / Guia" {% if f_tipo_de_post == "Tutorial / Guia" %}selected{% endif %}>Tutorial / Guia</option>
+                                    <option value="Dúvidas"         {% if f_tipo_de_post == "Dúvidas" %}selected{% endif %}>Dúvidas</option>
+                                    <option value="Outros"          {% if f_tipo_de_post == "Outros" %}selected{% endif %}>Outros</option>
+                            </select>
+                        </div>
+                        
+                        <div class="containter-type" style="min-width: 6rem;">
+                            <select class="form-select choice" name="filtro_linguagem_selecionada" aria-label="Linguagem">
+                                <option value="Todos"      {% if f_linguagem_selecionada == "Todos" %}selected{% endif %}>Todos</option>
+                                <option value="C/C++"      {% if f_linguagem_selecionada == "C/C++" %}selected{% endif %}>C/C++</option>
+                                <option value="Python"     {% if f_linguagem_selecionada == "Python" %}selected{% endif %}>Python</option>
+                                <option value="JavaScript" {% if f_linguagem_selecionada == "JavaScript" %}selected{% endif %}>JavaScript</option>
+                                <option value="C#"         {% if f_linguagem_selecionada == "C#" %}selected{% endif %}>C#</option>
+                                <option value="Java"       {% if f_linguagem_selecionada == "Java" %}selected{% endif %}>Java</option>
+                                <option value="Rust"       {% if f_linguagem_selecionada == "Rust" %}selected{% endif %}>Rust</option>
+                                <option value="Ruby"       {% if f_linguagem_selecionada == "Ruby" %}selected{% endif %}>Ruby</option>
+                                <option value="Go"         {% if f_linguagem_selecionada == "Go" %}selected{% endif %}>Go</option>
+                                <option value="Outros"     {% if f_linguagem_selecionada == "Outros" %}selected{% endif %}>Outros</option>
+                            </select>
+                        </div>
+                        <div class="containter-type" style="min-width: 12rem;"> 
+                            <input class="btn btn-primary publish-content" type="submit" value="Buscar">
+                        </div>
+                    </div>
+                </form>
+
                 {% with messages = get_flashed_messages(with_categories=true) %}
                     {% if messages %}
                        {% for category, message in messages %}
