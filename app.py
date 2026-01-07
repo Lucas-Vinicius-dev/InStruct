@@ -12,12 +12,22 @@ CSV_LOC = 'data/publish_data.csv'
 COLLUMN_HEADER = ['username','title','description','topico_principal','tipo_de_post','linguagem_selecionada','image','visibility']
 
 # @gabrielcarvalho, isso aqui lê csv caso você vá fazer o feed
-def ler_publicacoes():
+def ler_publicacoes(f_topico_principal,f_tipo_de_post,f_linguagem_selecionada):
     publicacoes = []
     try:
         with open(CSV_LOC, 'r', newline='', encoding='utf-8') as arquivo:
             leitor = csv.DictReader(arquivo)
             for linha in leitor:
+
+                if f_topico_principal and linha["topico_principal"] != f_topico_principal and f_topico_principal != "Todos":
+                    continue
+                
+                if f_tipo_de_post and linha["tipo_de_post"] != f_tipo_de_post and f_tipo_de_post != "Todos":
+                    continue
+
+                if f_linguagem_selecionada and linha["linguagem_selecionada"] != f_linguagem_selecionada and f_linguagem_selecionada != "Todos":
+                    continue
+                
                 publicacoes.append(linha)
     except FileNotFoundError:
         return [] 
@@ -35,13 +45,24 @@ def landing():
 # vai ser nossa primeira página. Landing page :D
 
 # Homepage do app com os posts dos usuários
-@app.route('/home')
+@app.route('/home', methods=['GET', 'POST'])
 def home():
     if not session.get('usuario_logado'):
         return redirect(url_for('login'))
     
-    publicacoes = ler_publicacoes()
-    return render_template('home.html', posts=publicacoes)
+    f_topico_principal = None
+    f_tipo_de_post = None
+    f_linguagem_selecionada = None
+
+    if request.method == 'POST':
+        f_topico_principal = request.form.get("filtro_topico_principal")
+        f_tipo_de_post = request.form.get("filtro_tipo_de_post")
+        f_linguagem_selecionada = request.form.get("filtro_linguagem_selecionada")
+
+
+    
+    publicacoes = ler_publicacoes(f_topico_principal,f_tipo_de_post,f_linguagem_selecionada)
+    return render_template('home.html', posts=publicacoes,f_topico_principal=f_topico_principal,f_tipo_de_post=f_tipo_de_post,f_linguagem_selecionada=f_linguagem_selecionada)
 
 # Página de criação de publicações
 @app.route('/publish', methods=['GET'])
