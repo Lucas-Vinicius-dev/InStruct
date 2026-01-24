@@ -1,4 +1,4 @@
-import csv, os
+import csv, os, re
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from dotenv import load_dotenv
 
@@ -212,6 +212,49 @@ def delete_post():
         writer.writerows(postagens_restantes)
 
     return redirect('/home')
+
+# Adição complicada de uma função mais chata ainda
+@app.route('/advanced_filtering')
+def advance_filtering(publish_vector: str):
+
+    def normalize(txt):
+        return re.sub(r"[^\w\s]", "", txt).lower().split()
+
+    query = normalize(publish_vector)
+
+    posts = []
+    with open("data/publish_data.csv", encoding="utf-8", newline="") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            posts.append(row)
+
+    scores = {}
+
+    for i, post in enumerate(posts):
+
+        campos = [
+            post["title"],
+            post["description"],
+            post["topico_principal"],
+            post["tipo_de_post"],
+            post["linguagem_selecionada"]
+        ]
+
+        score = 0
+        publish_txt = " ".join(c for c in campos if c)
+        publish_txt = normalize(publish_txt)
+
+
+        for keyword in query:
+            score += publish_txt.count(keyword)
+
+        if score > 0:
+            scores[i] = score
+
+    ordered = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+    return [(posts[i], score) for i, score in ordered]
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
