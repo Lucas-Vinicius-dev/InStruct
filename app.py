@@ -1,4 +1,4 @@
-import csv, os
+import csv, os, re
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from dotenv import load_dotenv
 
@@ -11,17 +11,68 @@ app.secret_key = os.environ.get('FLASK_SECRET_KEY')
 CSV_LOC = 'data/publish_data.csv'
 COLLUMN_HEADER = ['username','title','description','topico_principal','tipo_de_post','linguagem_selecionada','image','visibility']
 
+# Filtragem melhoradinha usando a searchbar, depois eu vou desacoplar essa função da função de filtragem básica(por filtros)
+@app.route('/advanced_filtering')
+def advance_filtering(publish_vector: str, publish_posts:list):
+
+    def normalize(txt):
+        return re.sub(r"[^\w\s]", "", txt).lower().split()
+
+    query = normalize(publish_vector)
+    scores = {}
+
+    for i, post in enumerate(publish_posts):
+
+        campos = [
+            post["title"],
+            post["description"],
+            post["topico_principal"],
+            post["tipo_de_post"],
+            post["linguagem_selecionada"]
+        ]
+
+        score = 0
+        publish_txt = " ".join(c for c in campos if c)
+        publish_txt = normalize(publish_txt)
+
+        for keyword in query:
+            score += publish_txt.count(keyword)
+
+        if score > 0:
+            scores[i] = score
+
+    ordered = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+    res = []
+
+    for i, v in ordered:
+        res.append(publish_posts[i])
+
+    return res
+
+
 # @gabrielcarvalho, isso aqui lê csv caso você vá fazer o feed
-def ler_publicacoes():
+def ler_publicacoes(f_topico_principal,f_tipo_de_post,f_linguagem_selecionada, f_searchbar):
     publicacoes = []
     try:
         with open(CSV_LOC, 'r', newline='', encoding='utf-8') as arquivo:
             leitor = csv.DictReader(arquivo)
             for linha in leitor:
+
+                if f_topico_principal and linha["topico_principal"] != f_topico_principal and f_topico_principal != "Todos":
+                    continue
+                
+                if f_tipo_de_post and linha["tipo_de_post"] != f_tipo_de_post and f_tipo_de_post != "Todos":
+                    continue
+
+                if f_linguagem_selecionada and linha["linguagem_selecionada"] != f_linguagem_selecionada and f_linguagem_selecionada != "Todos":
+                    continue
+                
                 publicacoes.append(linha)
     except FileNotFoundError:
-        return [] 
-    return publicacoes
+        return []
+    
+    return advance_filtering(f_searchbar, publicacoes) if f_searchbar != "" else publicacoes
+
 
 def save_publish_data(dados_da_nova_pub):
     with open(CSV_LOC, 'a', newline='', encoding='utf-8') as arquivo:
@@ -35,13 +86,24 @@ def landing():
 # vai ser nossa primeira página. Landing page :D
 
 # Homepage do app com os posts dos usuários
-@app.route('/home')
+@app.route('/home', methods=['GET', 'POST'])
 def home():
     if not session.get('usuario_logado'):
         return redirect(url_for('login'))
     
-    publicacoes = ler_publicacoes()
-    return render_template('home.html', posts=publicacoes)
+    f_topico_principal = None
+    f_tipo_de_post = None
+    f_linguagem_selecionada = None
+    f_searchbar = ""
+
+    if request.method == 'POST':
+        f_topico_principal = request.form.get("filtro_topico_principal")
+        f_tipo_de_post = request.form.get("filtro_tipo_de_post")
+        f_linguagem_selecionada = request.form.get("filtro_linguagem_selecionada")
+        f_searchbar = request.form.get("search")
+
+    publicacoes = ler_publicacoes(f_topico_principal,f_tipo_de_post,f_linguagem_selecionada, f_searchbar)
+    return render_template('home.html', posts=publicacoes,f_topico_principal=f_topico_principal,f_tipo_de_post=f_tipo_de_post,f_linguagem_selecionada=f_linguagem_selecionada)
 
 # Página de criação de publicações
 @app.route('/publish', methods=['GET'])
@@ -191,6 +253,8 @@ def delete_post():
         writer.writerows(postagens_restantes)
 
     return redirect('/home')
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
