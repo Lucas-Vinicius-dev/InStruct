@@ -48,4 +48,4 @@ class BST:
             else:
                 cur = cur.right  
         return False  ",Programação Competitiva,Discussão,Python,Discussão,public
-maria.codes,Finalmente entendi como funciona o algoritmo de Dijkstra,Depois de implementar 3 vezes consegui. A persistência vale a pena!,Programação Competitiva,Discussão,C++,,public
+maria.codes,Finalmente entendi como funciona o algoritmo de Dijkstra,Depois de implementar 3 vezes consegui. A persistência vale a pena!,Programação Competitiva,Discussão,C/C++,,public

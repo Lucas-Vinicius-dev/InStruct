@@ -11,8 +11,47 @@ app.secret_key = os.environ.get('FLASK_SECRET_KEY')
 CSV_LOC = 'data/publish_data.csv'
 COLLUMN_HEADER = ['username','title','description','topico_principal','tipo_de_post','linguagem_selecionada','image','visibility']
 
+# Filtragem melhoradinha usando a searchbar, depois eu vou desacoplar essa função da função de filtragem básica(por filtros)
+@app.route('/advanced_filtering')
+def advance_filtering(publish_vector: str, publish_posts:list):
+
+    def normalize(txt):
+        return re.sub(r"[^\w\s]", "", txt).lower().split()
+
+    query = normalize(publish_vector)
+    scores = {}
+
+    for i, post in enumerate(publish_posts):
+
+        campos = [
+            post["title"],
+            post["description"],
+            post["topico_principal"],
+            post["tipo_de_post"],
+            post["linguagem_selecionada"]
+        ]
+
+        score = 0
+        publish_txt = " ".join(c for c in campos if c)
+        publish_txt = normalize(publish_txt)
+
+        for keyword in query:
+            score += publish_txt.count(keyword)
+
+        if score > 0:
+            scores[i] = score
+
+    ordered = sorted(scores.items(), key=lambda x: x[1], reverse=True)
+    res = []
+
+    for i, v in ordered:
+        res.append(publish_posts[i])
+
+    return res
+
+
 # @gabrielcarvalho, isso aqui lê csv caso você vá fazer o feed
-def ler_publicacoes(f_topico_principal,f_tipo_de_post,f_linguagem_selecionada):
+def ler_publicacoes(f_topico_principal,f_tipo_de_post,f_linguagem_selecionada, f_searchbar):
     publicacoes = []
     try:
         with open(CSV_LOC, 'r', newline='', encoding='utf-8') as arquivo:
@@ -30,8 +69,10 @@ def ler_publicacoes(f_topico_principal,f_tipo_de_post,f_linguagem_selecionada):
                 
                 publicacoes.append(linha)
     except FileNotFoundError:
-        return [] 
-    return publicacoes
+        return []
+    
+    return advance_filtering(f_searchbar, publicacoes) if f_searchbar != "" else publicacoes
+
 
 def save_publish_data(dados_da_nova_pub):
     with open(CSV_LOC, 'a', newline='', encoding='utf-8') as arquivo:
@@ -53,15 +94,15 @@ def home():
     f_topico_principal = None
     f_tipo_de_post = None
     f_linguagem_selecionada = None
+    f_searchbar = ""
 
     if request.method == 'POST':
         f_topico_principal = request.form.get("filtro_topico_principal")
         f_tipo_de_post = request.form.get("filtro_tipo_de_post")
         f_linguagem_selecionada = request.form.get("filtro_linguagem_selecionada")
+        f_searchbar = request.form.get("search")
 
-
-    
-    publicacoes = ler_publicacoes(f_topico_principal,f_tipo_de_post,f_linguagem_selecionada)
+    publicacoes = ler_publicacoes(f_topico_principal,f_tipo_de_post,f_linguagem_selecionada, f_searchbar)
     return render_template('home.html', posts=publicacoes,f_topico_principal=f_topico_principal,f_tipo_de_post=f_tipo_de_post,f_linguagem_selecionada=f_linguagem_selecionada)
 
 # Página de criação de publicações
@@ -212,47 +253,6 @@ def delete_post():
         writer.writerows(postagens_restantes)
 
     return redirect('/home')
-
-# Adição complicada de uma função mais chata ainda
-@app.route('/advanced_filtering')
-def advance_filtering(publish_vector: str):
-
-    def normalize(txt):
-        return re.sub(r"[^\w\s]", "", txt).lower().split()
-
-    query = normalize(publish_vector)
-
-    posts = []
-    with open("data/publish_data.csv", encoding="utf-8", newline="") as f:
-        reader = csv.DictReader(f)
-        for row in reader:
-            posts.append(row)
-
-    scores = {}
-
-    for i, post in enumerate(posts):
-
-        campos = [
-            post["title"],
-            post["description"],
-            post["topico_principal"],
-            post["tipo_de_post"],
-            post["linguagem_selecionada"]
-        ]
-
-        score = 0
-        publish_txt = " ".join(c for c in campos if c)
-        publish_txt = normalize(publish_txt)
-
-
-        for keyword in query:
-            score += publish_txt.count(keyword)
-
-        if score > 0:
-            scores[i] = score
-
-    ordered = sorted(scores.items(), key=lambda x: x[1], reverse=True)
-    return [(posts[i], score) for i, score in ordered]
 
 
 
