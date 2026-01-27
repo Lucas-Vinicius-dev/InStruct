@@ -1,6 +1,7 @@
 import csv, os, re
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from dotenv import load_dotenv
+from datetime import datetime
 
 load_dotenv()
 app = Flask(__name__)
@@ -10,6 +11,8 @@ app.secret_key = os.environ.get('FLASK_SECRET_KEY')
 
 CSV_LOC = 'data/publish_data.csv'
 COLLUMN_HEADER = ['username','title','description','topico_principal','tipo_de_post','linguagem_selecionada','image','visibility']
+COMMENTS_CSV = 'data/comments_data.csv'
+COMMENTS_HEADER = ['post_title','username','comment_text','timestamp']
 
 # Filtragem melhoradinha usando a searchbar, depois eu vou desacoplar essa função da função de filtragem básica(por filtros)
 @app.route('/advanced_filtering')
@@ -79,6 +82,23 @@ def save_publish_data(dados_da_nova_pub):
         escritor = csv.DictWriter(arquivo, fieldnames=COLLUMN_HEADER)
         escritor.writerow(dados_da_nova_pub)
 
+def ler_comentarios(titulo_post):
+    comentarios = []
+    with open(COMMENTS_CSV, 'r', newline='', encoding='utf-8') as arquivo:
+        leitor = csv.DictReader(arquivo)
+        for linha in leitor:
+            if linha['post_title'] == titulo_post:
+                comentarios.append(linha)
+    return comentarios
+
+def salvar_comentario(dados_comentario):
+    arquivo_existe = os.path.exists(COMMENTS_CSV)
+    with open(COMMENTS_CSV, 'a', newline='', encoding='utf-8') as arquivo:
+        escritor = csv.DictWriter(arquivo, fieldnames=COMMENTS_HEADER)
+        if not arquivo_existe:
+            escritor.writeheader()
+        escritor.writerow(dados_comentario)
+
 @app.route('/')
 def landing():
     session.pop('username', None)
@@ -103,7 +123,17 @@ def home():
         f_searchbar = request.form.get("search")
 
     publicacoes = ler_publicacoes(f_topico_principal,f_tipo_de_post,f_linguagem_selecionada, f_searchbar)
-    return render_template('home.html', posts=publicacoes,f_topico_principal=f_topico_principal,f_tipo_de_post=f_tipo_de_post,f_linguagem_selecionada=f_linguagem_selecionada)
+    
+    posts_com_comentarios = []
+    for post in publicacoes:
+        post_data = post.copy()
+        todos_comentarios = ler_comentarios(post['title'])
+        post_data['comentarios'] = todos_comentarios[:3]
+        post_data['total_comentarios'] = len(todos_comentarios)
+        post_data['tem_mais'] = len(todos_comentarios) > 3
+        posts_com_comentarios.append(post_data)
+    
+    return render_template('home.html', posts=posts_com_comentarios,f_topico_principal=f_topico_principal,f_tipo_de_post=f_tipo_de_post,f_linguagem_selecionada=f_linguagem_selecionada)
 
 # Página de criação de publicações
 @app.route('/publish', methods=['GET'])
@@ -253,6 +283,78 @@ def delete_post():
         writer.writerows(postagens_restantes)
 
     return redirect('/home')
+
+@app.route('/add_comment', methods=['POST'])
+def add_comment():
+    if not session.get('usuario_logado'):
+        return redirect(url_for('login'))
+    
+    post_title = request.form.get('post_title')
+    comment_txt = request.form.get('comment_text')
+    redirect_to = request.form.get('redirect_to')
+    
+    if comment_txt and post_title:
+        dados_comentario = {
+            'post_title': post_title,
+            'username': session['usuario_logado'],
+            'comment_text': comment_txt,
+            'timestamp': datetime.now().strftime('%d/%m/%Y %H:%M')
+        }
+        salvar_comentario(dados_comentario)
+    
+    if redirect_to:
+        return redirect(redirect_to)
+    return redirect(url_for('home'))
+
+@app.route('/delete_comment', methods=['POST'])
+def delete_comment():
+    if not session.get('usuario_logado'):
+        return redirect(url_for('login'))
+    
+    post_title = request.form.get('post_title')
+    username = request.form.get('username')
+    timestamp = request.form.get('timestamp')
+    redirect_to = request.form.get('redirect_to')
+    
+    if username == session['usuario_logado']:
+        comentarios_restantes = []
+        
+        with open(COMMENTS_CSV, 'r', newline='', encoding='utf-8') as arquivo:
+            leitor = csv.DictReader(arquivo)
+            for linha in leitor:
+                if not (linha['post_title'] == post_title and 
+                       linha['username'] == username and 
+                       linha['timestamp'] == timestamp):
+                    comentarios_restantes.append(linha)
+        
+        with open(COMMENTS_CSV, 'w', newline='', encoding='utf-8') as arquivo:
+            escritor = csv.DictWriter(arquivo, fieldnames=COMMENTS_HEADER)
+            escritor.writeheader()
+            escritor.writerows(comentarios_restantes)
+    
+    if redirect_to:
+        return redirect(redirect_to)
+    return redirect(url_for('home'))
+
+@app.route('/post/<post_title>')
+def ver_post(post_title):
+    if not session.get('usuario_logado'):
+        return redirect(url_for('login'))
+    
+    publicacoes = ler_publicacoes(None, None, None, "")
+    post = None
+    for p in publicacoes:
+        if p['title'] == post_title:
+            post = p
+            break
+    
+    if not post:
+        return redirect(url_for('home'))
+    
+    post['comentarios'] = ler_comentarios(post_title)
+    post['total_comentarios'] = len(post['comentarios'])
+    
+    return render_template('post.html', post=post)
 
 
 

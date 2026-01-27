@@ -417,6 +417,112 @@ main {
     color: var(--brand-rose);
 }
 
+.comments-section {
+    margin-top: 1.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.comments-section.show {
+    display: block;
+}
+
+.comment-form-wrapper {
+    display: none;
+    margin-top: 1rem;
+}
+
+.comment-toggle:checked ~ .comments-section .comment-form-wrapper {
+    display: block;
+}
+
+.comments-list {
+    margin-bottom: 1.5rem;
+}
+
+.comment-item {
+    padding: 0.75rem 0;
+}
+
+.comment-item:not(:last-child) {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.comment-avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.comment-content {
+    flex: 1;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.25rem;
+}
+
+.comment-user {
+    font-weight: 600;
+    font-size: 0.875rem;
+    color: var(--ink);
+}
+
+.comment-time {
+    font-size: 0.75rem;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.delete-comment-form {
+    margin-left: auto;
+}
+
+.btn-delete-comment {
+    background: none;
+    border: none;
+    color: rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    padding: 0.25rem;
+    font-size: 0.875rem;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.btn-delete-comment:hover {
+    color: #dc3545;
+}
+
+.comment-text {
+    margin: 0;
+    font-size: 0.875rem;
+    color: rgba(0, 0, 0, 0.8);
+    line-height: 1.5;
+}
+
+.no-comments {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.4);
+    font-size: 0.875rem;
+    margin: 1rem 0;
+}
+
+.comment-input {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    resize: none;
+    font-size: 0.875rem;
+}
+
+.comment-input:focus {
+    border-color: var(--brand-rose);
+    box-shadow: 0 0 0 0.2rem rgba(200, 99, 65, 0.15);
+}
+
 .empty {
     background: var(--sand);
     border-radius: 20px;
@@ -758,7 +864,7 @@ main {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: rgba(0, 0, 0, 0.4);
     z-index: 1000; 
 }
 
@@ -770,20 +876,11 @@ main {
     transform: translate(-50%, -50%);
     background: white;
     padding: 2rem;
-    border-radius: 12px;
+    border-radius: 8px;
     z-index: 1001;
     width: 90%;
     height: auto;
-    max-width: 450px; 
-    
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-.overlay, .modal {
-    animation: fadeIn 0.3s ease-out;
+    max-width: 450px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
