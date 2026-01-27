@@ -154,15 +154,79 @@
                             </div>
                             
                             <div class="post-actions">
-                                <button class="action-btn" type="button">
-                                    <i class="bi bi-chat-dots"></i> Responder
-                                </button>
+                                <label class="action-btn" for="toggle-comment-{{ loop.index }}">
+                                    <i class="bi bi-chat-dots"></i> Comentários ({{ post.total_comentarios }})
+                                </label>
                                 <button class="action-btn" type="button">
                                     <i class="bi bi-heart"></i> Incentivar
                                 </button>
                                 <button class="action-btn" type="button">
                                     <i class="bi bi-bookmark"></i> Salvar
                                 </button>
+                            </div>
+
+                            <input type="checkbox" id="toggle-comment-{{ loop.index }}" class="comment-toggle" hidden>
+                            
+                            <div class="comments-section show">
+                                <div class="comments-list">
+                                    {% if post.comentarios %}
+                                        {% for comment in post.comentarios %}
+                                        <div class="comment-item">
+                                            <div class="d-flex align-items-start gap-2">
+                                                <img class="comment-avatar" 
+                                                     src="https://api.dicebear.com/9.x/lorelei/svg?seed={{ comment.username }}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" 
+                                                     alt="Avatar">
+                                                <div class="comment-content">
+                                                    <div class="comment-header">
+                                                        <span class="comment-user">{{ comment.username }}</span>
+                                                        <span class="comment-time">{{ comment.timestamp }}</span>
+                                                        {% if comment.username == session.get('usuario_logado') %}
+                                                        <form action="{{ url_for('delete_comment') }}" method="POST" class="delete-comment-form" onsubmit="return confirm('Apagar este comentário?')">
+                                                            <input type="hidden" name="post_title" value="{{ post.title }}">
+                                                            <input type="hidden" name="username" value="{{ comment.username }}">
+                                                            <input type="hidden" name="timestamp" value="{{ comment.timestamp }}">
+                                                            <button type="submit" class="btn-delete-comment" title="Apagar comentário">
+                                                                <i class="bi bi-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                        {% endif %}
+                                                    </div>
+                                                    <p class="comment-text">{{ comment.comment_text }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        
+                                        {% if post.tem_mais %}
+                                        <div class="text-center mt-2">
+                                            <a href="{{ url_for('ver_post', post_title=post.title) }}" class="btn btn-sm btn-outline-primary">
+                                                Ver todos os {{ post.total_comentarios }} comentários
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                    {% else %}
+                                        <p class="no-comments">Nenhum comentário ainda. Seja o primeiro!</p>
+                                    {% endif %}
+                                </div>
+
+                                <div class="comment-form-wrapper">
+                                    <form class="comment-form" action="{{ url_for('add_comment') }}" method="POST">
+                                        <input type="hidden" name="post_title" value="{{ post.title }}">
+                                        <div class="d-flex gap-2">
+                                            <img class="comment-avatar" 
+                                                 src="https://api.dicebear.com/9.x/lorelei/svg?seed={{ session.get('usuario_logado') }}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" 
+                                                 alt="Seu avatar">
+                                            <div class="flex-grow-1">
+                                                <textarea class="form-control comment-input" 
+                                                          name="comment_text" 
+                                                          placeholder="Escreva um comentário..." 
+                                                          rows="2" 
+                                                          required></textarea>
+                                                <button type="submit" class="btn btn-sm btn-primary mt-2">Comentar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </article>
                         {% endfor %}
