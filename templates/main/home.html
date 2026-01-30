@@ -17,12 +17,12 @@
         <aside class="col-12 col-md-3 col-lg-2 home-sidebar px-2 border-bottom border-md-0">
             <ul class="nav flex-column p-3">
                 <li class="nav-item mb-2">
-                    <a class="nav-link active" href="{{ url_for('home') }}">
+                    <a class="nav-link active" href="{{ url_for('main.home') }}">
                         <i class="bi bi-house"></i> Home
                     </a>
                 </li>
                 <li class="nav-item mb-2">
-                    <a class="nav-link" href="{{ url_for('publish') }}">
+                    <a class="nav-link" href="{{ url_for('main.publish') }}">
                         <i class="bi bi-plus-circle"></i> Criar Post
                     </a>
                 </li>
@@ -48,7 +48,7 @@
                 </div>
 
                 
-                <form action=" {{ url_for('home') }}" method="POST">
+                <form action=" {{ url_for('main.home') }}" method="POST">
 
                     <h3>Buscar publicações</h3>
                     <div class="input-group rounded">
@@ -181,7 +181,7 @@
                                                         <span class="comment-user">{{ comment.username }}</span>
                                                         <span class="comment-time">{{ comment.timestamp }}</span>
                                                         {% if comment.username == session.get('usuario_logado') %}
-                                                        <form action="{{ url_for('delete_comment') }}" method="POST" class="delete-comment-form" onsubmit="return confirm('Apagar este comentário?')">
+                                                        <form action="{{ url_for('main.delete_comment') }}" method="POST" class="delete-comment-form" onsubmit="return confirm('Apagar este comentário?')">
                                                             <input type="hidden" name="post_title" value="{{ post.title }}">
                                                             <input type="hidden" name="username" value="{{ comment.username }}">
                                                             <input type="hidden" name="timestamp" value="{{ comment.timestamp }}">
@@ -199,7 +199,7 @@
                                         
                                         {% if post.tem_mais %}
                                         <div class="text-center mt-2">
-                                            <a href="{{ url_for('ver_post', post_title=post.title) }}" class="btn btn-sm btn-outline-primary">
+                                            <a href="{{ url_for('main.ver_post', post_title=post.title) }}" class="btn btn-sm btn-outline-primary">
                                                 Ver todos os {{ post.total_comentarios }} comentários
                                             </a>
                                         </div>
@@ -210,7 +210,7 @@
                                 </div>
 
                                 <div class="comment-form-wrapper">
-                                    <form class="comment-form" action="{{ url_for('add_comment') }}" method="POST">
+                                    <form class="comment-form" action="{{ url_for('main.add_comment') }}" method="POST">
                                         <input type="hidden" name="post_title" value="{{ post.title }}">
                                         <div class="d-flex gap-2">
                                             <img class="comment-avatar" 
@@ -237,7 +237,7 @@
                             <h3 id="modal-title"></h3>
                             <p>Deseja excluir esta publicação?</p>
                             
-                            <form id="delete-form" action=" {{ url_for('delete_post') }}" method="POST">
+                            <form id="delete-form" action=" {{ url_for('main.delete_post') }}" method="POST">
                                 <input type="hidden" name="titulo_post" id="input-delete-title">
 
                                 <button type="button" id="delete_button" class="btn btn-danger" onclick="Confirm_delete()">Confirmar Exclusão</button>
@@ -251,7 +251,7 @@
                         <i class="bi bi-inbox display-1 text-muted mb-3"></i>
                         <h3 class="fw-bold">Ainda não há posts</h3>
                         <p class="text-muted mb-4">Seja o primeiro a compartilhar algo com a comunidade!</p>
-                        <a href="{{ url_for('publish') }}" class="btn btn-primary btn-lg">
+                        <a href="{{ url_for('main.publish') }}" class="btn btn-primary btn-lg">
                             <i class="bi bi-plus-lg"></i> Criar Primeiro Post
                         </a>
                     </div>

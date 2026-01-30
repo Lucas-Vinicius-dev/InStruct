@@ -22,7 +22,7 @@
     <!-- Cabeçalho — navegue pelo site -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-rosy" role="navigation" aria-label="Navegação principal">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('landing') }}">
+            <a class="navbar-brand" href="{{ url_for('main.landing') }}">
                 <i></i> InStruct { }
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
@@ -32,12 +32,12 @@
                 <ul class="navbar-nav ms-auto">
                     {% if session.get('usuario_logado') %}
                     <li class="nav-item">
-                        <a class="nav-link {% block nav_home %}{% endblock %}" href="{{ url_for('home') }}">
+                        <a class="nav-link {% block nav_home %}{% endblock %}" href="{{ url_for('main.home') }}">
                             <i class="bi bi-house-fill"></i> Feed
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('publish') }}">
+                        <a class="nav-link" href="{{ url_for('main.publish') }}">
                             <i class="bi bi-plus-circle"></i> Publicar
                         </a>
                     </li>
@@ -50,7 +50,7 @@
                             </summary>
                             <div class="profile-modal-content">
                                 <div class="profile-modal-body">
-                                    <a href="{{ url_for('profile') }}" class="profile-modal-item">
+                                    <a href="{{ url_for('main.profile') }}" class="profile-modal-item">
                                         <i class="bi bi-person"></i>
                                         <span>Profile</span>
                                     </a>
@@ -64,7 +64,7 @@
                                     </a>
                                 </div>
                                 <div class="profile-modal-footer">
-                                    <a href="{{ url_for('logout') }}" class="profile-modal-logout">
+                                    <a href="{{ url_for('main.logout') }}" class="profile-modal-logout">
                                         <i class="bi bi-box-arrow-right"></i>
                                         <span>Log Out</span>
                                     </a>
@@ -74,12 +74,12 @@
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('login') }}">
+                        <a class="nav-link" href="{{ url_for('main.login') }}">
                             Entrar
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link-cadastro" href="{{ url_for('cadastro') }}">
+                        <a class="nav-link link-cadastro" href="{{ url_for('main.cadastro') }}">
                             Cadastre-se
                         </a>
                     </li>
