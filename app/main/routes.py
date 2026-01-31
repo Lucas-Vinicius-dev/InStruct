@@ -6,9 +6,11 @@ from datetime import datetime
 CSV_LOC = 'data/publish_data.csv'
 COMMENTS_CSV = 'data/comments_data.csv'
 USERS_CSV = 'data/usuarios.csv'
+EMOJIS_CSV = 'data/emojis.csv'
 
 COLLUMN_HEADER = ['username','title','description','topico_principal','tipo_de_post','linguagem_selecionada','image','visibility']
 COMMENTS_HEADER = ['post_title','username','comment_text','timestamp']
+EMOJIS_HEADER = ['id', 'emoji']
 
 # Filtragem melhoradinha usando a searchbar, depois eu vou desacoplar essa função da função de filtragem básica(por filtros)
 @main_bp.route('/advanced_filtering')
@@ -128,8 +130,19 @@ def home():
         post_data['total_comentarios'] = len(todos_comentarios)
         post_data['tem_mais'] = len(todos_comentarios) > 3
         posts_com_comentarios.append(post_data)
+
+    emojis = []
+    with open(EMOJIS_CSV, 'r', encoding='UTF-8') as emojis_data:
+        conteudo = emojis_data.read().splitlines()[1:]
+
+        for linha in conteudo:
+            id, figura = linha.split(';')
+            emoji = {'id': id,
+                     'figura': figura}
+            emojis.append(emoji)
     
-    return render_template('main/home.html', posts=posts_com_comentarios,f_topico_principal=f_topico_principal,f_tipo_de_post=f_tipo_de_post,f_linguagem_selecionada=f_linguagem_selecionada)
+    print(emojis) ###
+    return render_template('main/home.html',posts=posts_com_comentarios,f_topico_principal=f_topico_principal,f_tipo_de_post=f_tipo_de_post,f_linguagem_selecionada=f_linguagem_selecionada, emojis=emojis)
 
 # Página de criação de publicações
 @main_bp.route('/publish', methods=['GET'])
