@@ -188,7 +188,6 @@ def adicionar_reacoes():
     ids_emojis_selecionados = request.form.getlist('emojis')
     titulo_post = request.args.get('titulo_post')
     username = session['usuario_logado']
-    print(ids_emojis_selecionados)
 
     emojis_selecionados = []
     with open(EMOJIS_CSV, 'r', encoding='utf-8') as emojis_data:
@@ -203,6 +202,26 @@ def adicionar_reacoes():
             reactions_data.write(f'{titulo_post};{username};{id_emoji}\n')
 
     return redirect(url_for('main.home') + f'#post-{titulo_post}')
+
+@main_bp.route('/remover_reacoes', methods=['POST'])
+def remover_reacoes():
+    ids_emojis_remover = request.form.getlist('emojis')
+    titulo_post_selecionado = request.args.get('titulo_post')
+    usuario_logado = session['usuario_logado']
+
+    reacoes_nao_removidos = []
+    with open(REACTION_CSV, 'r', encoding='utf-8') as reactions_data:
+        conteudo = reactions_data.read().splitlines()[1:]
+        for linha in conteudo:
+            titulo_post, username, id_emoji = linha.split(';')
+            if titulo_post != titulo_post_selecionado or username != usuario_logado or id_emoji not in ids_emojis_remover:
+                reacoes_nao_removidos.append((titulo_post, username, id_emoji))
+    
+    with open(REACTION_CSV, 'w', encoding='utf-8') as reactions_data:
+        for titulo_post, username, id_emoji in reacoes_nao_removidos:
+            reactions_data.write(f'{titulo_post};{username};{id_emoji}\n')
+
+    return redirect(url_for('main.home') + f'#post-{titulo_post_selecionado}')
 
 # Página de criação de publicações
 @main_bp.route('/publish', methods=['GET'])
@@ -320,8 +339,6 @@ def login():
                 return redirect(url_for('main.home'))
             else:
                 flash('Nome de usuário/email ou senha incorretos.', 'error')
-                print(identificador, usuario_registrado)
-                print(senha, senha_registrada)
                 return redirect(url_for('main.login'))
         
     return render_template("main/login.html")
