@@ -172,7 +172,16 @@ def home():
         else:
             reacoes_post[titulo_post] = {id_emoji: {'figura': reacao['figura'], 'legenda': reacao['legenda'], 'contador': 1}}
     
-    return render_template('main/home.html', posts=posts_com_comentarios, f_topico_principal=f_topico_principal, f_tipo_de_post=f_tipo_de_post, f_linguagem_selecionada=f_linguagem_selecionada, todos_emojis=todos_emojis, reacoes_post=reacoes_post)
+    reacoes_usuario = {}
+    for reacao in reacoes:
+        if reacao['username'] == session['usuario_logado']:
+            titulo_post = reacao['titulo_post']
+            if titulo_post in reacoes_usuario:
+                reacoes_usuario[titulo_post].append(reacao['id_emoji'])
+            else:
+                reacoes_usuario[titulo_post] = [reacao['id_emoji']]
+    
+    return render_template('main/home.html', posts=posts_com_comentarios, f_topico_principal=f_topico_principal, f_tipo_de_post=f_tipo_de_post, f_linguagem_selecionada=f_linguagem_selecionada, todos_emojis=todos_emojis, reacoes_post=reacoes_post, reacoes_usuario=reacoes_usuario)
 
 @main_bp.route('/adicionar_reacoes', methods=['POST'])
 def adicionar_reacoes():
@@ -193,7 +202,7 @@ def adicionar_reacoes():
         for id_emoji in emojis_selecionados:
             reactions_data.write(f'{titulo_post};{username};{id_emoji}\n')
 
-    return redirect(url_for('main.home'))
+    return redirect(url_for('main.home') + f'#post-{titulo_post}')
 
 # Página de criação de publicações
 @main_bp.route('/publish', methods=['GET'])

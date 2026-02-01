@@ -111,7 +111,7 @@
                 {% if posts %}
                     <div class="posts-list">
                         {% for post in posts %}
-                        <article class="post-card-vertical">
+                        <article class="post-card-vertical" id="post-{{ post.title }}">
                             <div class="post-header">
                                 <div class="publish-header d-flex align-items-center gap-3">
                                     <div class="publish-header d-flex align-items-center gap-3">
@@ -156,11 +156,18 @@
                             {% if reacoes_post[post.title] %}
                             <div id="reacoes-section-post-{{ loop.index }}">
                                 <div class="reacoes-container">
-                                    {% for reacao_k, reacao_v in reacoes_post[post.title].items() %}
-                                        <div class="reacoes-option">
-                                            <span>{{ reacao_v.figura }}</span>
-                                            <span>{{ reacao_v.contador }}</span>
-                                        </div>
+                                    {% for reacao_id_emoji, reacao_valores in reacoes_post[post.title].items() %}
+                                        {% if reacao_id_emoji in reacoes_usuario[post.title] %}
+                                            <div class="reacoes-option reacoes-usuario-reagiu">
+                                                <span>{{ reacao_valores.figura }}</span>
+                                                <span>{{ reacao_valores.contador }}</span>
+                                            </div>
+                                        {% else %}
+                                            <div class="reacoes-option reacoes-usuario-nao-reagiu">
+                                                <span>{{ reacao_valores.figura }}</span>
+                                                <span>{{ reacao_valores.contador }}</span>
+                                            </div>
+                                        {% endif %}
                                     {% endfor %}
                                 </div>
                             </div>
@@ -183,22 +190,61 @@
                             </div>
 
                             <input type="checkbox" id="toggle-comment-{{ loop.index }}" class="comment-toggle" hidden>
+                            <div class="collapse" id="emoji-section-post-{{ loop.index }}">
+                                <div class="emoji-section card card-body">
+                                    <nav>
+                                        <div class="nav nav-tabs nav-justified configuracao-emoji" id="nav-tab" role="tablist">
+                                            <button class="nav-link link-success active" id="emojis-para-reagir-tab-{{ loop.index }}" data-bs-toggle="tab" data-bs-target="#emojis-para-reagir-{{ loop.index }}" type="button" role="tab" aria-controls="emojis-para-reagir-{{ loop.index }}" aria-selected="true">Adicionar emojis</button>
+                                            <button class="nav-link link-danger" id="emojis-para-remover-tab-{{ loop.index }}" data-bs-toggle="tab" data-bs-target="#emojis-para-remover-{{ loop.index }}" type="button" role="tab" aria-controls="emojis-para-remover-{{ loop.index }}" aria-selected="false">Remover emojis</button>
+                                        </div>
+                                    </nav>
 
-                            <div class="collapse emoji-section" id="emoji-section-post-{{ loop.index }}">
-                                <form method="post" action="/adicionar_reacoes?titulo_post={{ post.title }}">
-                                    <div class="card card-body emoji-container">
-                                        {% for emoji in todos_emojis.values() %}
-                                            <label class="emoji-option">
-                                                <input type="checkbox" name="emojis" value="{{ emoji.id }}">
-                                                <span>{{ emoji.figura }}</span>
-                                            </label>
-                                        {% endfor %}
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="emojis-para-reagir-{{ loop.index }}" role="tabpanel" aria-labelledby="emojis-para-reagir-tab-{{ loop.index }}" tabindex="0">
+                                            {% if reacoes_usuario.get(post.title, []) | length != todos_emojis | length %}
+                                                <form method="post" action="/adicionar_reacoes?titulo_post={{ post.title }}">
+                                                    <div class="emoji-container">
+                                                        {% for emoji in todos_emojis.values() %}
+                                                            {% if emoji.id not in reacoes_usuario[post.title] %}
+                                                            <label class="emoji-option emoji-option-adicionar">
+                                                                <input type="checkbox" name="emojis" value="{{ emoji.id }}">
+                                                                <span>{{ emoji.figura }}</span>
+                                                            </label>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </div>
+                                                    <div class="emoji-button-envio">
+                                                        <input class="btn btn-primary" type="submit" value="Salvar">
+                                                    </div>
+                                                </form>
+                                            {% else %}
+                                                <p class="sem-emojis">Sem emojis para adicionar</p>
+                                            {% endif %}
+                                        </div>
                                     </div>
 
-                                    <div class="emoji-button-envio">
-                                        <input class="btn btn-primary" type="submit" value="Enviar emojis">
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show" id="emojis-para-remover-{{ loop.index }}" role="tabpanel" aria-labelledby="emojis-para-remover-tab-{{ loop.index }}" tabindex="0">
+                                            {% if reacoes_usuario[post.title] %}
+                                                <form method="post" action="/adicionar_reacoes?titulo_post={{ post.title }}">
+                                                    <div class="emoji-container">
+                                                            {% for id_emoji in reacoes_usuario[post.title] %}
+                                                                <label class="emoji-option emoji-option-remover">
+                                                                    <input type="checkbox" name="emojis" value="{{ id_emoji }}">
+                                                                    <span>{{ todos_emojis[id_emoji].figura }}</span>
+                                                                </label>
+                                                            {% endfor %}
+                                                    </div>
+                                                    <div class="emoji-button-envio">
+                                                        <input class="btn btn-primary" type="submit" value="Salvar">
+                                                    </div>
+                                                </form>
+                                            {% else %}
+                                                <p class="sem-emojis">Sem emojis para remover</p>
+                                            {% endif %}
+                                        </div>
                                     </div>
-                                </form>
+                                </div>
                             </div>
                             
                             <div class="comments-section show">
