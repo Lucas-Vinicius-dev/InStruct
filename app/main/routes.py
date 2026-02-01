@@ -7,6 +7,7 @@ CSV_LOC = 'data/publish_data.csv'
 COMMENTS_CSV = 'data/comments_data.csv'
 USERS_CSV = 'data/usuarios.csv'
 EMOJIS_CSV = 'data/emojis.csv'
+REACTION_CSV = 'data/reactions_data.csv'
 
 COLLUMN_HEADER = ['username','title','description','topico_principal','tipo_de_post','linguagem_selecionada','image','visibility']
 COMMENTS_HEADER = ['post_title','username','comment_text','timestamp']
@@ -143,6 +144,27 @@ def home():
             emojis.append(emoji)
     
     return render_template('main/home.html',posts=posts_com_comentarios,f_topico_principal=f_topico_principal,f_tipo_de_post=f_tipo_de_post,f_linguagem_selecionada=f_linguagem_selecionada, emojis=emojis)
+
+@main_bp.route('/adicionar_reacoes', methods=['POST'])
+def adicionar_reacoes():
+    ids_emojis_selecionados = request.form.getlist('emojis')
+    titulo_post = request.args.get('titulo_post')
+    username = session['usuario_logado']
+    print(ids_emojis_selecionados)
+
+    emojis_selecionados = []
+    with open(EMOJIS_CSV, 'r', encoding='utf-8') as emojis_data:
+        conteudo = emojis_data.read().splitlines()[1:]
+        for linha in conteudo:
+            id, figura, legenda = linha.split(';')
+            if id in ids_emojis_selecionados:
+                emojis_selecionados.append(id)
+    
+    with open(REACTION_CSV, 'a', encoding='utf-8') as reactions_data:
+        for id_emoji in emojis_selecionados:
+            reactions_data.write(f'{titulo_post};{username};{id_emoji}\n')
+
+    return redirect(url_for('main.home'))
 
 # Página de criação de publicações
 @main_bp.route('/publish', methods=['GET'])

@@ -457,6 +457,23 @@ main {
     background-color: #e0e0e0;
 }
 
+.emoji-button-envio {
+    display: flex;
+    justify-content: end;
+    margin-top: 1rem;
+}
+
+.emoji-button-envio input {
+    background-color: var(--brand-rose);
+    border-color: var(--brand-rose);
+}
+
+.emoji-button-envio input:hover {
+    color: var(--brand-rose);
+    background-color: var(--salt);
+    border-color: var(--salt);
+}
+
 .comments-section {
     margin-top: 1.5rem;
     padding-top: 1.5rem;

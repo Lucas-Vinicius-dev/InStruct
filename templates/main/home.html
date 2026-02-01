@@ -170,7 +170,7 @@
                             <input type="checkbox" id="toggle-comment-{{ loop.index }}" class="comment-toggle" hidden>
 
                             <div class="collapse emoji-section" id="emoji-section-post-{{ loop.index }}">
-                                <form method="post">
+                                <form method="post" action="/adicionar_reacoes?titulo_post={{ post.title }}">
                                     <div class="card card-body emoji-container">
                                         {% for emoji in emojis %}
                                             <label class="emoji-option">
@@ -178,6 +178,10 @@
                                                 <span class="emoji-span">{{ emoji.figura }}</span>
                                             </label>
                                         {% endfor %}
+                                    </div>
+
+                                    <div class="emoji-button-envio">
+                                        <input class="btn btn-primary" type="submit">
                                     </div>
                                 </form>
                             </div>
