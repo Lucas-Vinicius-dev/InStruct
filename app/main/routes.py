@@ -132,16 +132,16 @@ def home():
         posts_com_comentarios.append(post_data)
 
     emojis = []
-    with open(EMOJIS_CSV, 'r', encoding='UTF-8') as emojis_data:
+    with open(EMOJIS_CSV, 'r', encoding='utf-8') as emojis_data:
         conteudo = emojis_data.read().splitlines()[1:]
 
         for linha in conteudo:
-            id, figura = linha.split(';')
+            id, figura, legenda = linha.split(';')
             emoji = {'id': id,
-                     'figura': figura}
+                     'figura': figura,
+                     'legenda': legenda}
             emojis.append(emoji)
     
-    print(emojis) ###
     return render_template('main/home.html',posts=posts_com_comentarios,f_topico_principal=f_topico_principal,f_tipo_de_post=f_tipo_de_post,f_linguagem_selecionada=f_linguagem_selecionada, emojis=emojis)
 
 # Página de criação de publicações

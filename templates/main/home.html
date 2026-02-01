@@ -157,15 +157,30 @@
                                 <label class="action-btn" for="toggle-comment-{{ loop.index }}">
                                     <i class="bi bi-chat-dots"></i> Comentários ({{ post.total_comentarios }})
                                 </label>
-                                <button class="action-btn" type="button">
-                                    <i class="bi bi-heart"></i> Incentivar
+
+                                <button class="action-btn" type="button" data-bs-toggle="collapse" data-bs-target="#emoji-section-post-{{ loop.index }}" aria-expanded="false" aria-controls="emoji-section-post-{{ loop.index }}">
+                                    <i class="bi bi-heart"></i> Reagir
                                 </button>
+
                                 <button class="action-btn" type="button">
                                     <i class="bi bi-bookmark"></i> Salvar
                                 </button>
                             </div>
 
                             <input type="checkbox" id="toggle-comment-{{ loop.index }}" class="comment-toggle" hidden>
+
+                            <div class="collapse emoji-section" id="emoji-section-post-{{ loop.index }}">
+                                <form method="post">
+                                    <div class="card card-body emoji-container">
+                                        {% for emoji in emojis %}
+                                            <label class="emoji-option">
+                                                <input type="checkbox" name="emojis" value="{{ emoji.id }}">
+                                                <span class="emoji-span">{{ emoji.figura }}</span>
+                                            </label>
+                                        {% endfor %}
+                                    </div>
+                                </form>
+                            </div>
                             
                             <div class="comments-section show">
                                 <div class="comments-list">

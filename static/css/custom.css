@@ -417,6 +417,46 @@ main {
     color: var(--brand-rose);
 }
 
+.emoji-section {
+    margin-top: 1.5rem;
+}
+
+.emoji-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(35px, 1fr));
+    gap: 10px;
+    grid-auto-rows: 35px;
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.emoji-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    padding: 3px;
+    border-radius: 10px;
+    transition: all 0.2s linear;
+    user-select: none;
+    cursor: pointer;
+}
+
+.emoji-option input {
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.emoji-option:hover {
+    background-color: #e0e0e0;
+}
+
+.emoji-option:has(input:checked) {
+    background-color: #e0e0e0;
+}
+
 .comments-section {
     margin-top: 1.5rem;
     padding-top: 1.5rem;
