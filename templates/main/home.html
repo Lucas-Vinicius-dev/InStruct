@@ -152,6 +152,21 @@
                                 <pre class="code-card"><code>{{ post.description }}</code></pre>
                                 {% endif %}
                             </div>
+
+                            {% if reacoes_post[post.title] %}
+                            <div id="reacoes-section-post-{{ loop.index }}">
+                                <div class="reacoes-container">
+                                    {% for reacao_k, reacao_v in reacoes_post[post.title].items() %}
+                                        <div class="reacoes-option">
+                                            <span>{{ reacao_v.figura }}</span>
+                                            <span>{{ reacao_v.contador }}</span>
+                                        </div>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            <hr style="color:rgba(0, 0, 0, 0.4)">
                             
                             <div class="post-actions">
                                 <label class="action-btn" for="toggle-comment-{{ loop.index }}">
@@ -172,16 +187,16 @@
                             <div class="collapse emoji-section" id="emoji-section-post-{{ loop.index }}">
                                 <form method="post" action="/adicionar_reacoes?titulo_post={{ post.title }}">
                                     <div class="card card-body emoji-container">
-                                        {% for emoji in emojis %}
+                                        {% for emoji in todos_emojis.values() %}
                                             <label class="emoji-option">
                                                 <input type="checkbox" name="emojis" value="{{ emoji.id }}">
-                                                <span class="emoji-span">{{ emoji.figura }}</span>
+                                                <span>{{ emoji.figura }}</span>
                                             </label>
                                         {% endfor %}
                                     </div>
 
                                     <div class="emoji-button-envio">
-                                        <input class="btn btn-primary" type="submit">
+                                        <input class="btn btn-primary" type="submit" value="Enviar emojis">
                                     </div>
                                 </form>
                             </div>
@@ -217,7 +232,7 @@
                                         {% endfor %}
                                         
                                         {% if post.tem_mais %}
-                                        <div class="text-center mt-2">
+                                        <div class="text-center mt-4">
                                             <a href="{{ url_for('main.ver_post', post_title=post.title) }}" class="btn btn-sm btn-outline-primary">
                                                 Ver todos os {{ post.total_comentarios }} comentários
                                             </a>

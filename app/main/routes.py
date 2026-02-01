@@ -132,7 +132,7 @@ def home():
         post_data['tem_mais'] = len(todos_comentarios) > 3
         posts_com_comentarios.append(post_data)
 
-    emojis = []
+    todos_emojis = {}
     with open(EMOJIS_CSV, 'r', encoding='utf-8') as emojis_data:
         conteudo = emojis_data.read().splitlines()[1:]
 
@@ -141,9 +141,38 @@ def home():
             emoji = {'id': id,
                      'figura': figura,
                      'legenda': legenda}
-            emojis.append(emoji)
+            todos_emojis[id] = emoji
+
+    reacoes = []
+    with open(REACTION_CSV, 'r', encoding='utf-8') as reacoes_data:
+        conteudo = reacoes_data.read().splitlines()[1:]
+
+        for linha in conteudo:
+            titulo_post, username, id_emoji = linha.split(';')
+            reacao = {'titulo_post': titulo_post,
+                     'username': username,
+                     'id_emoji': id_emoji}
+            reacoes.append(reacao)
     
-    return render_template('main/home.html',posts=posts_com_comentarios,f_topico_principal=f_topico_principal,f_tipo_de_post=f_tipo_de_post,f_linguagem_selecionada=f_linguagem_selecionada, emojis=emojis)
+    for reacao in reacoes:
+        emoji_reacao = todos_emojis[reacao['id_emoji']]
+        reacao['figura'] = emoji_reacao['figura']
+        reacao['legenda'] = emoji_reacao['legenda']
+    
+    reacoes_post = {}
+    for reacao in reacoes:
+        titulo_post = reacao['titulo_post']
+        id_emoji = reacao['id_emoji']
+        if titulo_post in reacoes_post:
+            dict_reacoes_post = reacoes_post[titulo_post]
+            if id_emoji in dict_reacoes_post:
+                dict_reacoes_post[id_emoji]['contador'] += 1
+            else:
+                dict_reacoes_post[id_emoji] = {'figura': reacao['figura'], 'legenda': reacao['legenda'], 'contador': 1}
+        else:
+            reacoes_post[titulo_post] = {id_emoji: {'figura': reacao['figura'], 'legenda': reacao['legenda'], 'contador': 1}}
+    
+    return render_template('main/home.html', posts=posts_com_comentarios, f_topico_principal=f_topico_principal, f_tipo_de_post=f_tipo_de_post, f_linguagem_selecionada=f_linguagem_selecionada, todos_emojis=todos_emojis, reacoes_post=reacoes_post)
 
 @main_bp.route('/adicionar_reacoes', methods=['POST'])
 def adicionar_reacoes():
