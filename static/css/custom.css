@@ -397,7 +397,9 @@ main {
 .post-actions {
     display: flex;
     gap: 1.5rem;
-    padding-top: 1rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
 }
 
 .action-btn {
@@ -417,10 +419,145 @@ main {
     color: var(--brand-rose);
 }
 
+.reacoes-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 50px);
+    gap: 10px;
+    grid-auto-rows: 29px;
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.reacoes-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+    border-radius: 10px;
+    user-select: none;
+    transition: all 0.2s linear;
+}
+
+.reacoes-usuario-reagiu {
+    border: 1px solid rgba(200, 99, 65, 0.7);
+    background-color: rgba(200, 99, 65, 0.13);
+}
+
+.reacoes-usuario-reagiu :nth-child(2) {
+    color: rgba(200, 99, 65, 0.7);
+}
+
+.reacoes-usuario-reagiu:hover {
+    background-color: rgba(200, 99, 65, 0.13);
+    border-color: rgba(200, 99, 65, 0.13);
+}
+
+.reacoes-usuario-nao-reagiu {
+    border: 1px solid rgba(0, 0, 0, 0.13);
+}
+
+.reacoes-usuario-nao-reagiu:hover {
+    background-color: #e0e0e0;
+    border: transparent;
+}
+
+.configuracao-emoji {
+    margin-bottom: 1rem;
+}
+
+.emoji-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 35px);
+    gap: 10px;
+    grid-auto-rows: 35px;
+    max-height: 200px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.emoji-option {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    padding: 3px;
+    border-radius: 10px;
+    transition: all 0.2s linear;
+    user-select: none;
+    cursor: pointer;
+    border: 1px transparent;
+}
+
+.emoji-option input {
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.emoji-option:hover {
+    background-color: #e0e0e0;
+}
+
+.emoji-option:has(input:checked) {
+    background-color: #e0e0e0;
+    border: 1px solid rgba(0, 0, 0, 0.13);
+}
+
+.emoji-option-adicionar:hover {
+    background-color: rgba(25,135,84, 0.13);
+}
+
+.emoji-option-adicionar:has(input:checked) {
+    background-color: rgba(25,135,84, 0.13);
+    border: 1px solid rgba(25,135,84, 0.50);
+}
+
+.emoji-option-remover:hover {
+    background-color: rgba(220,53,69, 0.13);
+}
+
+.emoji-option-remover:has(input:checked) {
+    background-color: rgba(220,53,69, 0.13);
+    border: 1px solid rgba(220,53,69, 0.50);
+}
+
+.emoji-button-envio {
+    display: flex;
+    justify-content: end;
+    margin-top: 1rem;
+}
+
+.emoji-button-envio input {
+    background-color: var(--brand-rose);
+    border-color: var(--brand-rose);
+}
+
+.emoji-button-envio input:hover {
+    color: var(--brand-rose);
+    background-color: var(--salt);
+    border-color: var(--salt);
+}
+
+.emoji-button-envio input:active {
+    color: var(--brand-rose) !important;
+    background-color: var(--salt) !important;
+    border-color: var(--salt) !important;
+}
+
+.emoji-button-envio input:focus {
+    background-color: var(--brand-rose);
+    border-color: var(--brand-rose);
+}
+
+.sem-emojis {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.4);
+    margin: 2rem 0;
+}
+
 .comments-section {
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    margin-top: 1rem;
 }
 
 .comments-section.show {
@@ -434,10 +571,6 @@ main {
 
 .comment-toggle:checked ~ .comments-section .comment-form-wrapper {
     display: block;
-}
-
-.comments-list {
-    margin-bottom: 1.5rem;
 }
 
 .comment-item {
@@ -464,6 +597,7 @@ main {
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 0.25rem;
+    flex-wrap: wrap;
 }
 
 .comment-user {
@@ -508,7 +642,7 @@ main {
     text-align: center;
     color: rgba(0, 0, 0, 0.4);
     font-size: 0.875rem;
-    margin: 1rem 0;
+    margin: 2.25rem 0 1rem 0;
 }
 
 .comment-input {

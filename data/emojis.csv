@@ -1,0 +1,1541 @@
+id;figura;legenda
+1;😀;Grinning Face
+2;😁;Beaming Face With Smiling Eyes
+3;😂;Face With Tears of Joy
+4;🤣;Rolling on the Floor Laughing
+5;😃;Grinning Face With Big Eyes
+6;😄;Grinning Face With Smiling Eyes
+7;😅;Grinning Face With Sweat
+8;😆;Grinning Squinting Face
+9;😉;Winking Face
+10;😊;Smiling Face With Smiling Eyes
+11;😋;Face Savoring Food
+12;😎;Smiling Face With Sunglasses
+13;😍;Smiling Face With Heart-Eyes
+14;😘;Face Blowing a Kiss
+15;😗;Kissing Face
+16;😙;Kissing Face With Smiling Eyes
+17;😚;Kissing Face With Closed Eyes
+18;🙂;Slightly Smiling Face
+19;🤗;Hugging Face
+20;🤩;Star-Struck
+21;🤔;Thinking Face
+22;🤨;Face With Raised Eyebrow
+23;😐;Neutral Face
+24;😑;Expressionless Face
+25;😶;Face Without Mouth
+26;🙄;Face With Rolling Eyes
+27;😏;Smirking Face
+28;😣;Persevering Face
+29;😥;Sad but Relieved Face
+30;😮;Face With Open Mouth
+31;🤐;Zipper-Mouth Face
+32;😯;Hushed Face
+33;😪;Sleepy Face
+34;😫;Tired Face
+35;😴;Sleeping Face
+36;😌;Relieved Face
+37;😛;Face With Tongue
+38;😜;Winking Face With Tongue
+39;😝;Squinting Face With Tongue
+40;🤤;Drooling Face
+41;😒;Unamused Face
+42;😓;Downcast Face With Sweat
+43;😔;Pensive Face
+44;😕;Confused Face
+45;🙃;Upside-Down Face
+46;🤑;Money-Mouth Face
+47;😲;Astonished Face
+48;☹;Frowning Face
+49;🙁;Slightly Frowning Face
+50;😖;Confounded Face
+51;😞;Disappointed Face
+52;😟;Worried Face
+53;😤;Face With Steam From Nose
+54;😢;Crying Face
+55;😭;Loudly Crying Face
+56;😦;Frowning Face With Open Mouth
+57;😧;Anguished Face
+58;😨;Fearful Face
+59;😩;Weary Face
+60;🤯;Exploding Head
+61;😬;Grimacing Face
+62;😰;Anxious Face With Sweat
+63;😱;Face Screaming in Fear
+64;😳;Flushed Face
+65;🤪;Zany Face
+66;😵;Dizzy Face
+67;😡;Pouting Face
+68;😠;Angry Face
+69;🤬;Face With Symbols on Mouth
+70;😷;Face With Medical Mask
+71;🤒;Face With Thermometer
+72;🤕;Face With Head-Bandage
+73;🤢;Nauseated Face
+74;🤮;Face Vomiting
+75;🤧;Sneezing Face
+76;😇;Smiling Face With Halo
+77;🤠;Cowboy Hat Face
+78;🤡;Clown Face
+79;🤥;Lying Face
+80;🤫;Shushing Face
+81;🤭;Face With Hand Over Mouth
+82;🧐;Face With Monocle
+83;🤓;Nerd Face
+84;😈;Smiling Face With Horns
+85;👿;Angry Face With Horns
+86;👹;Ogre
+87;👺;Goblin
+88;💀;Skull
+89;👻;Ghost
+90;👽;Alien
+91;🤖;Robot Face
+92;💩;Pile of Poo
+93;😺;Grinning Cat Face
+94;😸;Grinning Cat Face With Smiling Eyes
+95;😹;Cat Face With Tears of Joy
+96;😻;Smiling Cat Face With Heart-Eyes
+97;😼;Cat Face With Wry Smile
+98;😽;Kissing Cat Face
+99;🙀;Weary Cat Face
+100;😿;Crying Cat Face
+101;😾;Pouting Cat Face
+102;👶;Baby
+103;👦;Boy
+104;👧;Girl
+105;👨;Man
+106;👩;Woman
+107;👴;Old Man
+108;👵;Old Woman
+109;👨‍⚕️;Man Health Worker
+110;👩‍⚕️;Woman Health Worker
+111;👨‍🎓;Man Student
+112;👩‍🎓;Woman Student
+113;👨‍⚖️;Man Judge
+114;👩‍⚖️;Woman Judge
+115;👨‍🌾;Man Farmer
+116;👩‍🌾;Woman Farmer
+117;👨‍🍳;Man Cook
+118;👩‍🍳;Woman Cook
+119;👨‍🔧;Man Mechanic
+120;👩‍🔧;Woman Mechanic
+121;👨‍🏭;Man Factory Worker
+122;👩‍🏭;Woman Factory Worker
+123;👨‍💼;Man Office Worker
+124;👩‍💼;Woman Office Worker
+125;👨‍🔬;Man Scientist
+126;👩‍🔬;Woman Scientist
+127;👨‍💻;Man Technologist
+128;👩‍💻;Woman Technologist
+129;👨‍🎤;Man Singer
+130;👩‍🎤;Woman Singer
+131;👨‍🎨;Man Artist
+132;👩‍🎨;Woman Artist
+133;👨‍✈️;Man Pilot
+134;👩‍✈️;Woman Pilot
+135;👨‍🚀;Man Astronaut
+136;👩‍🚀;Woman Astronaut
+137;👨‍🚒;Man Firefighter
+138;👩‍🚒;Woman Firefighter
+139;👮;Police Officer
+140;👮‍♂️;Man Police Officer
+141;👮‍♀️;Woman Police Officer
+142;🕵;Detective
+143;🕵️‍♂️;Man Detective
+144;🕵️‍♀️;Woman Detective
+145;💂;Guard
+146;💂‍♂️;Man Guard
+147;💂‍♀️;Woman Guard
+148;👷;Construction Worker
+149;👷‍♂️;Man Construction Worker
+150;👷‍♀️;Woman Construction Worker
+151;🤴;Prince
+152;👸;Princess
+153;👳;Person Wearing Turban
+154;👳‍♂️;Man Wearing Turban
+155;👳‍♀️;Woman Wearing Turban
+156;👲;Man With Chinese Cap
+157;🧕;Woman With Headscarf
+158;🧔;Bearded Person
+159;👱;Blond-Haired Person
+160;👱‍♂️;Blond-Haired Man
+161;👱‍♀️;Blond-Haired Woman
+162;🤵;Man in Tuxedo
+163;👰;Bride With Veil
+164;🤰;Pregnant Woman
+165;🤱;Breast-Feeding
+166;👼;Baby Angel
+167;🎅;Santa Claus
+168;🤶;Mrs. Claus
+169;🧙‍♀️;Woman Mage
+170;🧙‍♂️;Man Mage
+171;🧚‍♀️;Woman Fairy
+172;🧚‍♂️;Man Fairy
+173;🧛‍♀️;Woman Vampire
+174;🧛‍♂️;Man Vampire
+175;🧜‍♀️;Mermaid
+176;🧜‍♂️;Merman
+177;🧝‍♀️;Woman Elf
+178;🧝‍♂️;Man Elf
+179;🧞‍♀️;Woman Genie
+180;🧞‍♂️;Man Genie
+181;🧟‍♀️;Woman Zombie
+182;🧟‍♂️;Man Zombie
+183;🙍;Person Frowning
+184;🙍‍♂️;Man Frowning
+185;🙍‍♀️;Woman Frowning
+186;🙎;Person Pouting
+187;🙎‍♂️;Man Pouting
+188;🙎‍♀️;Woman Pouting
+189;🙅;Person Gesturing No
+190;🙅‍♂️;Man Gesturing No
+191;🙅‍♀️;Woman Gesturing No
+192;🙆;Person Gesturing OK
+193;🙆‍♂️;Man Gesturing OK
+194;🙆‍♀️;Woman Gesturing OK
+195;💁;Person Tipping Hand
+196;💁‍♂️;Man Tipping Hand
+197;💁‍♀️;Woman Tipping Hand
+198;🙋;Person Raising Hand
+199;🙋‍♂️;Man Raising Hand
+200;🙋‍♀️;Woman Raising Hand
+201;🙇;Person Bowing
+202;🙇‍♂️;Man Bowing
+203;🙇‍♀️;Woman Bowing
+204;🤦;Person Facepalming
+205;🤦‍♂️;Man Facepalming
+206;🤦‍♀️;Woman Facepalming
+207;🤷;Person Shrugging
+208;🤷‍♂️;Man Shrugging
+209;🤷‍♀️;Woman Shrugging
+210;💆;Person Getting Massage
+211;💆‍♂️;Man Getting Massage
+212;💆‍♀️;Woman Getting Massage
+213;💇;Person Getting Haircut
+214;💇‍♂️;Man Getting Haircut
+215;💇‍♀️;Woman Getting Haircut
+216;🚶;Person Walking
+217;🚶‍♂️;Man Walking
+218;🚶‍♀️;Woman Walking
+219;🏃;Person Running
+220;🏃‍♂️;Man Running
+221;🏃‍♀️;Woman Running
+222;💃;Woman Dancing
+223;🕺;Man Dancing
+224;👯;People With Bunny Ears
+225;👯‍♂️;Men With Bunny Ears
+226;👯‍♀️;Women With Bunny Ears
+227;🧖‍♀️;Woman in Steamy Room
+228;🧖‍♂️;Man in Steamy Room
+229;🕴;Man in Suit Levitating
+230;🗣;Speaking Head
+231;👤;Bust in Silhouette
+232;👥;Busts in Silhouette
+233;👫;Man and Woman Holding Hands
+234;👬;Two Men Holding Hands
+235;👭;Two Women Holding Hands
+236;💏;Kiss
+237;👨‍❤️‍💋‍👨;Kiss: Man, Man
+238;👩‍❤️‍💋‍👩;Kiss: Woman, Woman
+239;💑;Couple With Heart
+240;👨‍❤️‍👨;Couple With Heart: Man, Man
+241;👩‍❤️‍👩;Couple With Heart: Woman, Woman
+242;☺;Smiling Face
+243;👪;Family
+244;👨‍👩‍👦;Family: Man, Woman, Boy
+245;👨‍👩‍👧;Family: Man, Woman, Girl
+246;👨‍👩‍👧‍👦;Family: Man, Woman, Girl, Boy
+247;👨‍👩‍👦‍👦;Family: Man, Woman, Boy, Boy
+248;👨‍👩‍👧‍👧;Family: Man, Woman, Girl, Girl
+249;👨‍👨‍👦;Family: Man, Man, Boy
+250;👨‍👨‍👧;Family: Man, Man, Girl
+251;👨‍👨‍👧‍👦;Family: Man, Man, Girl, Boy
+252;👨‍👨‍👦‍👦;Family: Man, Man, Boy, Boy
+253;👨‍👨‍👧‍👧;Family: Man, Man, Girl, Girl
+254;👩‍👩‍👦;Family: Woman, Woman, Boy
+255;👩‍👩‍👧;Family: Woman, Woman, Girl
+256;👩‍👩‍👧‍👦;Family: Woman, Woman, Girl, Boy
+257;👩‍👩‍👦‍👦;Family: Woman, Woman, Boy, Boy
+258;👩‍👩‍👧‍👧;Family: Woman, Woman, Girl, Girl
+259;👨‍👦;Family: Man, Boy
+260;👨‍👦‍👦;Family: Man, Boy, Boy
+261;👨‍👧;Family: Man, Girl
+262;👨‍👧‍👦;Family: Man, Girl, Boy
+263;👨‍👧‍👧;Family: Man, Girl, Girl
+264;👩‍👦;Family: Woman, Boy
+265;👩‍👦‍👦;Family: Woman, Boy, Boy
+266;👩‍👧;Family: Woman, Girl
+267;👩‍👧‍👦;Family: Woman, Girl, Boy
+268;👩‍👧‍👧;Family: Woman, Girl, Girl
+269;🤳;Selfie
+270;💪;Flexed Biceps
+271;👈;Backhand Index Pointing Left
+272;👉;Backhand Index Pointing Right
+273;☝;Index Pointing Up
+274;👆;Backhand Index Pointing Up
+275;🖕;Middle Finger
+276;👇;Backhand Index Pointing Down
+277;✌;Victory Hand
+278;🤞;Crossed Fingers
+279;🖖;Vulcan Salute
+280;🤘;Sign of the Horns
+281;🖐;Hand With Fingers Splayed
+282;✋;Raised Hand
+283;👌;OK Hand
+284;👍;Thumbs Up
+285;👎;Thumbs Down
+286;✊;Raised Fist
+287;👊;Oncoming Fist
+288;🤛;Left-Facing Fist
+289;🤜;Right-Facing Fist
+290;🤚;Raised Back of Hand
+291;👋;Waving Hand
+292;🤟;Love-You Gesture
+293;✍;Writing Hand
+294;👏;Clapping Hands
+295;👐;Open Hands
+296;🙌;Raising Hands
+297;🤲;Palms Up Together
+298;🙏;Folded Hands
+299;🤝;Handshake
+300;💅;Nail Polish
+301;👂;Ear
+302;👃;Nose
+303;👣;Footprints
+304;👀;Eyes
+305;👁;Eye
+306;🧠;Brain
+307;👅;Tongue
+308;👄;Mouth
+309;💋;Kiss Mark
+310;👓;Glasses
+311;🕶;Sunglasses
+312;👔;Necktie
+313;👕;T-Shirt
+314;👖;Jeans
+315;🧣;Scarf
+316;🧤;Gloves
+317;🧥;Coat
+318;🧦;Socks
+319;👗;Dress
+320;👘;Kimono
+321;👙;Bikini
+322;👚;Woman’s Clothes
+323;👛;Purse
+324;👜;Handbag
+325;👝;Clutch Bag
+326;🎒;School Backpack
+327;👞;Man’s Shoe
+328;👟;Running Shoe
+329;👠;High-Heeled Shoe
+330;👡;Woman’s Sandal
+331;👢;Woman’s Boot
+332;👑;Crown
+333;👒;Woman’s Hat
+334;🎩;Top Hat
+335;🎓;Graduation Cap
+336;🧢;Billed Cap
+337;⛑;Rescue Worker’s Helmet
+338;💄;Lipstick
+339;💍;Ring
+340;🌂;Closed Umbrella
+341;☂;Umbrella
+342;💼;Briefcase
+343;break;break
+344;🙈;See-No-Evil Monkey
+345;🙉;Hear-No-Evil Monkey
+346;🙊;Speak-No-Evil Monkey
+347;💥;Collision
+348;💦;Sweat Droplets
+349;💨;Dashing Away
+350;💫;Dizzy
+351;🐵;Monkey Face
+352;🐒;Monkey
+353;🦍;Gorilla
+354;🐶;Dog Face
+355;🐕;Dog
+356;🐩;Poodle
+357;🐺;Wolf Face
+358;🦊;Fox Face
+359;🐱;Cat Face
+360;🐈;Cat
+361;🦁;Lion Face
+362;🐯;Tiger Face
+363;🐅;Tiger
+364;🐆;Leopard
+365;🐴;Horse Face
+366;🐎;Horse
+367;🦄;Unicorn Face
+368;🦓;Zebra
+369;🐮;Cow Face
+370;🐂;Ox
+371;🐃;Water Buffalo
+372;🐄;Cow
+373;🐷;Pig Face
+374;🐖;Pig
+375;🐗;Boar
+376;🐽;Pig Nose
+377;🐏;Ram
+378;🐑;Ewe
+379;🐐;Goat
+380;🐪;Camel
+381;🐫;Two-Hump Camel
+382;🦒;Giraffe
+383;🐘;Elephant
+384;🦏;Rhinoceros
+385;🐭;Mouse Face
+386;🐁;Mouse
+387;🐀;Rat
+388;🐹;Hamster Face
+389;🐰;Rabbit Face
+390;🐇;Rabbit
+391;🐿;Chipmunk
+392;🦔;Hedgehog
+393;🦇;Bat
+394;🐻;Bear Face
+395;🐨;Koala
+396;🐼;Panda Face
+397;🐾;Paw Prints
+398;🦃;Turkey
+399;🐔;Chicken
+400;🐓;Rooster
+401;🐣;Hatching Chick
+402;🐤;Baby Chick
+403;🐥;Front-Facing Baby Chick
+404;🐦;Bird
+405;🐧;Penguin
+406;🕊;Dove
+407;🦅;Eagle
+408;🦆;Duck
+409;🦉;Owl
+410;🐸;Frog Face
+411;🐊;Crocodile
+412;🐢;Turtle
+413;🦎;Lizard
+414;🐍;Snake
+415;🐲;Dragon Face
+416;🐉;Dragon
+417;🦕;Sauropod
+418;🦖;T-Rex
+419;🐳;Spouting Whale
+420;🐋;Whale
+421;🐬;Dolphin
+422;🐟;Fish
+423;🐠;Tropical Fish
+424;🐡;Blowfish
+425;🦈;Shark
+426;🐙;Octopus
+427;🐚;Spiral Shell
+428;🦀;Crab
+429;🦐;Shrimp
+430;🦑;Squid
+431;🐌;Snail
+432;🦋;Butterfly
+433;🐛;Bug
+434;🐜;Ant
+435;🐝;Honeybee
+436;🐞;Lady Beetle
+437;🦗;Cricket
+438;🕷;Spider
+439;🕸;Spider Web
+440;🦂;Scorpion
+441;💐;Bouquet
+442;🌸;Cherry Blossom
+443;💮;White Flower
+444;🏵;Rosette
+445;🌹;Rose
+446;🥀;Wilted Flower
+447;🌺;Hibiscus
+448;🌻;Sunflower
+449;🌼;Blossom
+450;🌷;Tulip
+451;🌱;Seedling
+452;🌲;Evergreen Tree
+453;🌳;Deciduous Tree
+454;🌴;Palm Tree
+455;🌵;Cactus
+456;🌾;Sheaf of Rice
+457;🌿;Herb
+458;☘;Shamrock
+459;🍀;Four Leaf Clover
+460;🍁;Maple Leaf
+461;🍂;Fallen Leaf
+462;🍃;Leaf Fluttering in Wind
+463;🍄;Mushroom
+464;🌰;Chestnut
+465;🌍;Globe Showing Europe-Africa
+466;🌎;Globe Showing Americas
+467;🌏;Globe Showing Asia-Australia
+468;🌐;Globe With Meridians
+469;🌑;New Moon
+470;🌒;Waxing Crescent Moon
+471;🌓;First Quarter Moon
+472;🌔;Waxing Gibbous Moon
+473;🌕;Full Moon
+474;🌖;Waning Gibbous Moon
+475;🌗;Last Quarter Moon
+476;🌘;Waning Crescent Moon
+477;🌙;Crescent Moon
+478;🌚;New Moon Face
+479;🌛;First Quarter Moon Face
+480;🌜;Last Quarter Moon Face
+481;☀;Sun
+482;🌝;Full Moon Face
+483;🌞;Sun With Face
+484;⭐;White Medium Star
+485;🌟;Glowing Star
+486;🌠;Shooting Star
+487;☁;Cloud
+488;⛅;Sun Behind Cloud
+489;⛈;Cloud With Lightning and Rain
+490;🌤;Sun Behind Small Cloud
+491;🌥;Sun Behind Large Cloud
+492;🌦;Sun Behind Rain Cloud
+493;🌧;Cloud With Rain
+494;🌨;Cloud With Snow
+495;🌩;Cloud With Lightning
+496;🌪;Tornado
+497;🌫;Fog
+498;🌬;Wind Face
+499;🌈;Rainbow
+500;☂;Umbrella
+501;☔;Umbrella With Rain Drops
+502;⚡;High Voltage
+503;❄;Snowflake
+504;☃;Snowman
+505;⛄;Snowman Without Snow
+506;☄;Comet
+507;🔥;Fire
+508;💧;Droplet
+509;🌊;Water Wave
+510;🎄;Christmas Tree
+511;✨;Sparkles
+512;🎋;Tanabata Tree
+513;🎍;Pine Decoration
+514;break;break
+515;🍇;Grapes
+516;🍈;Melon
+517;🍉;Watermelon
+518;🍊;Tangerine
+519;🍋;Lemon
+520;🍌;Banana
+521;🍍;Pineapple
+522;🍎;Red Apple
+523;🍏;Green Apple
+524;🍐;Pear
+525;🍑;Peach
+526;🍒;Cherries
+527;🍓;Strawberry
+528;🥝;Kiwi Fruit
+529;🍅;Tomato
+530;🥥;Coconut
+531;🥑;Avocado
+532;🍆;Eggplant
+533;🥔;Potato
+534;🥕;Carrot
+535;🌽;Ear of Corn
+536;🌶;Hot Pepper
+537;🥒;Cucumber
+538;🥦;Broccoli
+539;🍄;Mushroom
+540;🥜;Peanuts
+541;🌰;Chestnut
+542;🍞;Bread
+543;🥐;Croissant
+544;🥖;Baguette Bread
+545;🥨;Pretzel
+546;🥞;Pancakes
+547;🧀;Cheese Wedge
+548;🍖;Meat on Bone
+549;🍗;Poultry Leg
+550;🥩;Cut of Meat
+551;🥓;Bacon
+552;🍔;Hamburger
+553;🍟;French Fries
+554;🍕;Pizza
+555;🌭;Hot Dog
+556;🥪;Sandwich
+557;🌮;Taco
+558;🌯;Burrito
+559;🍳;Cooking
+560;🍲;Pot of Food
+561;🥣;Bowl With Spoon
+562;🥗;Green Salad
+563;🍿;Popcorn
+564;🥫;Canned Food
+565;🍱;Bento Box
+566;🍘;Rice Cracker
+567;🍙;Rice Ball
+568;🍚;Cooked Rice
+569;🍛;Curry Rice
+570;🍜;Steaming Bowl
+571;🍝;Spaghetti
+572;🍠;Roasted Sweet Potato
+573;🍢;Oden
+574;🍣;Sushi
+575;🍤;Fried Shrimp
+576;🍥;Fish Cake With Swirl
+577;🍡;Dango
+578;🥟;Dumpling
+579;🥠;Fortune Cookie
+580;🥡;Takeout Box
+581;🍦;Soft Ice Cream
+582;🍧;Shaved Ice
+583;🍨;Ice Cream
+584;🍩;Doughnut
+585;🍪;Cookie
+586;🎂;Birthday Cake
+587;🍰;Shortcake
+588;🥧;Pie
+589;🍫;Chocolate Bar
+590;🍬;Candy
+591;🍭;Lollipop
+592;🍮;Custard
+593;🍯;Honey Pot
+594;🍼;Baby Bottle
+595;🥛;Glass of Milk
+596;☕;Hot Beverage
+597;🍵;Teacup Without Handle
+598;🍶;Sake
+599;🍾;Bottle With Popping Cork
+600;🍷;Wine Glass
+601;🍸;Cocktail Glass
+602;🍹;Tropical Drink
+603;🍺;Beer Mug
+604;🍻;Clinking Beer Mugs
+605;🥂;Clinking Glasses
+606;🥃;Tumbler Glass
+607;🥤;Cup With Straw
+608;🥢;Chopsticks
+609;🍽;Fork and Knife With Plate
+610;🍴;Fork and Knife
+611;🥄;Spoon
+612;break;break
+613;👾;Alien Monster
+614;🧗‍♀️;Woman Climbing
+615;🧗‍♂️;Man Climbing
+616;🧘‍♀️;Woman in Lotus Position
+617;🧘‍♂️;Man in Lotus Position
+618;🕴;Man in Suit Levitating
+619;🏇;Horse Racing
+620;⛷;Skier
+621;🏂;Snowboarder
+622;🏌;Person Golfing
+623;🏌️‍♂️;Man Golfing
+624;🏌️‍♀️;Woman Golfing
+625;🏄;Person Surfing
+626;🏄‍♂️;Man Surfing
+627;🏄‍♀️;Woman Surfing
+628;🚣;Person Rowing Boat
+629;🚣‍♂️;Man Rowing Boat
+630;🚣‍♀️;Woman Rowing Boat
+631;🏊;Person Swimming
+632;🏊‍♂️;Man Swimming
+633;🏊‍♀️;Woman Swimming
+634;⛹;Person Bouncing Ball
+635;⛹️‍♂️;Man Bouncing Ball
+636;⛹️‍♀️;Woman Bouncing Ball
+637;🏋;Person Lifting Weights
+638;🏋️‍♂️;Man Lifting Weights
+639;🏋️‍♀️;Woman Lifting Weights
+640;🚴;Person Biking
+641;🚴‍♂️;Man Biking
+642;🚴‍♀️;Woman Biking
+643;🚵;Person Mountain Biking
+644;🚵‍♂️;Man Mountain Biking
+645;🚵‍♀️;Woman Mountain Biking
+646;🤸;Person Cartwheeling
+647;🤸‍♂️;Man Cartwheeling
+648;🤸‍♀️;Woman Cartwheeling
+649;🤼;People Wrestling
+650;🤼‍♂️;Men Wrestling
+651;🤼‍♀️;Women Wrestling
+652;🤽;Person Playing Water Polo
+653;🤽‍♂️;Man Playing Water Polo
+654;🤽‍♀️;Woman Playing Water Polo
+655;🤾;Person Playing Handball
+656;🤾‍♂️;Man Playing Handball
+657;🤾‍♀️;Woman Playing Handball
+658;🤹;Person Juggling
+659;🤹‍♂️;Man Juggling
+660;🤹‍♀️;Woman Juggling
+661;🎪;Circus Tent
+662;🎗;Reminder Ribbon
+663;🎟;Admission Tickets
+664;🎫;Ticket
+665;🎖;Military Medal
+666;🏆;Trophy
+667;🏅;Sports Medal
+668;🥇;1st Place Medal
+669;🥈;2nd Place Medal
+670;🥉;3rd Place Medal
+671;⚽;Soccer Ball
+672;⚾;Baseball
+673;🏀;Basketball
+674;🏐;Volleyball
+675;🏈;American Football
+676;🏉;Rugby Football
+677;🎾;Tennis
+678;🎳;Bowling
+679;🏏;Cricket Game
+680;🏑;Field Hockey
+681;🏒;Ice Hockey
+682;🏓;Ping Pong
+683;🏸;Badminton
+684;🥊;Boxing Glove
+685;🥋;Martial Arts Uniform
+686;⛳;Flag in Hole
+687;⛸;Ice Skate
+688;🎣;Fishing Pole
+689;🎽;Running Shirt
+690;🎿;Skis
+691;🛷;Sled
+692;🥌;Curling Stone
+693;🎯;Direct Hit
+694;🎱;Pool 8 Ball
+695;🎮;Video Game
+696;🎰;Slot Machine
+697;🎲;Game Die
+698;🎭;Performing Arts
+699;🎨;Artist Palette
+700;🎼;Musical Score
+701;🎤;Microphone
+702;🎧;Headphone
+703;🎷;Saxophone
+704;🎸;Guitar
+705;🎹;Musical Keyboard
+706;🎺;Trumpet
+707;🎻;Violin
+708;🥁;Drum
+709;🎬;Clapper Board
+710;🏹;Bow and Arrow
+711;break;break
+712;🚣;Person Rowing Boat
+713;🏎;Racing Car
+714;🏍;Motorcycle
+715;🗾;Map of Japan
+716;🏔;Snow-Capped Mountain
+717;⛰;Mountain
+718;🌋;Volcano
+719;🗻;Mount Fuji
+720;🏕;Camping
+721;🏖;Beach With Umbrella
+722;🏜;Desert
+723;🏝;Desert Island
+724;🏞;National Park
+725;🏟;Stadium
+726;🏛;Classical Building
+727;🏗;Building Construction
+728;🏘;Houses
+729;🏚;Derelict House
+730;🏠;House
+731;🏡;House With Garden
+732;🏢;Office Building
+733;🏣;Japanese Post Office
+734;🏤;Post Office
+735;🏥;Hospital
+736;🏦;Bank
+737;🏨;Hotel
+738;🏩;Love Hotel
+739;🏪;Convenience Store
+740;🏫;School
+741;🏬;Department Store
+742;🏭;Factory
+743;🏯;Japanese Castle
+744;🏰;Castle
+745;💒;Wedding
+746;🗼;Tokyo Tower
+747;🗽;Statue of Liberty
+748;⛪;Church
+749;🕌;Mosque
+750;🕍;Synagogue
+751;⛩;Shinto Shrine
+752;🕋;Kaaba
+753;⛲;Fountain
+754;⛺;Tent
+755;🌁;Foggy
+756;🌃;Night With Stars
+757;🏙;Cityscape
+758;🌄;Sunrise Over Mountains
+759;🌅;Sunrise
+760;🌆;Cityscape at Dusk
+761;🌇;Sunset
+762;🌉;Bridge at Night
+763;🌌;Milky Way
+764;🎠;Carousel Horse
+765;🎡;Ferris Wheel
+766;🎢;Roller Coaster
+767;🚂;Locomotive
+768;🚃;Railway Car
+769;🚄;High-Speed Train
+770;🚅;Bullet Train
+771;🚆;Train
+772;🚇;Metro
+773;🚈;Light Rail
+774;🚉;Station
+775;🚊;Tram
+776;🚝;Monorail
+777;🚞;Mountain Railway
+778;🚋;Tram Car
+779;🚌;Bus
+780;🚍;Oncoming Bus
+781;🚎;Trolleybus
+782;🚐;Minibus
+783;🚑;Ambulance
+784;🚒;Fire Engine
+785;🚓;Police Car
+786;🚔;Oncoming Police Car
+787;🚕;Taxi
+788;🚖;Oncoming Taxi
+789;🚗;Automobile
+790;🚘;Oncoming Automobile
+791;🚚;Delivery Truck
+792;🚛;Articulated Lorry
+793;🚜;Tractor
+794;🚲;Bicycle
+795;🛴;Kick Scooter
+796;🛵;Motor Scooter
+797;🚏;Bus Stop
+798;🛤;Railway Track
+799;⛽;Fuel Pump
+800;🚨;Police Car Light
+801;🚥;Horizontal Traffic Light
+802;🚦;Vertical Traffic Light
+803;🚧;Construction
+804;⚓;Anchor
+805;⛵;Sailboat
+806;🚤;Speedboat
+807;🛳;Passenger Ship
+808;⛴;Ferry
+809;🛥;Motor Boat
+810;🚢;Ship
+811;✈;Airplane
+812;🛩;Small Airplane
+813;🛫;Airplane Departure
+814;🛬;Airplane Arrival
+815;💺;Seat
+816;🚁;Helicopter
+817;🚟;Suspension Railway
+818;🚠;Mountain Cableway
+819;🚡;Aerial Tramway
+820;🛰;Satellite
+821;🚀;Rocket
+822;🛸;Flying Saucer
+823;🌠;Shooting Star
+824;⛱;Umbrella on Ground
+825;🎆;Fireworks
+826;🎇;Sparkler
+827;🎑;Moon Viewing Ceremony
+828;💴;Yen Banknote
+829;💵;Dollar Banknote
+830;💶;Euro Banknote
+831;💷;Pound Banknote
+832;🗿;Moai
+833;🛂;Passport Control
+834;🛃;Customs
+835;🛄;Baggage Claim
+836;🛅;Left Luggage
+837;break;break
+838;☠;Skull and Crossbones
+839;🛀;Person Taking Bath
+840;🛌;Person in Bed
+841;💌;Love Letter
+842;💣;Bomb
+843;🕳;Hole
+844;🛍;Shopping Bags
+845;📿;Prayer Beads
+846;💎;Gem Stone
+847;🔪;Kitchen Knife
+848;🏺;Amphora
+849;🗺;World Map
+850;💈;Barber Pole
+851;🛢;Oil Drum
+852;🛎;Bellhop Bell
+853;⌛;Hourglass Done
+854;⏳;Hourglass Not Done
+855;⌚;Watch
+856;⏰;Alarm Clock
+857;⏱;Stopwatch
+858;⏲;Timer Clock
+859;🕰;Mantelpiece Clock
+860;🌡;Thermometer
+861;⛱;Umbrella on Ground
+862;🎈;Balloon
+863;🎉;Party Popper
+864;🎊;Confetti Ball
+865;🎎;Japanese Dolls
+866;🎏;Carp Streamer
+867;🎐;Wind Chime
+868;🎀;Ribbon
+869;🎁;Wrapped Gift
+870;🔮;Crystal Ball
+871;🕹;Joystick
+872;🖼;Framed Picture
+873;📯;Postal Horn
+874;🎙;Studio Microphone
+875;🎚;Level Slider
+876;🎛;Control Knobs
+877;📻;Radio
+878;📱;Mobile Phone
+879;📲;Mobile Phone With Arrow
+880;☎;Telephone
+881;📞;Telephone Receiver
+882;📟;Pager
+883;📠;Fax Machine
+884;🔋;Battery
+885;🔌;Electric Plug
+886;💻;Laptop Computer
+887;🖥;Desktop Computer
+888;🖨;Printer
+889;⌨;Keyboard
+890;🖱;Computer Mouse
+891;🖲;Trackball
+892;💽;Computer Disk
+893;💾;Floppy Disk
+894;💿;Optical Disk
+895;📀;DVD
+896;🎥;Movie Camera
+897;🎞;Film Frames
+898;📽;Film Projector
+899;📺;Television
+900;📷;Camera
+901;📸;Camera With Flash
+902;📹;Video Camera
+903;📼;Videocassette
+904;🔍;Magnifying Glass Tilted Left
+905;🔎;Magnifying Glass Tilted Right
+906;🕯;Candle
+907;💡;Light Bulb
+908;🔦;Flashlight
+909;🏮;Red Paper Lantern
+910;📔;Notebook With Decorative Cover
+911;📕;Closed Book
+912;📖;Open Book
+913;📗;Green Book
+914;📘;Blue Book
+915;📙;Orange Book
+916;📚;Books
+917;📓;Notebook
+918;📃;Page With Curl
+919;📜;Scroll
+920;📄;Page Facing Up
+921;📰;Newspaper
+922;🗞;Rolled-Up Newspaper
+923;📑;Bookmark Tabs
+924;🔖;Bookmark
+925;🏷;Label
+926;💰;Money Bag
+927;💴;Yen Banknote
+928;💵;Dollar Banknote
+929;💶;Euro Banknote
+930;💷;Pound Banknote
+931;💸;Money With Wings
+932;💳;Credit Card
+933;✉;Envelope
+934;📧;E-Mail
+935;📨;Incoming Envelope
+936;📩;Envelope With Arrow
+937;📤;Outbox Tray
+938;📥;Inbox Tray
+939;📦;Package
+940;📫;Closed Mailbox With Raised Flag
+941;📪;Closed Mailbox With Lowered Flag
+942;📬;Open Mailbox With Raised Flag
+943;📭;Open Mailbox With Lowered Flag
+944;📮;Postbox
+945;🗳;Ballot Box With Ballot
+946;✏;Pencil
+947;✒;Black Nib
+948;🖋;Fountain Pen
+949;🖊;Pen
+950;🖌;Paintbrush
+951;🖍;Crayon
+952;📝;Memo
+953;📁;File Folder
+954;📂;Open File Folder
+955;🗂;Card Index Dividers
+956;📅;Calendar
+957;📆;Tear-Off Calendar
+958;🗒;Spiral Notepad
+959;🗓;Spiral Calendar
+960;📇;Card Index
+961;📈;Chart Increasing
+962;📉;Chart Decreasing
+963;📊;Bar Chart
+964;📋;Clipboard
+965;📌;Pushpin
+966;📍;Round Pushpin
+967;📎;Paperclip
+968;🖇;Linked Paperclips
+969;📏;Straight Ruler
+970;📐;Triangular Ruler
+971;✂;Scissors
+972;🗃;Card File Box
+973;🗄;File Cabinet
+974;🗑;Wastebasket
+975;🔒;Locked
+976;🔓;Unlocked
+977;🔏;Locked With Pen
+978;🔐;Locked With Key
+979;🔑;Key
+980;🗝;Old Key
+981;🔨;Hammer
+982;⛏;Pick
+983;⚒;Hammer and Pick
+984;🛠;Hammer and Wrench
+985;🗡;Dagger
+986;⚔;Crossed Swords
+987;🔫;Pistol
+988;🛡;Shield
+989;🔧;Wrench
+990;🔩;Nut and Bolt
+991;⚙;Gear
+992;🗜;Clamp
+993;⚖;Balance Scale
+994;🔗;Link
+995;⛓;Chains
+996;⚗;Alembic
+997;🔬;Microscope
+998;🔭;Telescope
+999;📡;Satellite Antenna
+1000;💉;Syringe
+1001;💊;Pill
+1002;🚪;Door
+1003;🛏;Bed
+1004;🛋;Couch and Lamp
+1005;🚽;Toilet
+1006;🚿;Shower
+1007;🛁;Bathtub
+1008;🚬;Cigarette
+1009;⚰;Coffin
+1010;⚱;Funeral Urn
+1011;🗿;Moai
+1012;🚰;Potable Water
+1013;break;break
+1014;👁️‍🗨️;Eye in Speech Bubble
+1015;💘;Heart With Arrow
+1016;❤;Red Heart
+1017;💓;Beating Heart
+1018;💔;Broken Heart
+1019;💕;Two Hearts
+1020;💖;Sparkling Heart
+1021;💗;Growing Heart
+1022;💙;Blue Heart
+1023;💚;Green Heart
+1024;💛;Yellow Heart
+1025;🧡;Orange Heart
+1026;💜;Purple Heart
+1027;🖤;Black Heart
+1028;💝;Heart With Ribbon
+1029;💞;Revolving Hearts
+1030;💟;Heart Decoration
+1031;❣;Heavy Heart Exclamation
+1032;💤;Zzz
+1033;💢;Anger Symbol
+1034;💬;Speech Balloon
+1035;🗯;Right Anger Bubble
+1036;💭;Thought Balloon
+1037;💮;White Flower
+1038;♨;Hot Springs
+1039;💈;Barber Pole
+1040;🛑;Stop Sign
+1041;🕛;Twelve O’clock
+1042;🕧;Twelve-Thirty
+1043;🕐;One O’clock
+1044;🕜;One-Thirty
+1045;🕑;Two O’clock
+1046;🕝;Two-Thirty
+1047;🕒;Three O’clock
+1048;🕞;Three-Thirty
+1049;🕓;Four O’clock
+1050;🕟;Four-Thirty
+1051;🕔;Five O’clock
+1052;🕠;Five-Thirty
+1053;🕕;Six O’clock
+1054;🕡;Six-Thirty
+1055;🕖;Seven O’clock
+1056;🕢;Seven-Thirty
+1057;🕗;Eight O’clock
+1058;🕣;Eight-Thirty
+1059;🕘;Nine O’clock
+1060;🕤;Nine-Thirty
+1061;🕙;Ten O’clock
+1062;🕥;Ten-Thirty
+1063;🕚;Eleven O’clock
+1064;🕦;Eleven-Thirty
+1065;🌀;Cyclone
+1066;♠;Spade Suit
+1067;♥;Heart Suit
+1068;♦;Diamond Suit
+1069;♣;Club Suit
+1070;🃏;Joker
+1071;🀄;Mahjong Red Dragon
+1072;🎴;Flower Playing Cards
+1073;🔇;Muted Speaker
+1074;🔈;Speaker Low Volume
+1075;🔉;Speaker Medium Volume
+1076;🔊;Speaker High Volume
+1077;📢;Loudspeaker
+1078;📣;Megaphone
+1079;📯;Postal Horn
+1080;🔔;Bell
+1081;🔕;Bell With Slash
+1082;🎵;Musical Note
+1083;🎶;Musical Notes
+1084;🏧;Atm Sign
+1085;🚮;Litter in Bin Sign
+1086;🚰;Potable Water
+1087;♿;Wheelchair Symbol
+1088;🚹;Men’s Room
+1089;🚺;Women’s Room
+1090;🚻;Restroom
+1091;🚼;Baby Symbol
+1092;🚾;Water Closet
+1093;⚠;Warning
+1094;🚸;Children Crossing
+1095;⛔;No Entry
+1096;🚫;Prohibited
+1097;🚳;No Bicycles
+1098;🚭;No Smoking
+1099;🚯;No Littering
+1100;🚱;Non-Potable Water
+1101;🚷;No Pedestrians
+1102;🔞;No One Under Eighteen
+1103;☢;Radioactive
+1104;☣;Biohazard
+1105;⬆;Up Arrow
+1106;↗;Up-Right Arrow
+1107;➡;Right Arrow
+1108;↘;Down-Right Arrow
+1109;⬇;Down Arrow
+1110;↙;Down-Left Arrow
+1111;⬅;Left Arrow
+1112;↖;Up-Left Arrow
+1113;↕;Up-Down Arrow
+1114;↔;Left-Right Arrow
+1115;↩;Right Arrow Curving Left
+1116;↪;Left Arrow Curving Right
+1117;⤴;Right Arrow Curving Up
+1118;⤵;Right Arrow Curving Down
+1119;🔃;Clockwise Vertical Arrows
+1120;🔄;Counterclockwise Arrows Button
+1121;🔙;Back Arrow
+1122;🔚;End Arrow
+1123;🔛;On! Arrow
+1124;🔜;Soon Arrow
+1125;🔝;Top Arrow
+1126;🛐;Place of Worship
+1127;⚛;Atom Symbol
+1128;🕉;Om
+1129;✡;Star of David
+1130;☸;Wheel of Dharma
+1131;☯;Yin Yang
+1132;✝;Latin Cross
+1133;☦;Orthodox Cross
+1134;☪;Star and Crescent
+1135;☮;Peace Symbol
+1136;🕎;Menorah
+1137;🔯;Dotted Six-Pointed Star
+1138;♈;Aries
+1139;♉;Taurus
+1140;♊;Gemini
+1141;♋;Cancer
+1142;♌;Leo
+1143;♍;Virgo
+1144;♎;Libra
+1145;♏;Scorpio
+1146;♐;Sagittarius
+1147;♑;Capricorn
+1148;♒;Aquarius
+1149;♓;Pisces
+1150;⛎;Ophiuchus
+1151;🔀;Shuffle Tracks Button
+1152;🔁;Repeat Button
+1153;🔂;Repeat Single Button
+1154;▶;Play Button
+1155;⏩;Fast-Forward Button
+1156;◀;Reverse Button
+1157;⏪;Fast Reverse Button
+1158;🔼;Upwards Button
+1159;⏫;Fast Up Button
+1160;🔽;Downwards Button
+1161;⏬;Fast Down Button
+1162;⏹;Stop Button
+1163;⏏;Eject Button
+1164;🎦;Cinema
+1165;🔅;Dim Button
+1166;🔆;Bright Button
+1167;📶;Antenna Bars
+1168;📳;Vibration Mode
+1169;📴;Mobile Phone Off
+1170;♻;Recycling Symbol
+1171;🔱;Trident Emblem
+1172;📛;Name Badge
+1173;🔰;Japanese Symbol for Beginner
+1174;⭕;Heavy Large Circle
+1175;✅;White Heavy Check Mark
+1176;☑;Ballot Box With Check
+1177;✔;Heavy Check Mark
+1178;✖;Heavy Multiplication X
+1179;❌;Cross Mark
+1180;❎;Cross Mark Button
+1181;➕;Heavy Plus Sign
+1182;➖;Heavy Minus Sign
+1183;➗;Heavy Division Sign
+1184;➰;Curly Loop
+1185;➿;Double Curly Loop
+1186;〽;Part Alternation Mark
+1187;✳;Eight-Spoked Asterisk
+1188;✴;Eight-Pointed Star
+1189;❇;Sparkle
+1190;‼;Double Exclamation Mark
+1191;⁉;Exclamation Question Mark
+1192;❓;Question Mark
+1193;❔;White Question Mark
+1194;❕;White Exclamation Mark
+1195;❗;Exclamation Mark
+1196;©;Copyright
+1197;®;Registered
+1198;™;Trade Mark
+1199;#️⃣;Keycap Number Sign
+1200;0️⃣;Keycap Digit Zero
+1201;1️⃣;Keycap Digit One
+1202;2️⃣;Keycap Digit Two
+1203;3️⃣;Keycap Digit Three
+1204;4️⃣;Keycap Digit Four
+1205;5️⃣;Keycap Digit Five
+1206;6️⃣;Keycap Digit Six
+1207;7️⃣;Keycap Digit Seven
+1208;8️⃣;Keycap Digit Eight
+1209;9️⃣;Keycap Digit Nine
+1210;🔟;Keycap 10
+1211;💯;Hundred Points
+1212;🔠;Input Latin Uppercase
+1213;🔡;Input Latin Lowercase
+1214;🔢;Input Numbers
+1215;🔣;Input Symbols
+1216;🔤;Input Latin Letters
+1217;🅰;A Button (blood Type)
+1218;🆎;Ab Button (blood Type)
+1219;🅱;B Button (blood Type)
+1220;🆑;CL Button
+1221;🆒;Cool Button
+1222;🆓;Free Button
+1223;ℹ;Information
+1224;🆔;ID Button
+1225;Ⓜ;Circled M
+1226;🆕;New Button
+1227;🆖;NG Button
+1228;🅾;O Button (blood Type)
+1229;🆗;OK Button
+1230;🅿;P Button
+1231;🆘;SOS Button
+1232;🆙;Up! Button
+1233;🆚;Vs Button
+1234;🈁;Japanese “here” Button
+1235;🈂;Japanese “service Charge” Button
+1236;🈷;Japanese “monthly Amount” Button
+1237;🈶;Japanese “not Free of Charge” Button
+1238;🈯;Japanese “reserved” Button
+1239;🉐;Japanese “bargain” Button
+1240;🈹;Japanese “discount” Button
+1241;🈚;Japanese “free of Charge” Button
+1242;🈲;Japanese “prohibited” Button
+1243;🉑;Japanese “acceptable” Button
+1244;🈸;Japanese “application” Button
+1245;🈴;Japanese “passing Grade” Button
+1246;🈳;Japanese “vacancy” Button
+1247;㊗;Japanese “congratulations” Button
+1248;㊙;Japanese “secret” Button
+1249;🈺;Japanese “open for Business” Button
+1250;🈵;Japanese “no Vacancy” Button
+1251;▪;Black Small Square
+1252;▫;White Small Square
+1253;◻;White Medium Square
+1254;◼;Black Medium Square
+1255;◽;White Medium-Small Square
+1256;◾;Black Medium-Small Square
+1257;⬛;Black Large Square
+1258;⬜;White Large Square
+1259;🔶;Large Orange Diamond
+1260;🔷;Large Blue Diamond
+1261;🔸;Small Orange Diamond
+1262;🔹;Small Blue Diamond
+1263;🔺;Red Triangle Pointed Up
+1264;🔻;Red Triangle Pointed Down
+1265;💠;Diamond With a Dot
+1266;🔲;Black Square Button
+1267;🔳;White Square Button
+1268;⚪;White Circle
+1269;⚫;Black Circle
+1270;🔴;Red Circle
+1271;🔵;Blue Circle
+1272;break;break
+1273;🏁;Chequered Flag
+1274;🚩;Triangular Flag
+1275;🎌;Crossed Flags
+1276;🏴;Black Flag
+1277;🏳;White Flag
+1278;🏳️‍🌈;Rainbow Flag
+1279;🏴‍☠️;Pirate Flag
+1280;🇦🇨;Ascension Island
+1281;🇦🇩;Andorra
+1282;🇦🇪;United Arab Emirates
+1283;🇦🇫;Afghanistan
+1284;🇦🇬;Antigua & Barbuda
+1285;🇦🇮;Anguilla
+1286;🇦🇱;Albania
+1287;🇦🇲;Armenia
+1288;🇦🇴;Angola
+1289;🇦🇶;Antarctica
+1290;🇦🇷;Argentina
+1291;🇦🇸;American Samoa
+1292;🇦🇹;Austria
+1293;🇦🇺;Australia
+1294;🇦🇼;Aruba
+1295;🇦🇽;Åland Islands
+1296;🇦🇿;Azerbaijan
+1297;🇧🇦;Bosnia & Herzegovina
+1298;🇧🇧;Barbados
+1299;🇧🇩;Bangladesh
+1300;🇧🇪;Belgium
+1301;🇧🇫;Burkina Faso
+1302;🇧🇬;Bulgaria
+1303;🇧🇭;Bahrain
+1304;🇧🇮;Burundi
+1305;🇧🇯;Benin
+1306;🇧🇱;St. Barthélemy
+1307;🇧🇲;Bermuda
+1308;🇧🇳;Brunei
+1309;🇧🇴;Bolivia
+1310;🇧🇶;Caribbean Netherlands
+1311;🇧🇷;Brazil
+1312;🇧🇸;Bahamas
+1313;🇧🇹;Bhutan
+1314;🇧🇻;Bouvet Island
+1315;🇧🇼;Botswana
+1316;🇧🇾;Belarus
+1317;🇧🇿;Belize
+1318;🇨🇦;Canada
+1319;🇨🇨;Cocos (Keeling) Islands
+1320;🇨🇩;Congo - Kinshasa
+1321;🇨🇫;Central African Republic
+1322;🇨🇬;Congo - Brazzaville
+1323;🇨🇭;Switzerland
+1324;🇨🇮;Côte D’Ivoire
+1325;🇨🇰;Cook Islands
+1326;🇨🇱;Chile
+1327;🇨🇲;Cameroon
+1328;🇨🇳;China
+1329;🇨🇴;Colombia
+1330;🇨🇵;Clipperton Island
+1331;🇨🇷;Costa Rica
+1332;🇨🇺;Cuba
+1333;🇨🇻;Cape Verde
+1334;🇨🇼;Curaçao
+1335;🇨🇽;Christmas Island
+1336;🇨🇾;Cyprus
+1337;🇨🇿;Czechia
+1338;🇩🇪;Germany
+1339;🇩🇬;Diego Garcia
+1340;🇩🇯;Djibouti
+1341;🇩🇰;Denmark
+1342;🇩🇲;Dominica
+1343;🇩🇴;Dominican Republic
+1344;🇩🇿;Algeria
+1345;🇪🇦;Ceuta & Melilla
+1346;🇪🇨;Ecuador
+1347;🇪🇪;Estonia
+1348;🇪🇬;Egypt
+1349;🇪🇭;Western Sahara
+1350;🇪🇷;Eritrea
+1351;🇪🇸;Spain
+1352;🇪🇹;Ethiopia
+1353;🇪🇺;European Union
+1354;🇫🇮;Finland
+1355;🇫🇯;Fiji
+1356;🇫🇰;Falkland Islands
+1357;🇫🇲;Micronesia
+1358;🇫🇴;Faroe Islands
+1359;🇫🇷;France
+1360;🇬🇦;Gabon
+1361;🇬🇧;United Kingdom
+1362;🇬🇩;Grenada
+1363;🇬🇪;Georgia
+1364;🇬🇫;French Guiana
+1365;🇬🇬;Guernsey
+1366;🇬🇭;Ghana
+1367;🇬🇮;Gibraltar
+1368;🇬🇱;Greenland
+1369;🇬🇲;Gambia
+1370;🇬🇳;Guinea
+1371;🇬🇵;Guadeloupe
+1372;🇬🇶;Equatorial Guinea
+1373;🇬🇷;Greece
+1374;🇬🇸;South Georgia & South Sandwich Islands
+1375;🇬🇹;Guatemala
+1376;🇬🇺;Guam
+1377;🇬🇼;Guinea-Bissau
+1378;🇬🇾;Guyana
+1379;🇭🇰;Hong Kong SAR China
+1380;🇭🇲;Heard & McDonald Islands
+1381;🇭🇳;Honduras
+1382;🇭🇷;Croatia
+1383;🇭🇹;Haiti
+1384;🇭🇺;Hungary
+1385;🇮🇨;Canary Islands
+1386;🇮🇩;Indonesia
+1387;🇮🇪;Ireland
+1388;🇮🇱;Israel
+1389;🇮🇲;Isle of Man
+1390;🇮🇳;India
+1391;🇮🇴;British Indian Ocean Territory
+1392;🇮🇶;Iraq
+1393;🇮🇷;Iran
+1394;🇮🇸;Iceland
+1395;🇮🇹;Italy
+1396;🇯🇪;Jersey
+1397;🇯🇲;Jamaica
+1398;🇯🇴;Jordan
+1399;🇯🇵;Japan
+1400;🇰🇪;Kenya
+1401;🇰🇬;Kyrgyzstan
+1402;🇰🇭;Cambodia
+1403;🇰🇮;Kiribati
+1404;🇰🇲;Comoros
+1405;🇰🇳;St. Kitts & Nevis
+1406;🇰🇵;North Korea
+1407;🇰🇷;South Korea
+1408;🇰🇼;Kuwait
+1409;🇰🇾;Cayman Islands
+1410;🇰🇿;Kazakhstan
+1411;🇱🇦;Laos
+1412;🇱🇧;Lebanon
+1413;🇱🇨;St. Lucia
+1414;🇱🇮;Liechtenstein
+1415;🇱🇰;Sri Lanka
+1416;🇱🇷;Liberia
+1417;🇱🇸;Lesotho
+1418;🇱🇹;Lithuania
+1419;🇱🇺;Luxembourg
+1420;🇱🇻;Latvia
+1421;🇱🇾;Libya
+1422;🇲🇦;Morocco
+1423;🇲🇨;Monaco
+1424;🇲🇩;Moldova
+1425;🇲🇪;Montenegro
+1426;🇲🇫;St. Martin
+1427;🇲🇬;Madagascar
+1428;🇲🇭;Marshall Islands
+1429;🇲🇰;Macedonia
+1430;🇲🇱;Mali
+1431;🇲🇲;Myanmar (Burma)
+1432;🇲🇳;Mongolia
+1433;🇲🇴;Macau SAR China
+1434;🇲🇵;Northern Mariana Islands
+1435;🇲🇶;Martinique
+1436;🇲🇷;Mauritania
+1437;🇲🇸;Montserrat
+1438;🇲🇹;Malta
+1439;🇲🇺;Mauritius
+1440;🇲🇻;Maldives
+1441;🇲🇼;Malawi
+1442;🇲🇽;Mexico
+1443;🇲🇾;Malaysia
+1444;🇲🇿;Mozambique
+1445;🇳🇦;Namibia
+1446;🇳🇨;New Caledonia
+1447;🇳🇪;Niger
+1448;🇳🇫;Norfolk Island
+1449;🇳🇬;Nigeria
+1450;🇳🇮;Nicaragua
+1451;🇳🇱;Netherlands
+1452;🇳🇴;Norway
+1453;🇳🇵;Nepal
+1454;🇳🇷;Nauru
+1455;🇳🇺;Niue
+1456;🇳🇿;New Zealand
+1457;🇴🇲;Oman
+1458;🇵🇦;Panama
+1459;🇵🇪;Peru
+1460;🇵🇫;French Polynesia
+1461;🇵🇬;Papua New Guinea
+1462;🇵🇭;Philippines
+1463;🇵🇰;Pakistan
+1464;🇵🇱;Poland
+1465;🇵🇲;St. Pierre & Miquelon
+1466;🇵🇳;Pitcairn Islands
+1467;🇵🇷;Puerto Rico
+1468;🇵🇸;Palestinian Territories
+1469;🇵🇹;Portugal
+1470;🇵🇼;Palau
+1471;🇵🇾;Paraguay
+1472;🇶🇦;Qatar
+1473;🇷🇪;Réunion
+1474;🇷🇴;Romania
+1475;🇷🇸;Serbia
+1476;🇷🇺;Russia
+1477;🇷🇼;Rwanda
+1478;🇸🇦;Saudi Arabia
+1479;🇸🇧;Solomon Islands
+1480;🇸🇨;Seychelles
+1481;🇸🇩;Sudan
+1482;🇸🇪;Sweden
+1483;🇸🇬;Singapore
+1484;🇸🇭;St. Helena
+1485;🇸🇮;Slovenia
+1486;🇸🇯;Svalbard & Jan Mayen
+1487;🇸🇰;Slovakia
+1488;🇸🇱;Sierra Leone
+1489;🇸🇲;San Marino
+1490;🇸🇳;Senegal
+1491;🇸🇴;Somalia
+1492;🇸🇷;Suriname
+1493;🇸🇸;South Sudan
+1494;🇸🇹;São Tomé & Príncipe
+1495;🇸🇻;El Salvador
+1496;🇸🇽;Sint Maarten
+1497;🇸🇾;Syria
+1498;🇸🇿;Swaziland
+1499;🇹🇦;Tristan Da Cunha
+1500;🇹🇨;Turks & Caicos Islands
+1501;🇹🇩;Chad
+1502;🇹🇫;French Southern Territories
+1503;🇹🇬;Togo
+1504;🇹🇭;Thailand
+1505;🇹🇯;Tajikistan
+1506;🇹🇰;Tokelau
+1507;🇹🇱;Timor-Leste
+1508;🇹🇲;Turkmenistan
+1509;🇹🇳;Tunisia
+1510;🇹🇴;Tonga
+1511;🇹🇷;Turkey
+1512;🇹🇹;Trinidad & Tobago
+1513;🇹🇻;Tuvalu
+1514;🇹🇼;Taiwan
+1515;🇹🇿;Tanzania
+1516;🇺🇦;Ukraine
+1517;🇺🇬;Uganda
+1518;🇺🇲;U.S. Outlying Islands
+1519;🇺🇳;United Nations
+1520;🇺🇸;United States
+1521;🇺🇾;Uruguay
+1522;🇺🇿;Uzbekistan
+1523;🇻🇦;Vatican City
+1524;🇻🇨;St. Vincent & Grenadines
+1525;🇻🇪;Venezuela
+1526;🇻🇬;British Virgin Islands
+1527;🇻🇮;U.S. Virgin Islands
+1528;🇻🇳;Vietnam
+1529;🇻🇺;Vanuatu
+1530;🇼🇫;Wallis & Futuna
+1531;🇼🇸;Samoa
+1532;🇽🇰;Kosovo
+1533;🇾🇪;Yemen
+1534;🇾🇹;Mayotte
+1535;🇿🇦;South Africa
+1536;🇿🇲;Zambia
+1537;🇿🇼;Zimbabwe
+1538;🏴󠁧󠁢󠁥󠁮󠁧󠁿;England
+1539;🏴󠁧󠁢󠁳󠁣󠁴󠁿;Scotland
+1540;🏴󠁧󠁢󠁷󠁬󠁳󠁿;Wales

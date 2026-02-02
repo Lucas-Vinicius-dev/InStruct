@@ -13,8 +13,5 @@ from app.admin import admin_bp
 app.register_blueprint(admin_bp, url_prefix='/admin')
 app.register_blueprint(main_bp)
 
-
-
 if __name__ == "__main__":
     app.run(debug=True)
-

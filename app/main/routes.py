@@ -6,9 +6,12 @@ from datetime import datetime
 CSV_LOC = 'data/publish_data.csv'
 COMMENTS_CSV = 'data/comments_data.csv'
 USERS_CSV = 'data/usuarios.csv'
+EMOJIS_CSV = 'data/emojis.csv'
+REACTION_CSV = 'data/reactions_data.csv'
 
 COLLUMN_HEADER = ['username','title','description','topico_principal','tipo_de_post','linguagem_selecionada','image','visibility']
 COMMENTS_HEADER = ['post_title','username','comment_text','timestamp']
+EMOJIS_HEADER = ['id', 'emoji']
 
 # Filtragem melhoradinha usando a searchbar, depois eu vou desacoplar essa função da função de filtragem básica(por filtros)
 @main_bp.route('/advanced_filtering')
@@ -128,8 +131,97 @@ def home():
         post_data['total_comentarios'] = len(todos_comentarios)
         post_data['tem_mais'] = len(todos_comentarios) > 3
         posts_com_comentarios.append(post_data)
+
+    todos_emojis = {}
+    with open(EMOJIS_CSV, 'r', encoding='utf-8') as emojis_data:
+        conteudo = emojis_data.read().splitlines()[1:]
+
+        for linha in conteudo:
+            id, figura, legenda = linha.split(';')
+            emoji = {'id': id,
+                     'figura': figura,
+                     'legenda': legenda}
+            todos_emojis[id] = emoji
+
+    reacoes = []
+    with open(REACTION_CSV, 'r', encoding='utf-8') as reacoes_data:
+        conteudo = reacoes_data.read().splitlines()[1:]
+
+        for linha in conteudo:
+            titulo_post, username, id_emoji = linha.split(';')
+            reacao = {'titulo_post': titulo_post,
+                     'username': username,
+                     'id_emoji': id_emoji}
+            reacoes.append(reacao)
     
-    return render_template('main/home.html', posts=posts_com_comentarios,f_topico_principal=f_topico_principal,f_tipo_de_post=f_tipo_de_post,f_linguagem_selecionada=f_linguagem_selecionada)
+    for reacao in reacoes:
+        emoji_reacao = todos_emojis[reacao['id_emoji']]
+        reacao['figura'] = emoji_reacao['figura']
+        reacao['legenda'] = emoji_reacao['legenda']
+    
+    reacoes_post = {}
+    for reacao in reacoes:
+        titulo_post = reacao['titulo_post']
+        id_emoji = reacao['id_emoji']
+        if titulo_post in reacoes_post:
+            dict_reacoes_post = reacoes_post[titulo_post]
+            if id_emoji in dict_reacoes_post:
+                dict_reacoes_post[id_emoji]['contador'] += 1
+            else:
+                dict_reacoes_post[id_emoji] = {'figura': reacao['figura'], 'legenda': reacao['legenda'], 'contador': 1}
+        else:
+            reacoes_post[titulo_post] = {id_emoji: {'figura': reacao['figura'], 'legenda': reacao['legenda'], 'contador': 1}}
+    
+    reacoes_usuario = {}
+    for reacao in reacoes:
+        if reacao['username'] == session['usuario_logado']:
+            titulo_post = reacao['titulo_post']
+            if titulo_post in reacoes_usuario:
+                reacoes_usuario[titulo_post].append(reacao['id_emoji'])
+            else:
+                reacoes_usuario[titulo_post] = [reacao['id_emoji']]
+    
+    return render_template('main/home.html', posts=posts_com_comentarios, f_topico_principal=f_topico_principal, f_tipo_de_post=f_tipo_de_post, f_linguagem_selecionada=f_linguagem_selecionada, todos_emojis=todos_emojis, reacoes_post=reacoes_post, reacoes_usuario=reacoes_usuario)
+
+@main_bp.route('/adicionar_reacoes', methods=['POST'])
+def adicionar_reacoes():
+    ids_emojis_selecionados = request.form.getlist('emojis')
+    titulo_post = request.args.get('titulo_post')
+    username = session['usuario_logado']
+
+    emojis_selecionados = []
+    with open(EMOJIS_CSV, 'r', encoding='utf-8') as emojis_data:
+        conteudo = emojis_data.read().splitlines()[1:]
+        for linha in conteudo:
+            id, figura, legenda = linha.split(';')
+            if id in ids_emojis_selecionados:
+                emojis_selecionados.append(id)
+    
+    with open(REACTION_CSV, 'a', encoding='utf-8') as reactions_data:
+        for id_emoji in emojis_selecionados:
+            reactions_data.write(f'{titulo_post};{username};{id_emoji}\n')
+
+    return redirect(url_for('main.home') + f'#post-{titulo_post}')
+
+@main_bp.route('/remover_reacoes', methods=['POST'])
+def remover_reacoes():
+    ids_emojis_remover = request.form.getlist('emojis')
+    titulo_post_selecionado = request.args.get('titulo_post')
+    usuario_logado = session['usuario_logado']
+
+    reacoes_nao_removidos = []
+    with open(REACTION_CSV, 'r', encoding='utf-8') as reactions_data:
+        conteudo = reactions_data.read().splitlines()[1:]
+        for linha in conteudo:
+            titulo_post, username, id_emoji = linha.split(';')
+            if titulo_post != titulo_post_selecionado or username != usuario_logado or id_emoji not in ids_emojis_remover:
+                reacoes_nao_removidos.append((titulo_post, username, id_emoji))
+    
+    with open(REACTION_CSV, 'w', encoding='utf-8') as reactions_data:
+        for titulo_post, username, id_emoji in reacoes_nao_removidos:
+            reactions_data.write(f'{titulo_post};{username};{id_emoji}\n')
+
+    return redirect(url_for('main.home') + f'#post-{titulo_post_selecionado}')
 
 # Página de criação de publicações
 @main_bp.route('/publish', methods=['GET'])
@@ -247,8 +339,6 @@ def login():
                 return redirect(url_for('main.home'))
             else:
                 flash('Nome de usuário/email ou senha incorretos.', 'error')
-                print(identificador, usuario_registrado)
-                print(senha, senha_registrada)
                 return redirect(url_for('main.login'))
         
     return render_template("main/login.html")
