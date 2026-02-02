@@ -16,6 +16,8 @@ EMOJIS_HEADER = ['id', 'emoji']
 # Filtragem melhoradinha usando a searchbar, depois eu vou desacoplar essa função da função de filtragem básica(por filtros)
 @main_bp.route('/advanced_filtering')
 def advance_filtering(publish_vector: str, publish_posts:list):
+    if not session.get('usuario'):
+        return redirect(url_for('main.login'))
 
     def normalize(txt):
         return re.sub(r"[^\w\s]", "", txt).lower().split()
@@ -107,7 +109,7 @@ def landing():
 # Homepage do app com os posts dos usuários
 @main_bp.route('/home', methods=['GET', 'POST'])
 def home():
-    if not session.get('usuario_logado'):
+    if not session.get('usuario'):
         return redirect(url_for('main.login'))
     
     f_topico_principal = None
@@ -146,7 +148,6 @@ def home():
     reacoes = []
     with open(REACTION_CSV, 'r', encoding='utf-8') as reacoes_data:
         conteudo = reacoes_data.read().splitlines()[1:]
-
         for linha in conteudo:
             titulo_post, username, id_emoji = linha.split(';')
             reacao = {'titulo_post': titulo_post,
@@ -174,7 +175,7 @@ def home():
     
     reacoes_usuario = {}
     for reacao in reacoes:
-        if reacao['username'] == session['usuario_logado']:
+        if reacao['username'] == session['usuario']['nome_usuario']:
             titulo_post = reacao['titulo_post']
             if titulo_post in reacoes_usuario:
                 reacoes_usuario[titulo_post].append(reacao['id_emoji'])
@@ -185,9 +186,12 @@ def home():
 
 @main_bp.route('/adicionar_reacoes', methods=['POST'])
 def adicionar_reacoes():
+    if not session.get('usuario'):
+        return redirect(url_for('main.login'))
+    
     ids_emojis_selecionados = request.form.getlist('emojis')
     titulo_post = request.args.get('titulo_post')
-    username = session['usuario_logado']
+    username = session['usuario']['nome_usuario']
 
     emojis_selecionados = []
     with open(EMOJIS_CSV, 'r', encoding='utf-8') as emojis_data:
@@ -205,16 +209,19 @@ def adicionar_reacoes():
 
 @main_bp.route('/remover_reacoes', methods=['POST'])
 def remover_reacoes():
+    if not session.get('usuario'):
+        return redirect(url_for('main.login'))
+
     ids_emojis_remover = request.form.getlist('emojis')
     titulo_post_selecionado = request.args.get('titulo_post')
-    usuario_logado = session['usuario_logado']
+    usuario = session['usuario']['nome_usuario']
 
     reacoes_nao_removidos = []
     with open(REACTION_CSV, 'r', encoding='utf-8') as reactions_data:
         conteudo = reactions_data.read().splitlines()[1:]
         for linha in conteudo:
             titulo_post, username, id_emoji = linha.split(';')
-            if titulo_post != titulo_post_selecionado or username != usuario_logado or id_emoji not in ids_emojis_remover:
+            if titulo_post != titulo_post_selecionado or username != usuario or id_emoji not in ids_emojis_remover:
                 reacoes_nao_removidos.append((titulo_post, username, id_emoji))
     
     with open(REACTION_CSV, 'w', encoding='utf-8') as reactions_data:
@@ -226,18 +233,24 @@ def remover_reacoes():
 # Página de criação de publicações
 @main_bp.route('/publish', methods=['GET'])
 def publish():
-    if not session.get('usuario_logado'):
+    if not session.get('usuario'):
         return redirect(url_for('main.login'))
     
     return render_template('main/publish.html')
 
 @main_bp.route('/profile', methods=['GET'])
 def profile():
+    if not session.get('usuario'):
+        return redirect(url_for('main.login'))
+    
     return render_template('main/profile.html')
 # vai ser a página de edição de perfil do usuário
 
 @main_bp.route('/profile/edit', methods=['POST'])
 def profile_edit():
+    if not session.get('usuario'):
+        return redirect(url_for('main.login'))
+
     full_name = request.form.get('full_name')
     email = request.form.get('email')
     username = request.form.get('username')
@@ -251,13 +264,13 @@ def profile_edit():
 
 @main_bp.route('/send_publish_data', methods=['POST'])
 def send_publish_data():
-    if not session.get('usuario_logado'):
+    if not session.get('usuario'):
         return redirect(url_for('main.login'))
     
     nomes_das_colunas = ['titulo', 'descricao', 'categoria', 'image','visibility']
     
     publish_data = {
-        'username': session['usuario_logado'],
+        'username': session['usuario']['nome_usuario'],
         'title': request.form.get('title'),
         'description': request.form.get('description'),
         'topico_principal': request.form.get('topico_principal'),
@@ -275,15 +288,27 @@ def send_publish_data():
 def cadastro():
     if request.method == 'POST':
         nome_completo = request.form.get('nome-completo')
-        usuario = request.form.get('nome-usuario')
         email = request.form.get('email')
+        nome_usuario = request.form.get('nome-usuario')
         senha = request.form.get('senha')
+        bio = None
+        localizacao = None
+        link_github = None
+        foto = None
+
+        session['usuario'] = {'nome_completo': nome_completo,
+                              'email': email,
+                              'nome_usuario': nome_usuario,
+                              'bio': bio,
+                              'localizacao': localizacao,
+                              'link_github': link_github,
+                              'foto': foto}
 
         #Verifica se o arquivo usuarios.csv não existe
         if not os.path.exists(USERS_CSV):
             with open(USERS_CSV, 'x', encoding="utf-8") as arquivo_usuarios:
-                arquivo_usuarios.write(f'{nome_completo};{usuario};{email};{senha}\n')
-                session['usuario_logado'] = usuario
+                arquivo_usuarios.write(f'{nome_completo};{nome_usuario};{email};{senha};{bio};{localizacao};{link_github};{foto}\n')
+                session['usuario']['nome_usuario'] = nome_usuario
                 return redirect(url_for('main.home'))
         else:
             pode_cadastrar_usuario = True
@@ -295,14 +320,14 @@ def cadastro():
                     registro = linha.strip().split(';')
                     usuario_registrado = registro[1]
                     email_registrado = registro[2]
-                    if usuario == usuario_registrado or email == email_registrado:
+                    if nome_usuario == usuario_registrado or email == email_registrado:
                         pode_cadastrar_usuario = False
                         break
             
             if pode_cadastrar_usuario:
                 with open(USERS_CSV, "a", encoding="utf-8") as arquivo_usuarios:
-                    arquivo_usuarios.write(f"{nome_completo};{usuario};{email};{senha}\n")
-                    session['usuario_logado'] = usuario
+                    arquivo_usuarios.write(f'{nome_completo};{nome_usuario};{email};{senha};{bio};{localizacao};{link_github};{foto}\n')
+                    session['usuario']['nome_usuario'] = nome_usuario
                     return redirect(url_for('main.home'))
             else:
                 flash('Nome de usuário ou email já existe.', 'error')
@@ -314,7 +339,7 @@ def cadastro():
 def login():
     if request.method == 'POST':
         identificador = request.form.get('identificador')
-        senha = request.form.get('senha')
+        senha_digitada = request.form.get('senha')
 
         pode_autenticar_usuario = False
 
@@ -323,20 +348,23 @@ def login():
             return redirect(url_for('main.login'))
         
         with open(USERS_CSV, "r", encoding="utf-8") as arquivo_usuarios:
-            linhas = arquivo_usuarios.readlines()
-            for linha in linhas:
-                registro = linha.strip().split(';')
-                usuario_registrado = registro[1]
-                email_registrado = registro[2]
-                senha_registrada = registro[3]
-
-                if (identificador == usuario_registrado or identificador == email_registrado) and senha == senha_registrada:
+            conteudo = arquivo_usuarios.read().splitlines()[1:]
+            for linha in conteudo:
+                nome_completo, email, nome_usuario, senha, bio, localizacao, link_github, foto = linha.split(';')
+                if (identificador == nome_usuario or identificador == email) and senha_digitada == senha:
                     pode_autenticar_usuario = True
                     break
             
             if pode_autenticar_usuario:
-                session['usuario_logado'] = usuario_registrado
+                session['usuario'] = {'nome_completo': nome_completo,
+                                      'email': email,
+                                      'nome_usuario': nome_usuario,
+                                      'bio': bio,
+                                      'localizacao': localizacao,
+                                      'link_github': link_github,
+                                      'foto': foto}
                 return redirect(url_for('main.home'))
+
             else:
                 flash('Nome de usuário/email ou senha incorretos.', 'error')
                 return redirect(url_for('main.login'))
@@ -345,11 +373,17 @@ def login():
 
 @main_bp.route('/logout')
 def logout():
-    session.pop('usuario_logado', None)
+    if not session.get('usuario'):
+        return redirect(url_for('main.login'))
+
+    session.pop('usuario', None)
     return redirect(url_for('main.landing'))
 
 @main_bp.route('/delete_post', methods=['POST'])
 def delete_post():
+    if not session.get('usuario'):
+        return redirect(url_for('main.login'))
+    
     titulo_para_deletar = request.form.get('titulo_post')
     caminho_csv = CSV_LOC
     
@@ -371,7 +405,7 @@ def delete_post():
 
 @main_bp.route('/add_comment', methods=['POST'])
 def add_comment():
-    if not session.get('usuario_logado'):
+    if not session.get('usuario'):
         return redirect(url_for('main.login'))
     
     post_title = request.form.get('post_title')
@@ -381,7 +415,7 @@ def add_comment():
     if comment_txt and post_title:
         dados_comentario = {
             'post_title': post_title,
-            'username': session['usuario_logado'],
+            'username': session['usuario']['nome_usuario'],
             'comment_text': comment_txt,
             'timestamp': datetime.now().strftime('%d/%m/%Y %H:%M')
         }
@@ -393,7 +427,7 @@ def add_comment():
 
 @main_bp.route('/delete_comment', methods=['POST'])
 def delete_comment():
-    if not session.get('usuario_logado'):
+    if not session.get('usuario'):
         return redirect('login')
     
     post_title = request.form.get('post_title')
@@ -401,7 +435,7 @@ def delete_comment():
     timestamp = request.form.get('timestamp')
     redirect_to = request.form.get('redirect_to')
     
-    if username == session['usuario_logado']:
+    if username == session['usuario']['nome_usuario']:
         comentarios_restantes = []
         
         with open(COMMENTS_CSV, 'r', newline='', encoding='utf-8') as arquivo:
@@ -423,7 +457,7 @@ def delete_comment():
 
 @main_bp.route('/post/<post_title>')
 def ver_post(post_title):
-    if not session.get('usuario_logado'):
+    if not session.get('usuario'):
         return redirect(url_for('main.login'))
     
     publicacoes = ler_publicacoes(None, None, None, "")

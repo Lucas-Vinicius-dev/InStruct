@@ -133,7 +133,7 @@
                                         </small>
                                     </div>
                                     </div>
-                                    {% if post.username == session.get('usuario_logado') %}
+                                    {% if session.get('usuario') and post.username == session['usuario']['nome_usuario'] %}
                                     <div class="pos-f-t">
                                         <nav class="navbar navbar-dark">
                                             <button class="navbar-toggler" type="button" onclick="OpenModal('{{ post.title|e }}')">
@@ -260,7 +260,7 @@
                                                     <div class="comment-header">
                                                         <span class="comment-user">{{ comment.username }}</span>
                                                         <span class="comment-time">{{ comment.timestamp }}</span>
-                                                        {% if comment.username == session.get('usuario_logado') %}
+                                                        {% if session.get('usuario') and comment.username == session['usuario']['nome_usuario'] %}
                                                         <form action="{{ url_for('main.delete_comment') }}" method="POST" class="delete-comment-form" onsubmit="return confirm('Apagar este comentário?')">
                                                             <input type="hidden" name="post_title" value="{{ post.title }}">
                                                             <input type="hidden" name="username" value="{{ comment.username }}">
@@ -294,7 +294,7 @@
                                         <input type="hidden" name="post_title" value="{{ post.title }}">
                                         <div class="d-flex gap-2">
                                             <img class="comment-avatar" 
-                                                 src="https://api.dicebear.com/9.x/lorelei/svg?seed={{ session.get('usuario_logado') }}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" 
+                                                 src="https://api.dicebear.com/9.x/lorelei/svg?seed={{ session['usuario']['nome_usuario'] }}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" 
                                                  alt="Seu avatar">
                                             <div class="flex-grow-1">
                                                 <textarea class="form-control comment-input" 

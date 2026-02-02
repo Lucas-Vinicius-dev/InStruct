@@ -30,7 +30,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    {% if session.get('usuario_logado') %}
+                    {% if session.get('usuario') %}
                     <li class="nav-item">
                         <a class="nav-link {% block nav_home %}{% endblock %}" href="{{ url_for('main.home') }}">
                             <i class="bi bi-house-fill"></i> Feed
