@@ -256,7 +256,7 @@ def profile_original():
 @main_bp.route('/editar_perfil', methods=['POST'])
 def editar_perfil():
     if not session.get('usuario'):
-        return redirect(url_for('main.login'))
+        return redirect(url_for('m/ain.login'))
 
     full_name = request.form.get('full_name')
     email = request.form.get('email')
@@ -267,7 +267,7 @@ def editar_perfil():
 
     # TODO: salvar os dados do perfil no banco de dados, esperando o PR de Claudino ser mergeado para a develop
 
-    return redirect(url_for('main.perfil'))
+    return render_template('main/editar_perfil.html')
 
 @main_bp.route('/send_publish_data', methods=['POST'])
 def send_publish_data():
