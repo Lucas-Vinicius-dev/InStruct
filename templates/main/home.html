@@ -202,7 +202,7 @@
                                     <div class="tab-content" id="nav-tabContent">
                                         <div class="tab-pane fade show active" id="emojis-para-reagir-{{ loop.index }}" role="tabpanel" aria-labelledby="emojis-para-reagir-tab-{{ loop.index }}" tabindex="0">
                                             {% if reacoes_usuario.get(post.title, []) | length != todos_emojis | length %}
-                                                <form method="post" action="/adicionar_reacoes?titulo_post={{ post.title }}">
+                                                <form method="post" action="{{ url_for('main.adicionar_reacoes') }}?titulo_post={{ post.title }}">
                                                     <div class="emoji-container">
                                                         {% for emoji in todos_emojis.values() %}
                                                             {% if emoji.id not in reacoes_usuario[post.title] %}
@@ -226,7 +226,7 @@
                                     <div class="tab-content" id="nav-tabContent">
                                         <div class="tab-pane fade show" id="emojis-para-remover-{{ loop.index }}" role="tabpanel" aria-labelledby="emojis-para-remover-tab-{{ loop.index }}" tabindex="0">
                                             {% if reacoes_usuario[post.title] %}
-                                                <form method="post" action="/remover_reacoes?titulo_post={{ post.title }}">
+                                                <form method="post" action="{{ url_for('main.remover_reacoes') }}?titulo_post={{ post.title }}">
                                                     <div class="emoji-container">
                                                             {% for id_emoji in reacoes_usuario[post.title] %}
                                                                 <label class="emoji-option emoji-option-remover">

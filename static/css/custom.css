@@ -737,20 +737,44 @@ main {
     border: 1px solid #f5c6cb;
 }
 
-/* Página de Cadastro */
+/* Páginas de Cadastro, Login, Perfil e Edição de Perfil */
 .cadastro,
-.login {
+.login,
+.perfil,
+.edicao-perfil {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 .cadastro-container,
-.login-container {
+.login-container,
+.perfil-container,
+.edicao-perfil-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-top: 4rem;
+    margin-bottom: 4rem;
 }
+
+.perfil-container input,
+.perfil-container textarea,
+.perfil-container img,
+.editar-perfil-container input,
+.editar-perfil-container textarea,
+.editar-perfil-container img {
+    border: 1px solid rgba(80, 80, 80, 0.3);
+}
+
+.cadastro-container label,
+.login-container label,
+.perfil-container label,
+.editar-perfil-container label {
+    color: var(--brand-rose);
+    font-weight: bold;
+}
+
 
 .cadastro-container label::after,
 .login-container label::after {
@@ -758,54 +782,87 @@ main {
 }
 
 .cadastro-titulo,
-.login-titulo {
+.login-titulo,
+.perfil-titulo,
+.edicao-perfil-titulo {
     text-align: center;
     color: var(--brand-rose-dark);
 }
 
-.login-container {
+.cadastro-container,
+.login-container,
+.perfil-container,
+.edicao-perfil-container {
     flex: 1;
 }
 
-.login-container > * {
+.cadastro-container > *,
+.login-container > *,
+.perfil-container > *,
+.edicao-perfil-container > * {
     width: 100%;
     max-width: 37.5rem;
 }
 
-.login-container .icon-link {
+.cadastro-container .icon-link,
+.login-container .icon-link,
+.perfil-container .icon-link,
+.edicao-perfil-container .icon-link {
     display: block;
     text-align: center;
 }
 
 .cadastro-container button,
-.login-container button {
+.login-container button,
+.perfil-container button,
+.edicao-perfil-container button {
     width: 100%;
     background-color: var(--brand-rose);
     border-color: var(--brand-rose);
 }
 
 .cadastro-container button:hover,
-.login-container button:hover {
+.login-container button:hover,
+.perfil-container button:hover,
+.edicao-perfil-container button:hover {
     background-color: var(--brand-rose-dark);
     border-color: var(--brand-rose-dark);
 }
 
 .cadastro-container button:active,
-.login-container button:active {
+.login-container button:active,
+.perfil-container button:active,
+.edicao-perfil-container button:active {
     background-color: var(--brand-rose-dark) !important;
     border-color: var(--brand-rose-dark) !important;
 }
 
 .cadastro-container .icon-link,
-.login-container .icon-link {
+.login-container .icon-link,
+.perfil-container .icon-link,
+.edicao-perfil-container .icon-link {
     color: var(--brand-rose);
     text-decoration-color: var(--brand-rose);
 }
 
 .cadastro-container .icon-link:hover,
-.login-container .icon-link:hover {
+.login-container .icon-link:hover,
+.perfil-container .icon-link:hover,
+.edicao-perfil-container .icon-link:hover {
     color: var(--brand-rose-dark);
     text-decoration-color: var(--brand-rose-dark);
+}
+
+.secao-perfil-avatar {
+    text-align: center;
+}
+
+.perfil-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
 }
 
 /* Media queries */

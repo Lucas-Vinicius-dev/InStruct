@@ -238,16 +238,23 @@ def publish():
     
     return render_template('main/publish.html')
 
-@main_bp.route('/profile', methods=['GET'])
-def profile():
+@main_bp.route('/perfil', methods=['GET'])
+def perfil():
     if not session.get('usuario'):
         return redirect(url_for('main.login'))
     
-    return render_template('main/profile.html')
+    return render_template('main/perfil.html')
 # vai ser a página de edição de perfil do usuário
 
-@main_bp.route('/profile/edit', methods=['POST'])
-def profile_edit():
+@main_bp.route('/profile_original', methods=['GET'])
+def profile_original():
+    if not session.get('usuario'):
+        return redirect(url_for('main.login'))
+    
+    return render_template('main/profile_original.html')
+
+@main_bp.route('/editar_perfil', methods=['POST'])
+def editar_perfil():
     if not session.get('usuario'):
         return redirect(url_for('main.login'))
 
@@ -260,7 +267,7 @@ def profile_edit():
 
     # TODO: salvar os dados do perfil no banco de dados, esperando o PR de Claudino ser mergeado para a develop
 
-    return redirect(url_for('main.profile'))
+    return redirect(url_for('main.perfil'))
 
 @main_bp.route('/send_publish_data', methods=['POST'])
 def send_publish_data():
@@ -286,6 +293,9 @@ def send_publish_data():
 
 @main_bp.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
+    """if session.get('usuario'):
+        return redirect(url_for('main.home'))"""
+    
     if request.method == 'POST':
         nome_completo = request.form.get('nome-completo')
         email = request.form.get('email')
@@ -337,6 +347,9 @@ def cadastro():
 
 @main_bp.route('/login', methods=['GET', 'POST'])
 def login():
+    """if session.get('usuario'):
+        return redirect(url_for('main.home'))"""
+    
     if request.method == 'POST':
         identificador = request.form.get('identificador')
         senha_digitada = request.form.get('senha')

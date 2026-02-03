@@ -11,10 +11,11 @@
 <div class="login">
     <div class="login-container">
         <h2 class="login-titulo mb-5">Entre em sua conta</h2>
+
         <form class="needs-validation" action="" method="post" novalidate>
             <div class="mb-4">
-                <label for="identificador" class="form-label">Nome de usuário ou e-mail</label>
-                <input type="text" id="identificador" class="form-control" name="identificador" required>
+                <label for="identificador" class="form-label">Email ou nome de usuário</label>
+                <input type="text" id="identificador" class="form-control" name="identificador" placeholder="seu.email@exemplo.com" required>
                 <div class="invalid-feedback">
                     Por favor, digite seu nome de usuário ou e-mail.
                 </div>
@@ -30,6 +31,7 @@
 
             <button type="submit" class="btn btn-primary mb-5">Entrar</button>
         </form>
+        
         <a class="icon-link icon-link-hover" href="{{ url_for('main.cadastro') }}">
             Não tem uma conta? Criar
             <svg xmlns="http://www.w3.org/2000/svg" class="bi" viewBox="0 0 16 16" aria-hidden="true">
