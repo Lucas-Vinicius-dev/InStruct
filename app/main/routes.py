@@ -322,6 +322,9 @@ def login():
             flash('Nome de usuário/email ou senha incorretos.', 'error')
             return redirect(url_for('main.login'))
         
+        # Lista de admins
+        ADMIN_USERS = ['harry1', 'admin']
+        
         with open(USERS_CSV, "r", encoding="utf-8") as arquivo_usuarios:
             linhas = arquivo_usuarios.readlines()
             for linha in linhas:
@@ -332,10 +335,11 @@ def login():
 
                 if (identificador == usuario_registrado or identificador == email_registrado) and senha == senha_registrada:
                     pode_autenticar_usuario = True
+                    session['usuario_logado'] = usuario_registrado
+                    session['is_admin'] = usuario_registrado in ADMIN_USERS
                     break
             
             if pode_autenticar_usuario:
-                session['usuario_logado'] = usuario_registrado
                 return redirect(url_for('main.home'))
             else:
                 flash('Nome de usuário/email ou senha incorretos.', 'error')
@@ -346,6 +350,7 @@ def login():
 @main_bp.route('/logout')
 def logout():
     session.pop('usuario_logado', None)
+    session.pop('is_admin', None)
     return redirect(url_for('main.landing'))
 
 @main_bp.route('/delete_post', methods=['POST'])
