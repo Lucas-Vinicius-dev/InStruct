@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+
+{% block title %}InStruct — Crie sua conta{% endblock %}
+
+{% block extra_css %}
+<link href="{{ url_for('static', filename='css/autenticacao.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="perfil">
+    <div class="perfil-container">
+        <h2 class="perfil-titulo">Edição de dados</h2>
+
+        <form class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
+            <div class="secao-perfil-avatar">
+                <label for="avatarInput">
+                    <div class="avatar-wrapper">
+                        <img class="perfil-avatar" src="https://api.dicebear.com/9.x/lorelei/svg?seed=user&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" alt="Avatar do usuário" id="avatarPreview">
+
+                        <!-- Ícone visível SEM hover -->
+                        <div class="avatar-plus">+</div>
+
+                        <div class="avatar-overlay">
+                            <span class="avatar-icon"><i class="bi bi-camera-fill avatar-icon"></i></span>
+                        </div>
+                    </div>
+                </label>
+
+                <input type="file" id="avatarInput" name="avatar" accept="image/*" hidden>
+            </div>
+
+            <div class="mb-4">
+                <label for="nome-completo" class="form-label">Nome Completo</label>
+                <input type="text" id="nome-completo" class="form-control" name="nome-completo" value="{{ session['usuario']['nome_completo'] }}" placeholder="Digite seu nome completo" required>
+                <div class="invalid-feedback">
+                    Por favor, digite seu nome completo.
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" class="form-control" name="email" value="{{ session['usuario']['email'] }}" placeholder="seu.email@exemplo.com" required>
+                <div class="invalid-feedback">
+                    Por favor, digite um e-mail válido.
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="nome-usuario" class="form-label">Nome de usuário</label>
+                <input type="text" id="nome-usuario" class="form-control" name="nome-usuario" value="{{ session['usuario']['nome_usuario'] }}" placeholder="seu_nome_usuario" required>
+                <div class="invalid-feedback">
+                    Por favor, escolha um nome de usuário.
+                </div>
+            </div>
+
+            {% if session['usuario']['bio'] != 'None' %}
+                <div class="mb-4">
+                    <label for="bio" class="form-label">Bio</label>
+                    <textarea id="bio" class="form-control" name="bio" rows="3" placeholder="Conte um pouco sobre você...">{{ session['usuario']['bio'] }}</textarea>
+                </div>
+            {% else %}
+                <div class="mb-4">
+                    <label for="bio" class="form-label">Bio</label>
+                    <textarea id="bio" class="form-control" name="bio" rows="3" placeholder="Conte um pouco sobre você..."></textarea>
+                </div>
+            {% endif %}
+
+            {% if session['usuario']['localizacao'] != 'None' %}
+                <div class="mb-4">
+                    <label for="localizacao" class="form-label">Localização</label>
+                    <input type="text" id="localizacao" class="form-control" name="localizacao" value="{{ session['usuario']['localizacao'] }}" placeholder="Sua localização">
+                </div>
+            {% else %}
+                <div class="mb-4">
+                    <label for="localizacao" class="form-label">Localização</label>
+                    <input type="text" id="localizacao" class="form-control" name="localizacao" placeholder="Sua localização">
+                </div>
+            {% endif %}
+
+            {% if session['usuario']['link_github'] != 'None' %}
+                <div class="mb-4">
+                    <label for="link-github" class="form-label">Github</label>
+                    <input type="url" id="link-github" class="form-control" name="link-github" value="{{ session['usuario']['link_github'] }}" placeholder="https://github.com/seu-usuario">
+                </div>
+            {% else %}
+                <div class="mb-4">
+                    <label for="link-github" class="form-label">Github</label>
+                    <input type="url" id="link-github" class="form-control" name="link-github" placeholder="https://github.com/exemplo-seu-usuario">
+                </div>
+            {% endif %}
+
+            <div class="edicao-perfil-botoes">
+                <button type="submit" class="btn btn-primary mb-4">Salvar alterações</button>
+                <button type="submit" class="btn btn-primary mb-4" id="edicao-perfil-botao-cancelar">Cancelar</button>
+            </div>
+        </form>
+        
+    </div>
+</div>
+
+<script>
+(() => {
+  'use strict'
+
+  const forms = document.querySelectorAll('.needs-validation')
+
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
+
+<script>
+    // Previa da imagem do avatar antes do upload de fato 
+    const avatarInput = document.getElementById('avatarInput');
+    const avatarPreview = document.getElementById('avatarPreview');
+
+    if (avatarInput) {
+        avatarInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {avatarPreview.src = event.target.result;};
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+</script>
+{% endblock %}

@@ -238,14 +238,6 @@ def publish():
     
     return render_template('main/publish.html')
 
-@main_bp.route('/perfil', methods=['GET'])
-def perfil():
-    if not session.get('usuario'):
-        return redirect(url_for('main.login'))
-    
-    return render_template('main/perfil.html')
-# vai ser a página de edição de perfil do usuário
-
 @main_bp.route('/profile_original', methods=['GET'])
 def profile_original():
     if not session.get('usuario'):
@@ -253,17 +245,32 @@ def profile_original():
     
     return render_template('main/profile_original.html')
 
-@main_bp.route('/editar_perfil', methods=['POST'])
+# vai ser a página de edição de perfil do usuário
+@main_bp.route('/perfil', methods=['GET', 'POST'])
+def perfil():
+    if not session.get('usuario'):
+        return redirect(url_for('main.login'))
+    
+    if request.method == 'POST':
+        return redirect(url_for('main.editar_perfil'))
+    
+    return render_template('main/perfil.html')
+
+@main_bp.route('/editar_perfil', methods=['GET', 'POST'])
 def editar_perfil():
     if not session.get('usuario'):
-        return redirect(url_for('m/ain.login'))
+        return redirect(url_for('main.login'))
+    
+    if request.method == 'POST':
+        nome_completo = request.form.get('nome-completo')
+        email = request.form.get('email')
+        nome_usuario = request.form.get('nome-usuario')
+        bio = request.form.get('bio')
+        localizacao = request.form.get('localizacao')
+        link_github = request.form.get('link-github')
+        avatar = request.files.get('avatar')
 
-    full_name = request.form.get('full_name')
-    email = request.form.get('email')
-    username = request.form.get('username')
-    bio = request.form.get('bio')
-    location = request.form.get('location')
-    github = request.form.get('github')
+        #print(nome_completo, email, nome_usuario, bio, localizacao, link_github, avatar)
 
     # TODO: salvar os dados do perfil no banco de dados, esperando o PR de Claudino ser mergeado para a develop
 
@@ -304,7 +311,7 @@ def cadastro():
         bio = None
         localizacao = None
         link_github = None
-        foto = None
+        avatar = None
 
         session['usuario'] = {'nome_completo': nome_completo,
                               'email': email,
@@ -312,12 +319,12 @@ def cadastro():
                               'bio': bio,
                               'localizacao': localizacao,
                               'link_github': link_github,
-                              'foto': foto}
+                              'avatar': avatar}
 
         #Verifica se o arquivo usuarios.csv não existe
         if not os.path.exists(USERS_CSV):
             with open(USERS_CSV, 'x', encoding="utf-8") as arquivo_usuarios:
-                arquivo_usuarios.write(f'{nome_completo};{nome_usuario};{email};{senha};{bio};{localizacao};{link_github};{foto}\n')
+                arquivo_usuarios.write(f'{nome_completo};{nome_usuario};{email};{senha};{bio};{localizacao};{link_github};{avatar}\n')
                 session['usuario']['nome_usuario'] = nome_usuario
                 return redirect(url_for('main.home'))
         else:
@@ -336,7 +343,7 @@ def cadastro():
             
             if pode_cadastrar_usuario:
                 with open(USERS_CSV, "a", encoding="utf-8") as arquivo_usuarios:
-                    arquivo_usuarios.write(f'{nome_completo};{nome_usuario};{email};{senha};{bio};{localizacao};{link_github};{foto}\n')
+                    arquivo_usuarios.write(f'{nome_completo};{nome_usuario};{email};{senha};{bio};{localizacao};{link_github};{avatar}\n')
                     session['usuario']['nome_usuario'] = nome_usuario
                     return redirect(url_for('main.home'))
             else:
@@ -363,7 +370,7 @@ def login():
         with open(USERS_CSV, "r", encoding="utf-8") as arquivo_usuarios:
             conteudo = arquivo_usuarios.read().splitlines()[1:]
             for linha in conteudo:
-                nome_completo, email, nome_usuario, senha, bio, localizacao, link_github, foto = linha.split(';')
+                nome_completo, email, nome_usuario, senha, bio, localizacao, link_github, avatar = linha.split(';')
                 if (identificador == nome_usuario or identificador == email) and senha_digitada == senha:
                     pode_autenticar_usuario = True
                     break
@@ -375,7 +382,7 @@ def login():
                                       'bio': bio,
                                       'localizacao': localizacao,
                                       'link_github': link_github,
-                                      'foto': foto}
+                                      'avatar': avatar}
                 return redirect(url_for('main.home'))
 
             else:
