@@ -1,0 +1,193 @@
+.admin-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.admin-header {
+    background: var(--sand);
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    margin-bottom: 2.5rem;
+}
+
+.admin-header h1 {
+    margin: 0;
+    font-size: 1.75rem;
+    color: var(--ink);
+}
+
+.admin-header p {
+    margin: 0.5rem 0 0 0;
+    color: rgba(33, 19, 13, 0.7);
+}
+
+.admin-section {
+    background: white;
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.admin-section h2 {
+    color: var(--brand-rose);
+    font-size: 1.25rem;
+    margin-bottom: 1.5rem;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2.5rem;
+}
+
+.stat-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.stat-card i {
+    font-size: 1.75rem;
+    color: var(--brand-rose);
+    margin-bottom: 0.75rem;
+}
+
+.stat-card h3 {
+    font-size: 2rem;
+    margin: 0.25rem 0;
+    color: var(--ink);
+}
+
+.stat-card p {
+    margin: 0;
+    color: rgba(33, 19, 13, 0.6);
+    font-size: 0.875rem;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.data-table thead {
+    border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+}
+
+.data-table th {
+    padding: 0.875rem 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 0.875rem;
+}
+
+.data-table td {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    color: rgba(33, 19, 13, 0.85);
+}
+
+.data-table tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+.btn-delete {
+    background-color: var(--brand-rose);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    background-color: var(--brand-rose-dark);
+}
+
+.badge {
+    padding: 0.375em 0.75em;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 6px;
+}
+
+.badge-admin {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+.badge-user {
+    background-color: #e9ecef;
+    color: #495057;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 3rem 2rem;
+    color: rgba(33, 19, 13, 0.5);
+}
+
+.empty-state i {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    opacity: 0.4;
+}
+
+.action-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.action-list li {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.action-list li:hover {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+.action-list strong {
+    color: var(--ink);
+}
+
+.action-list small {
+    color: rgba(33, 19, 13, 0.6);
+    font-size: 0.8rem;
+}
+
+.truncate {
+    max-width: 300px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+@media (max-width: 768px) {
+    .data-table th,
+    .data-table td {
+        padding: 0.75rem 0.5rem;
+    }
+    
+    .truncate {
+        max-width: 150px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+}
