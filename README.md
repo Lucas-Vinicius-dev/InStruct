@@ -21,13 +21,9 @@ python -m venv venv
 source venv/bin/activate
 ```
 ## Configurando o projeto
-### Crie um arquivo .env na mesma pasta de app.py e gere a chave no terminal usando:
+### Crie um arquivo .env na mesma pasta de app.py e escolha uma chave de sessão:
 ```
-python -c 'import os; print(os.urandom(24).hex())'
-```
-### Depois, coloque dentro do .env a chave gerada
-```
-FLASK_SECRET_KEY = chave_gerada_no_python
+FLASK_SECRET_KEY = chave_secreta
 ```
 ### Instale as dependências
 ```
