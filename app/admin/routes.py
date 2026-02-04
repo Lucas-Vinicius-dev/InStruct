@@ -37,14 +37,15 @@ def dashboard():
     # USERS
     if os.path.exists('data/usuarios.csv'):
         with open('data/usuarios.csv', 'r', encoding='utf-8') as f:
-            for line in f:
+            content = f.readlines()[1:]
+            for line in content:
                 if line.strip():
                     parts = line.split(';')
                     usuarios.append({
                         'name': parts[0],
-                        'username': parts[1],
-                        'email': parts[2],
-                        'is_admin': parts[1] in ADMIN_USERS
+                        'username': parts[2],
+                        'email': parts[1],
+                        'is_admin': parts[2] in ADMIN_USERS
                     })
     
     # POSTS
@@ -73,7 +74,7 @@ def delete_user(username):
         return redirect(url_for('main.home'))
     
     if username == session.get('usuario_logado'):
-        flash('Não  pode excluir sua própria conta.', 'warning')
+        flash('Não pode excluir sua própria conta.', 'warning')
         return redirect(url_for('admin.dashboard'))
     
     if username in ADMIN_USERS:
@@ -82,13 +83,15 @@ def delete_user(username):
     
     usuarios_novo = []
     with open('data/usuarios.csv', 'r', encoding='utf-8') as f:
-        for line in f:
+        content = f.readlines()[1:]
+        for line in content:
             if line.strip():
                 parts = line.split(';')
-                if parts[1] != username:
+                if parts[2] != username:
                     usuarios_novo.append(line)
     
     with open('data/usuarios.csv', 'w', encoding='utf-8') as f:
+        f.write('nome_completo;email;nome_usuario;senha;bio;localizacao;link_github;avatar\n')
         f.writelines(usuarios_novo)
     
     flash(f'Usuário {username} deletado.', 'success')
@@ -105,34 +108,32 @@ def delete_post( post_id):
     if post_id < len(posts):
         post_titulo = posts[post_id].get('title', '')
         posts.pop(post_id)
-        write_csv ('data/publish_data.csv' , fieldnames, posts)
+        write_csv('data/publish_data.csv' , fieldnames, posts)
         
         comments = read_csv('data/comments_data.csv')
         comments_novo = [c for c in comments if c.get('post_title') != post_titulo]
         comment_fieldnames = ['post_title', 'username', 'comment_text', 'timestamp']
-        write_csv(' data/comments_data.csv', comment_fieldnames, comments_novo)
+        write_csv('data/comments_data.csv', comment_fieldnames, comments_novo)
         
-        flash( 'Post deletado.', 'success')
+        flash('Post deletado.', 'success')
     else:
         flash('Post não encontrado.', 'warning')
     
     return redirect(url_for('admin.dashboard'))
 
-@admin_bp.route(' /delete-comment/<int:comment_id>', methods=['POST'])
+@admin_bp.route('/delete-comment/<int:comment_id>', methods=['POST'])
 def delete_comment(comment_id):
     if not is_admin():
         return redirect(url_for('main.home'))
     
     comments = read_csv('data/comments_data.csv')
-    fieldnames = [' post_title', 'username', 'comment_text', 'timestamp']
+    fieldnames = ['post_title', 'username', 'comment_text', 'timestamp']
     
     if comment_id < len(comments):
         comments.pop(comment_id)
-        write_csv('data/comments_data.csv', fieldnames , comments)
+        write_csv('data/comments_data.csv', fieldnames, comments)
         flash('Comentário deletado.', 'success')
     else:
         flash('Comentário não encontrado.', 'warning')
     
     return redirect(url_for('admin.dashboard'))
-
-

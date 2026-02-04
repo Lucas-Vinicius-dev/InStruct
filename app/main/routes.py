@@ -388,8 +388,8 @@ def send_publish_data():
 
 @main_bp.route('/cadastro', methods=['GET', 'POST'])
 def cadastro():
-    """if session.get('usuario'):
-        return redirect(url_for('main.home'))"""
+    if session.get('usuario'):
+        return redirect(url_for('main.home'))
     
     if request.method == 'POST':
         nome_completo = request.form.get('nome-completo')
@@ -488,8 +488,8 @@ def cadastro():
 
 @main_bp.route('/login', methods=['GET', 'POST'])
 def login():
-    """if session.get('usuario'):
-        return redirect(url_for('main.home'))"""
+    if session.get('usuario'):
+        return redirect(url_for('main.home'))
     
     if request.method == 'POST':
         identificador = request.form.get('identificador')
