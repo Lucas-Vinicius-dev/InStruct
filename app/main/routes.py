@@ -1,17 +1,27 @@
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, send_from_directory
 import csv, os, re
 from app.main import main_bp
 from datetime import datetime
+from uuid import uuid4
 
 CSV_LOC = 'data/publish_data.csv'
 COMMENTS_CSV = 'data/comments_data.csv'
 USERS_CSV = 'data/usuarios.csv'
 EMOJIS_CSV = 'data/emojis.csv'
 REACTION_CSV = 'data/reactions_data.csv'
+AVATAR_DIR = 'data/uploads/imagens_avatar'
 
 COLLUMN_HEADER = ['username','title','description','topico_principal','tipo_de_post','linguagem_selecionada','image','visibility']
 COMMENTS_HEADER = ['post_title','username','comment_text','timestamp']
 EMOJIS_HEADER = ['id', 'emoji']
+
+def arquivo_valido_imagem(nome_arquivo):
+    extensoes_validas = {'png', 'jpg', 'jpeg', 'gif'}
+    return '.' in nome_arquivo and nome_arquivo.rsplit('.', 1)[1].lower() in extensoes_validas
+
+@main_bp.route('/uploads/imagens/<nome_arquivo>')
+def imagem(nome_arquivo):
+    return send_from_directory(AVATAR_DIR, nome_arquivo)
 
 # Filtragem melhoradinha usando a searchbar, depois eu vou desacoplar essa função da função de filtragem básica(por filtros)
 @main_bp.route('/advanced_filtering')
@@ -238,13 +248,6 @@ def publish():
     
     return render_template('main/publish.html')
 
-@main_bp.route('/profile_original', methods=['GET'])
-def profile_original():
-    if not session.get('usuario'):
-        return redirect(url_for('main.login'))
-    
-    return render_template('main/profile_original.html')
-
 # vai ser a página de edição de perfil do usuário
 @main_bp.route('/perfil', methods=['GET', 'POST'])
 def perfil():
@@ -253,6 +256,14 @@ def perfil():
     
     if request.method == 'POST':
         return redirect(url_for('main.editar_perfil'))
+
+    session['form_editar_dados'] = {'nome_completo': session['usuario']['nome_completo'],
+                                    'email': session['usuario']['email'],
+                                    'nome_usuario': session['usuario']['nome_usuario'],
+                                    'bio': session['usuario']['bio'],
+                                    'localizacao': session['usuario']['localizacao'],
+                                    'link_github': session['usuario']['link_github'],
+                                    'avatar': session['usuario']['avatar']}
     
     return render_template('main/perfil.html')
 
@@ -262,17 +273,94 @@ def editar_perfil():
         return redirect(url_for('main.login'))
     
     if request.method == 'POST':
-        nome_completo = request.form.get('nome-completo')
-        email = request.form.get('email')
-        nome_usuario = request.form.get('nome-usuario')
-        bio = request.form.get('bio')
-        localizacao = request.form.get('localizacao')
-        link_github = request.form.get('link-github')
-        avatar = request.files.get('avatar')
+        usuario_atual = session['usuario']['nome_usuario']
 
-        #print(nome_completo, email, nome_usuario, bio, localizacao, link_github, avatar)
+        nome_completo_form = request.form.get('nome-completo')
+        email_form = request.form.get('email')
+        nome_usuario_form = request.form.get('nome-usuario')
+        bio_form = request.form.get('bio') if request.form.get('bio') else 'None'
+        localizacao_form = request.form.get('localizacao') if request.form.get('localizacao') else 'None'
+        link_github_form = request.form.get('link-github') if request.form.get('link-github') else 'None'
+        avatar_form = request.files.get('avatar')
+        avatar_form = 'None' if avatar_form.filename == '' else avatar_form
 
-    # TODO: salvar os dados do perfil no banco de dados, esperando o PR de Claudino ser mergeado para a develop
+        if avatar_form != 'None' and arquivo_valido_imagem(avatar_form.filename):
+            extensao_imagem = avatar_form.filename.rsplit('.', 1)[1].lower()
+            nome_arquivo_avatar = f"{uuid4().hex}.{extensao_imagem}"
+
+            caminho = os.path.join(AVATAR_DIR, nome_arquivo_avatar)
+            avatar_form.save(caminho)
+        else:
+            nome_arquivo_avatar = 'None'
+
+        session['form_editar_dados'] = {'nome_completo': nome_completo_form,
+                                        'email': email_form,
+                                        'nome_usuario': nome_usuario_form,
+                                        'bio': bio_form,
+                                        'localizacao': localizacao_form,
+                                        'link_github': link_github_form,
+                                        'avatar': nome_arquivo_avatar}
+
+        usuarios_nao_afetados = []
+        with open(USERS_CSV, 'r', encoding='utf-8') as arq_usuarios:
+            conteudo = arq_usuarios.read().splitlines()[1:]
+            for linha in conteudo:
+                nome_completo, email, nome_usuario, senha, bio, localizacao, link_github, avatar = linha.split(';')
+                if usuario_atual != nome_usuario:
+                    usuarios_nao_afetados.append((nome_completo, email, nome_usuario, senha, bio, localizacao, link_github, avatar))
+                else:
+                    senha_usuario_atual = senha
+        
+        pode_editar_usuario = True
+        email_ja_existente = False
+        nome_usuario_ja_existente = False
+        
+        for usuario_cadastrado in usuarios_nao_afetados:
+            email_cadastrado = usuario_cadastrado[1]
+            nome_usuario_cadastrado = usuario_cadastrado[2]
+
+            if email_form == email_cadastrado:
+                pode_editar_usuario = False
+                email_ja_existente = True
+
+            if nome_usuario_form == nome_usuario_cadastrado:
+                pode_editar_usuario = False
+                nome_usuario_ja_existente = True
+            
+            if email_ja_existente and nome_usuario_ja_existente:
+                break
+            
+
+        if pode_editar_usuario:
+            with open(USERS_CSV, 'w', encoding='utf-8') as arq_usuarios:
+                
+                arq_usuarios.write('nome_completo;email;nome_usuario;senha;bio;localizacao;link_github;avatar\n')
+                for nome_completo, email, nome_usuario, senha, bio, localizacao, link_github, avatar in usuarios_nao_afetados:
+                    arq_usuarios.write(f'{nome_completo};{email};{nome_usuario};{senha};{bio};{localizacao};{link_github};{avatar}\n')
+
+                arq_usuarios.write(f'{nome_completo_form};{email_form};{nome_usuario_form};{senha_usuario_atual};{bio_form};{localizacao_form};{link_github_form};{nome_arquivo_avatar}\n')
+
+                session['usuario'] = {'nome_completo': nome_completo_form,
+                                      'email': email_form,
+                                      'nome_usuario': nome_usuario_form,
+                                      'bio': bio_form,
+                                      'localizacao': localizacao_form,
+                                      'link_github': link_github_form,
+                                      'avatar': nome_arquivo_avatar}
+                
+            return redirect(url_for('main.perfil'))
+            
+        elif email_ja_existente and nome_usuario_ja_existente:
+            flash('Nome de usuário e email já existem.', 'error')
+            return redirect(url_for('main.editar_perfil'))
+        
+        elif email_ja_existente:
+            flash('Email já existe.', 'error')
+            return redirect(url_for('main.editar_perfil'))
+        
+        elif nome_usuario_ja_existente:
+            flash('Nome de usuário já existe.', 'error')
+            return redirect(url_for('main.editar_perfil'))
 
     return render_template('main/editar_perfil.html')
 
@@ -308,47 +396,93 @@ def cadastro():
         email = request.form.get('email')
         nome_usuario = request.form.get('nome-usuario')
         senha = request.form.get('senha')
-        bio = None
-        localizacao = None
-        link_github = None
-        avatar = None
+        bio = 'None'
+        localizacao = 'None'
+        link_github = 'None'
+        avatar = 'None'
 
-        session['usuario'] = {'nome_completo': nome_completo,
-                              'email': email,
-                              'nome_usuario': nome_usuario,
-                              'bio': bio,
-                              'localizacao': localizacao,
-                              'link_github': link_github,
-                              'avatar': avatar}
+        session['form_cadastrar'] = {'nome_completo': nome_completo,
+                                    'email': email,
+                                    'nome_usuario': nome_usuario,
+                                    'senha': senha,
+                                    'bio': bio,
+                                    'localizacao': localizacao,
+                                    'link_github': link_github,
+                                    'avatar': avatar}
 
         #Verifica se o arquivo usuarios.csv não existe
         if not os.path.exists(USERS_CSV):
             with open(USERS_CSV, 'x', encoding="utf-8") as arquivo_usuarios:
-                arquivo_usuarios.write(f'{nome_completo};{nome_usuario};{email};{senha};{bio};{localizacao};{link_github};{avatar}\n')
-                session['usuario']['nome_usuario'] = nome_usuario
+                arquivo_usuarios.write(f'{nome_completo};{email};{nome_usuario};{senha};{bio};{localizacao};{link_github};{avatar}\n')
+
+                session['usuario'] = {'nome_completo': nome_completo,
+                                      'email': email,
+                                      'nome_usuario': nome_usuario,
+                                      'bio': bio,
+                                      'localizacao': localizacao,
+                                      'link_github': link_github,
+                                      'avatar': avatar}
+                
                 return redirect(url_for('main.home'))
         else:
             pode_cadastrar_usuario = True
+            email_ja_existente = False
+            nome_usuario_ja_existente = False
 
             # Impede que a pessoa crie sua conta se já houver alguém com o mesmo nome de usuário ou email
             with open(USERS_CSV, "r", encoding="utf-8") as arquivo_usuarios:
                 linhas = arquivo_usuarios.readlines()
                 for linha in linhas:
                     registro = linha.strip().split(';')
-                    usuario_registrado = registro[1]
-                    email_registrado = registro[2]
-                    if nome_usuario == usuario_registrado or email == email_registrado:
+                    email_registrado = registro[1]
+                    usuario_registrado = registro[2]
+
+                    if email == email_registrado:
                         pode_cadastrar_usuario = False
+                        email_ja_existente = True
+
+                    if nome_usuario == usuario_registrado:
+                        pode_cadastrar_usuario = False
+                        nome_usuario_ja_existente = True
+
+                    if email_ja_existente and nome_usuario_ja_existente:
                         break
             
             if pode_cadastrar_usuario:
                 with open(USERS_CSV, "a", encoding="utf-8") as arquivo_usuarios:
-                    arquivo_usuarios.write(f'{nome_completo};{nome_usuario};{email};{senha};{bio};{localizacao};{link_github};{avatar}\n')
-                    session['usuario']['nome_usuario'] = nome_usuario
-                    return redirect(url_for('main.home'))
-            else:
-                flash('Nome de usuário ou email já existe.', 'error')
+                    arquivo_usuarios.write(f'{nome_completo};{email};{nome_usuario};{senha};{bio};{localizacao};{link_github};{avatar}\n')
+                    
+                    session['usuario'] = {'nome_completo': nome_completo,
+                                          'email': email,
+                                          'nome_usuario': nome_usuario,
+                                          'bio': bio,
+                                          'localizacao': localizacao,
+                                          'link_github': link_github,
+                                          'avatar': avatar}
+
+                return redirect(url_for('main.home'))
+                
+            elif email_ja_existente and nome_usuario_ja_existente:
+                flash('Nome de usuário e email já existem.', 'error')
                 return redirect(url_for('main.cadastro'))
+            
+            elif email_ja_existente:
+                flash('Email já existe.', 'error')
+                return redirect(url_for('main.cadastro'))
+            
+            elif nome_usuario_ja_existente:
+                flash('Nome de usuário já existe.', 'error')
+                return redirect(url_for('main.cadastro'))
+    
+    if not session.get('form_cadastrar'):
+        session['form_cadastrar'] = {'nome_completo': 'None',
+                                    'email': 'None',
+                                    'nome_usuario': 'None',
+                                    'senha': 'None',
+                                    'bio': 'None',
+                                    'localizacao': 'None',
+                                    'link_github': 'None',
+                                    'avatar': 'None'}
         
     return render_template("main/cadastro.html")
 
@@ -383,6 +517,7 @@ def login():
                                       'localizacao': localizacao,
                                       'link_github': link_github,
                                       'avatar': avatar}
+                
                 return redirect(url_for('main.home'))
 
             else:
@@ -397,6 +532,9 @@ def logout():
         return redirect(url_for('main.login'))
 
     session.pop('usuario', None)
+    session.pop('form_cadastrar', None)
+    session.pop('form_editar_dados', None)
+
     return redirect(url_for('main.landing'))
 
 @main_bp.route('/delete_post', methods=['POST'])

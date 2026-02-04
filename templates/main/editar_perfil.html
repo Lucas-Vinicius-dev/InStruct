@@ -16,7 +16,12 @@
             <div class="secao-perfil-avatar">
                 <label for="avatarInput">
                     <div class="avatar-wrapper">
-                        <img class="perfil-avatar" src="https://api.dicebear.com/9.x/lorelei/svg?seed=user&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" alt="Avatar do usuário" id="avatarPreview">
+
+                        {% if session['form_editar_dados']['avatar'] != 'None' %}
+                            <img class="perfil-avatar" src="{{ url_for('main.imagem', nome_arquivo=session['form_editar_dados']['avatar']) }}" alt="Avatar do usuário" id="avatarPreview">
+                        {% else %}
+                            <img class="perfil-avatar" src="https://api.dicebear.com/9.x/lorelei/svg?seed=user&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" alt="Avatar do usuário" id="avatarPreview">
+                        {% endif %}
 
                         <!-- Ícone visível SEM hover -->
                         <div class="avatar-plus">+</div>
@@ -31,33 +36,33 @@
             </div>
 
             <div class="mb-4">
-                <label for="nome-completo" class="form-label">Nome Completo</label>
-                <input type="text" id="nome-completo" class="form-control" name="nome-completo" value="{{ session['usuario']['nome_completo'] }}" placeholder="Digite seu nome completo" required>
+                <label for="nome-usuario" class="form-label">Nome de usuário</label>
+                <input type="text" id="nome-usuario" class="form-control" name="nome-usuario" value="{{ session['form_editar_dados']['nome_usuario'] }}" placeholder="seu_nome_usuario" required disabled>
                 <div class="invalid-feedback">
-                    Por favor, digite seu nome completo.
+                    Por favor, escolha um nome de usuário.
                 </div>
             </div>
 
             <div class="mb-4">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" class="form-control" name="email" value="{{ session['usuario']['email'] }}" placeholder="seu.email@exemplo.com" required>
+                <input type="email" id="email" class="form-control" name="email" value="{{ session['form_editar_dados']['email'] }}" placeholder="seu.email@exemplo.com" required disabled>
                 <div class="invalid-feedback">
                     Por favor, digite um e-mail válido.
                 </div>
             </div>
 
             <div class="mb-4">
-                <label for="nome-usuario" class="form-label">Nome de usuário</label>
-                <input type="text" id="nome-usuario" class="form-control" name="nome-usuario" value="{{ session['usuario']['nome_usuario'] }}" placeholder="seu_nome_usuario" required>
+                <label for="nome-completo" class="form-label">Nome Completo</label>
+                <input type="text" id="nome-completo" class="form-control" name="nome-completo" value="{{ session['form_editar_dados']['nome_completo'] }}" placeholder="Digite seu nome completo" required>
                 <div class="invalid-feedback">
-                    Por favor, escolha um nome de usuário.
+                    Por favor, digite seu nome completo.
                 </div>
             </div>
 
-            {% if session['usuario']['bio'] != 'None' %}
+            {% if session['form_editar_dados']['bio'] != 'None' %}
                 <div class="mb-4">
                     <label for="bio" class="form-label">Bio</label>
-                    <textarea id="bio" class="form-control" name="bio" rows="3" placeholder="Conte um pouco sobre você...">{{ session['usuario']['bio'] }}</textarea>
+                    <textarea id="bio" class="form-control" name="bio" rows="3" placeholder="Conte um pouco sobre você...">{{ session['form_editar_dados']['bio'] }}</textarea>
                 </div>
             {% else %}
                 <div class="mb-4">
@@ -66,10 +71,10 @@
                 </div>
             {% endif %}
 
-            {% if session['usuario']['localizacao'] != 'None' %}
+            {% if session['form_editar_dados']['localizacao'] != 'None' %}
                 <div class="mb-4">
                     <label for="localizacao" class="form-label">Localização</label>
-                    <input type="text" id="localizacao" class="form-control" name="localizacao" value="{{ session['usuario']['localizacao'] }}" placeholder="Sua localização">
+                    <input type="text" id="localizacao" class="form-control" name="localizacao" value="{{ session['form_editar_dados']['localizacao'] }}" placeholder="Sua localização">
                 </div>
             {% else %}
                 <div class="mb-4">
@@ -78,10 +83,10 @@
                 </div>
             {% endif %}
 
-            {% if session['usuario']['link_github'] != 'None' %}
+            {% if session['form_editar_dados']['link_github'] != 'None' %}
                 <div class="mb-4">
                     <label for="link-github" class="form-label">Github</label>
-                    <input type="url" id="link-github" class="form-control" name="link-github" value="{{ session['usuario']['link_github'] }}" placeholder="https://github.com/seu-usuario">
+                    <input type="url" id="link-github" class="form-control" name="link-github" value="{{ session['form_editar_dados']['link_github'] }}" placeholder="https://github.com/seu-usuario">
                 </div>
             {% else %}
                 <div class="mb-4">
@@ -92,7 +97,7 @@
 
             <div class="edicao-perfil-botoes">
                 <button type="submit" class="btn btn-primary mb-4">Salvar alterações</button>
-                <button type="submit" class="btn btn-primary mb-4" id="edicao-perfil-botao-cancelar">Cancelar</button>
+                <a href="{{ url_for('main.perfil') }}"><button class="btn btn-primary mb-4" id="edicao-perfil-botao-cancelar" type="button">Cancelar</button></a>
             </div>
         </form>
         

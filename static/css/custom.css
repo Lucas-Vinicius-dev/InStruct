@@ -857,9 +857,18 @@ main {
     gap: 10px;
 }
 
+.edicao-perfil-botoes > * {
+    flex: 1;
+}
+
 #edicao-perfil-botao-cancelar {
     background-color: rgba(80, 80, 80, 0.6);
     border-color: rgba(80, 80, 80, 0.6);
+}
+
+#edicao-perfil-botao-cancelar a {
+    text-decoration: none;
+    color: white;
 }
 
 #edicao-perfil-botao-cancelar:hover {

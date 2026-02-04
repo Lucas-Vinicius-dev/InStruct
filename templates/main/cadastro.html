@@ -13,9 +13,14 @@
         <h2 class="cadastro-titulo mb-5">Crie sua conta</h2>
         
         <form class="needs-validation" action="" method="post" novalidate>
+
             <div class="mb-4">
                 <label for="nome-completo" class="form-label">Nome Completo</label>
-                <input type="text" id="nome-completo" class="form-control" name="nome-completo" placeholder="Digite seu nome completo" required>
+                {% if session['form_cadastrar']['nome_completo'] != 'None' %}
+                    <input type="text" id="nome-completo" class="form-control" name="nome-completo" value="{{ session['form_cadastrar']['nome_completo'] }}" placeholder="Digite seu nome completo" required>
+                {% else %}
+                    <input type="text" id="nome-completo" class="form-control" name="nome-completo" placeholder="Digite seu nome completo" required>
+                {% endif %}
                 <div class="invalid-feedback">
                     Por favor, digite seu nome completo.
                 </div>
@@ -23,7 +28,11 @@
 
             <div class="mb-4">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" class="form-control" name="email" placeholder="seu.email@exemplo.com" required>
+                {% if session['form_cadastrar']['email'] != 'None' %}
+                    <input type="email" id="email" class="form-control" name="email" value="{{ session['form_cadastrar']['email'] }}" placeholder="seu.email@exemplo.com" required>
+                {% else %}
+                    <input type="email" id="email" class="form-control" name="email" placeholder="seu.email@exemplo.com" required>
+                {% endif %}
                 <div class="invalid-feedback">
                     Por favor, digite um e-mail válido.
                 </div>
@@ -31,7 +40,11 @@
 
             <div class="mb-4">
                 <label for="nome-usuario" class="form-label">Nome de usuário</label>
-                <input type="text" id="nome-usuario" class="form-control" name="nome-usuario" placeholder="seu_nome_usuario" required>
+                {% if session['form_cadastrar']['nome_usuario'] != 'None' %}
+                    <input type="text" id="nome-usuario" class="form-control" name="nome-usuario" value="{{ session['form_cadastrar']['nome_usuario'] }}" placeholder="seu_nome_usuario" required>
+                {% else %}
+                    <input type="text" id="nome-usuario" class="form-control" name="nome-usuario" placeholder="seu_nome_usuario" required>
+                {% endif %}
                 <div class="invalid-feedback">
                     Por favor, escolha um nome de usuário.
                 </div>
@@ -39,7 +52,11 @@
 
             <div class="mb-4">
                 <label for="senha" class="form-label">Senha</label>
-                <input type="password" id="senha" class="form-control" name="senha" aria-describedby="bloco-ajuda-senha" pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}" required>
+                {% if session['form_cadastrar']['senha'] != 'None' %}
+                    <input type="password" id="senha" class="form-control" name="senha" aria-describedby="bloco-ajuda-senha" pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}" value="{{ session['form_cadastrar']['senha'] }}" required>
+                {% else %}
+                    <input type="password" id="senha" class="form-control" name="senha" aria-describedby="bloco-ajuda-senha" pattern="(?=.*[A-Za-z])(?=.*\d)(?=.*[^A-Za-z0-9]).{8,}" required>
+                {% endif %}
                 <div class="invalid-feedback">
                     Por favor, digite uma senha válida.
                 </div>
