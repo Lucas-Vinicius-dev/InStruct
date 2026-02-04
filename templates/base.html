@@ -22,7 +22,7 @@
     <!-- Cabeçalho — navegue pelo site -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-rosy" role="navigation" aria-label="Navegação principal">
         <div class="container">
-            <a class="navbar-brand" href="{{ url_for('landing') }}">
+            <a class="navbar-brand" href="{{ url_for('main.landing') }}">
                 <i></i> InStruct { }
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alternar navegação">
@@ -30,30 +30,38 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    {% if session.get('usuario_logado') %}
+                    {% if session.get('usuario') %}
                     <li class="nav-item">
-                        <a class="nav-link {% block nav_home %}{% endblock %}" href="{{ url_for('home') }}">
+                        <a class="nav-link {% block nav_home %}{% endblock %}" href="{{ url_for('main.home') }}">
                             <i class="bi bi-house-fill"></i> Feed
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('publish') }}">
+                        <a class="nav-link" href="{{ url_for('main.publish') }}">
                             <i class="bi bi-plus-circle"></i> Publicar
                         </a>
                     </li>
                     <li class="nav-item">
                         <details class="profile-menu">
                             <summary class="nav-link nav-avatar" title="Perfil do usuário">
-                                <img class="navbar-avatar" 
-                                     src="https://api.dicebear.com/9.x/lorelei/svg?seed=user&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" 
-                                     alt="Avatar do usuário">
+                                {% if session['usuario']['avatar'] != 'None' %}
+                                    <img class="navbar-avatar" src="{{ url_for('main.imagem', nome_arquivo=session['usuario']['avatar']) }}" alt="Avatar do usuário">
+                                {% else %}
+                                    <img class="navbar-avatar" src="https://api.dicebear.com/9.x/lorelei/svg?seed=user&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" alt="Avatar do usuário">
+                                {% endif %}
                             </summary>
                             <div class="profile-modal-content">
                                 <div class="profile-modal-body">
-                                    <a href="{{ url_for('profile') }}" class="profile-modal-item">
+                                    <a href="{{ url_for('main.perfil') }}" class="profile-modal-item">
                                         <i class="bi bi-person"></i>
                                         <span>Profile</span>
                                     </a>
+                                    {% if session.get('is_admin') %}
+                                    <a href="{{ url_for('admin.dashboard') }}" class="profile-modal-item">
+                                        <i class="bi bi-shield-check"></i>
+                                        <span>Admin Dashboard</span>
+                                    </a>
+                                    {% endif %}
                                     <a href="#" class="profile-modal-item">
                                         <i class="bi bi-gear"></i>
                                         <span>Settings</span>
@@ -64,7 +72,7 @@
                                     </a>
                                 </div>
                                 <div class="profile-modal-footer">
-                                    <a href="{{ url_for('logout') }}" class="profile-modal-logout">
+                                    <a href="{{ url_for('main.logout') }}" class="profile-modal-logout">
                                         <i class="bi bi-box-arrow-right"></i>
                                         <span>Log Out</span>
                                     </a>
@@ -74,12 +82,12 @@
                     </li>
                     {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('login') }}">
+                        <a class="nav-link" href="{{ url_for('main.login') }}">
                             Entrar
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link link-cadastro" href="{{ url_for('cadastro') }}">
+                        <a class="nav-link link-cadastro" href="{{ url_for('main.cadastro') }}">
                             Cadastre-se
                         </a>
                     </li>

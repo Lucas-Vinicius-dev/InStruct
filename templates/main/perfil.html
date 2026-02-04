@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+{% block title %}InStruct — Crie sua conta{% endblock %}
+
+{% block extra_css %}
+<link href="{{ url_for('static', filename='css/autenticacao.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+
+<div class="perfil">
+    <div class="perfil-container">
+        <h2 class="perfil-titulo">Dados de perfil</h2>
+
+        <form class="needs-validation" method="post" novalidate>
+
+            <div class="secao-perfil-avatar">
+                {% if session['usuario']['avatar'] != 'None' %}
+                    <img class="perfil-avatar" src="{{ url_for('main.imagem', nome_arquivo=session['usuario']['avatar']) }}" alt="Avatar do usuário" id="avatarPreview">
+                {% else %}
+                    <img class="perfil-avatar" src="https://api.dicebear.com/9.x/lorelei/svg?seed=user&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" alt="Avatar do usuário" id="avatarPreview">
+                {% endif %}
+            </div>
+
+            <div class="mb-4">
+                <label for="nome-completo" class="form-label">Nome Completo</label>
+                <input type="text" id="nome-completo" class="form-control" name="nome-completo" value="{{ session['usuario']['nome_completo'] }}" placeholder="Digite seu nome completo" disabled>
+                <!--
+                <div class="invalid-feedback">
+                    Por favor, digite seu nome completo.
+                </div>
+                -->
+            </div>
+
+            <div class="mb-4">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" id="email" class="form-control" name="email" value="{{ session['usuario']['email'] }}" placeholder="seu.email@exemplo.com" disabled>
+                <!--
+                <div class="invalid-feedback">
+                    Por favor, digite um e-mail válido.
+                </div>
+                -->
+            </div>
+
+            <div class="mb-4">
+                <label for="nome-usuario" class="form-label">Nome de usuário</label>
+                <input type="text" id="nome-usuario" class="form-control" name="nome-usuario" value="{{ session['usuario']['nome_usuario'] }}" placeholder="seu_nome_usuario" disabled>
+                <!--
+                <div class="invalid-feedback">
+                    Por favor, escolha um nome de usuário.
+                </div>
+                -->
+            </div>
+
+            {% if session['usuario']['bio'] != 'None' %}
+                <div class="mb-4">
+                    <label for="bio" class="form-label">Bio</label>
+                    <textarea id="bio" class="form-control" name="bio" rows="3" disabled>{{ session['usuario']['bio'] }}</textarea>
+                </div>
+            {% else %}
+                <div class="mb-4">
+                    <label for="bio" class="form-label">Bio</label>
+                    <textarea id="bio" class="form-control" name="bio" rows="3" disabled></textarea>
+                </div>
+            {% endif %}
+
+            {% if session['usuario']['localizacao'] != 'None' %}
+                <div class="mb-4">
+                    <label for="localizacao" class="form-label">Localização</label>
+                    <input type="text" id="localizacao" class="form-control" name="localizacao" value="{{ session['usuario']['localizacao'] }}" disabled>
+                </div>
+            {% else %}
+                <div class="mb-4">
+                    <label for="localizacao" class="form-label">Localização</label>
+                    <input type="text" id="localizacao" class="form-control" name="localizacao" disabled>
+                </div>
+            {% endif %}
+
+            {% if session['usuario']['link_github'] != 'None' %}
+                <div class="mb-4">
+                    <label for="link-github" class="form-label">Github</label>
+                    <input type="url" id="link-github" class="form-control" name="link-github" value="{{ session['usuario']['link_github'] }}" disabled>
+                </div>
+            {% else %}
+                <div class="mb-4">
+                    <label for="link-github" class="form-label">Github</label>
+                    <input type="url" id="link-github" class="form-control" name="link-github" disabled>
+                </div>
+            {% endif %}
+
+            <button type="submit" class="btn btn-primary mb-4">Editar dados</button>
+        </form>
+        
+    </div>
+</div>
+
+<script>
+(() => {
+  'use strict'
+
+  const forms = document.querySelectorAll('.needs-validation')
+
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault()
+        event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+    }, false)
+  })
+})()
+</script>
+
+{% endblock %}

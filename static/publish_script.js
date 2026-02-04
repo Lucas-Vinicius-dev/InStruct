@@ -56,3 +56,41 @@ function Confirm_delete() {
         clicks_to_delete = 0;
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleButtons = document.querySelectorAll('.toggle-comments');
+    
+    toggleButtons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            const postId = this.getAttribute('data-post');
+            const commentsSection = document.getElementById('comments-' + postId);
+            
+            if (commentsSection.style.display === 'none') {
+                commentsSection.style.display = 'block';
+            } else {
+                commentsSection.style.display = 'none';
+            }
+        });
+    });
+});
+
+// prevenir scroll ao mandar um comentário
+document.addEventListener('DOMContentLoaded', function() {
+    const commentForms = document.querySelectorAll('.comment-form');
+    
+    commentForms.forEach(form => {
+        form.addEventListener('submit', function(e) {
+            const scrollPosition = window.scrollY;
+            localStorage.setItem('scrollPosition', scrollPosition);
+        });
+    });
+    
+// restaurade scroll após carregar a página
+    window.addEventListener('load', function() {
+        const savedPosition = localStorage.getItem('scrollPosition');
+        if (savedPosition) {
+            window.scrollTo(0, parseInt(savedPosition));
+            localStorage.removeItem('scrollPosition');
+        }
+    });
+});

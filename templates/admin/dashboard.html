@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard Admin — InStruct{% endblock %}
+
+{% block extra_css %}
+<link href="{{ url_for('static', filename='css/admin.css') }}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<div class="admin-container">
+    <div class="admin-header">
+        <h1>Painel de Administração</h1>
+        <p>Gerencie usuários, posts e comentários da plataforma</p>
+    </div>
+
+    <!-- Estatisticas -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <i class="bi bi-people-fill"></i>
+            <h3>{{ usuarios|length }}</h3>
+            <p>Usuários Cadastrados</p>
+        </div>
+        <div class="stat-card">
+            <i class="bi bi-file-post-fill"></i>
+            <h3>{{ posts|length }}</h3>
+            <p>Posts Publicados</p>
+        </div>
+        <div class="stat-card">
+            <i class="bi bi-chat-dots-fill"></i>
+            <h3>{{ comentarios|length }}</h3>
+            <p>Comentários</p>
+        </div>
+    </div>
+
+    <!-- Gerenciar Users -->
+    <div class="admin-section">
+        <h2>Gerenciar Usuários</h2>
+        
+        {% if usuarios %}
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for usuario in usuarios %}
+                <tr>
+                    <td><strong>{{ usuario.username }}</strong></td>
+                    <td>{{ usuario.email }}</td>
+                    <td>{{ usuario.name }}</td>
+                    <td>
+                        {% if usuario.is_admin %}
+                        <span class="badge badge-admin">Admin</span>
+                        {% else %}
+                        <span class="badge badge-user">Usuário</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if not usuario.is_admin %}
+                        <form method="POST" action="{{ url_for('admin.delete_user', username=usuario.username) }}" style="display: inline;">
+                            <button type="submit" class="btn-delete" onclick="return confirm('Tem certeza que deseja excluir o usuário {{ usuario.username }}?')">
+                                <i class="bi bi-trash"></i> Excluir
+                            </button>
+                        </form>
+                        {% else %}
+                        <span class="text-muted" style="font-size: 0.85rem;">Protegido</span>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty-state">
+            <i class="bi bi-inbox"></i>
+            <p>Nenhum usuário encontrado</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Gerenciar Posts -->
+    <div class="admin-section">
+        <h2>Gerenciar Posts</h2>
+        
+        {% if posts %}
+        <ul class="action-list">
+            {% for post in posts %}
+            <li>
+                <div>
+                    <strong>{{ post.title }}</strong>
+                    <br>
+                    <small class="text-muted">
+                        Por: {{ post.username }} | ID: {{ post.id }}
+                    </small>
+                </div>
+                <form method="POST" action="{{ url_for('admin.delete_post', post_id=post.id) }}" style="display: inline;">
+                    <button type="submit" class="btn-delete" onclick="return confirm('Tem certeza que deseja excluir este post?')">
+                        <i class="bi bi-trash"></i> Excluir
+                    </button>
+                </form>
+            </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <div class="empty-state">
+            <i class="bi bi-inbox"></i>
+            <p>Nenhum post encontrado</p>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Gerenciar Comentários -->
+    <div class="admin-section">
+        <h2>Gerenciar Comentários</h2>
+        
+        {% if comentarios %}
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Autor</th>
+                    <th>Conteúdo</th>
+                    <th>Post ID</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for comentario in comentarios %}
+                <tr>
+                    <td>{{ comentario.id }}</td>
+                    <td><strong>{{ comentario.author }}</strong></td>
+                    <td>
+                        <div class="truncate" title="{{ comentario.content }}">
+                            {{ comentario.content }}
+                        </div>
+                    </td>
+                    <td>{{ comentario.post_id }}</td>
+                    <td>
+                        <form method="POST" action="{{ url_for('admin.delete_comment', comment_id=comentario.id) }}" style="display: inline;">
+                            <button type="submit" class="btn-delete" onclick="return confirm('Tem certeza que deseja excluir este comentário?')">
+                                <i class="bi bi-trash"></i> Excluir
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="empty-state">
+            <i class="bi bi-inbox"></i>
+            <p>Nenhum comentário encontrado</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

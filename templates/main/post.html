@@ -1,0 +1,150 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }} — InStruct{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <div class="row g-0">
+        <!-- sidebar -->
+        <aside class="col-12 col-md-3 col-lg-2 home-sidebar px-2 border-bottom border-md-0">
+            <ul class="nav flex-column p-3">
+                <li class="nav-item mb-2">
+                    <a class="nav-link" href="{{ url_for('main.home') }}">
+                        <i class="bi bi-house"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link" href="{{ url_for('main.publish') }}">
+                        <i class="bi bi-plus-circle"></i> Criar Post
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                     <a class="nav-link" href="#">
+                        <i class="bi bi-people"></i> Comunidades
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-gear"></i> Preferências
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Conteudo  -->
+        <section class="col-12 col-md-9 col-lg-10 home-main-area">
+            <div class="feed-container">
+                <a href="{{ url_for('main.home') }}" class="btn btn-outline-secondary mb-3">
+                    <i class="bi bi-arrow-left"></i> Voltar
+                </a>
+
+                {% if post %}
+                <article class="post-card-vertical">
+                    <div class="post-header">
+                        <div class="publish-header d-flex align-items-center gap-3">
+                            <img class="user-avatar" 
+                                 src="https://api.dicebear.com/9.x/lorelei/svg?seed={{ post.username }}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" 
+                                 alt="Avatar {{ post.username }}">
+                            <div class="user-info">
+                                <p class="username mb-0">{{ post.username if post.username else 'anônimo' }}</p>
+                                <small class="post-meta text-muted">
+                                    {% if post.topico_principal %}
+                                        {{ post.topico_principal }}
+                                    {% endif %}
+                                    {% if post.linguagem_selecionada %} • {{ post.linguagem_selecionada }}
+                                    {% endif %}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="post-content">
+                        <h1 class="post-title">{{ post.title }}</h1>
+                        
+                        {% if post.description %}
+                        <pre class="code-card"><code>{{ post.description }}</code></pre>
+                        {% endif %}
+                    </div>
+
+                    <div class="post-actions">
+                        <button class="action-btn" type="button">
+                            <i class="bi bi-heart"></i> Incentivar
+                        </button>
+                        <button class="action-btn" type="button">
+                            <i class="bi bi-bookmark"></i> Salvar
+                        </button>
+                    </div>
+
+                    <!-- secao dos comentarios -->
+                    <div class="comments-section show">
+                        <h3 class="mt-4 mb-3">Comentários ({{ post.total_comentarios }})</h3>
+                        
+                        <div class="comments-list">
+                            {% if post.comentarios %}
+                                {% for comment in post.comentarios %}
+                                <div class="comment-item">
+                                    <div class="d-flex align-items-start gap-2">
+                                        <img class="comment-avatar" 
+                                             src="https://api.dicebear.com/9.x/lorelei/svg?seed={{ comment.username }}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" 
+                                             alt="Avatar">
+                                        <div class="comment-content">
+                                            <div class="comment-header">
+                                                <span class="comment-user">{{ comment.username }}</span>
+                                                <span class="comment-time">{{ comment.timestamp }}</span>
+                                                {% if session.get('usuario') and comment.username == session['usuario']['nome_usuario'] %}
+                                                <form action="{{ url_for('main.delete_comment') }}" method="POST" class="delete-comment-form" onsubmit="return confirm('Apagar este comentário?')">
+                                                    <input type="hidden" name="post_title" value="{{ post.title }}">
+                                                    <input type="hidden" name="username" value="{{ comment.username }}">
+                                                    <input type="hidden" name="timestamp" value="{{ comment.timestamp }}">
+                                                    <button type="submit" class="btn-delete-comment" title="Apagar comentário">
+                                                        <i class="bi bi-trash"></i>
+                                                    </button>
+                                                </form>
+                                                {% endif %}
+                                            </div>
+                                            <p class="comment-text">{{ comment.comment_text }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            {% else %}
+                                <p class="no-comments">Nenhum comentário ainda. Seja o primeiro!</p>
+                            {% endif %}
+                        </div>
+
+                        <!-- formulario do comentarios -->
+                        <div class="comment-form-wrapper" style="display: block;">
+                            <form class="comment-form" action="{{ url_for('main.add_comment') }}" method="POST">
+                                <input type="hidden" name="post_title" value="{{ post.title }}">
+                                <input type="hidden" name="redirect_to" value="{{ request.url }}">
+                                <div class="d-flex gap-2">
+                                    <img class="comment-avatar" 
+                                         src="https://api.dicebear.com/9.x/lorelei/svg?seed={{ session['usuario']['nome_usuario'] }}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" 
+                                         alt="Seu avatar">
+                                    <div class="flex-grow-1">
+                                        <textarea class="form-control comment-input" 
+                                                  name="comment_text" 
+                                                  placeholder="Escreva um comentário..." 
+                                                  rows="2" 
+                                                  required></textarea>
+                                        <button type="submit" class="btn btn-sm btn-primary mt-2">Comentar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </article>
+                {% else %}
+                <div class="empty text-center py-5">
+                    <i class="bi bi-inbox display-1 text-muted mb-3"></i>
+                    <h3 class="fw-bold">Post não encontrado</h3>
+                    <a href="{{ url_for('main.home') }}" class="btn btn-primary btn-lg">
+                        Voltar ao Feed
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}

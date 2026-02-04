@@ -1,0 +1,343 @@
+{% extends 'base.html' %}
+
+{% block title %}InStruct — Feed da Comunidade{% endblock %}
+
+{% block main_class %}{% endblock %}
+{% block container_start %}{% endblock %}
+{% block container_end %}{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='publish_script.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid p-0">
+    <div class="row g-0">
+        <!-- Sidebar -->
+        <aside class="col-12 col-md-3 col-lg-2 home-sidebar px-2 border-bottom border-md-0">
+            <ul class="nav flex-column p-3">
+                <li class="nav-item mb-2">
+                    <a class="nav-link active" href="{{ url_for('main.home') }}">
+                        <i class="bi bi-house"></i> Home
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link" href="{{ url_for('main.publish') }}">
+                        <i class="bi bi-plus-circle"></i> Criar Post
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                     <a class="nav-link" href="#">
+                        <i class="bi bi-people"></i> Comunidades
+                    </a>
+                </li>
+                <li class="nav-item mb-2">
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-gear"></i> Preferências
+                    </a>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- Main Feed Area -->
+        <section class="col-12 col-md-9 col-lg-10 home-main-area">
+            <div class="feed-container">
+                <div class="feed-header">
+                    <h1 class="fw-bold">Feed da Comunidade</h1>
+                    <p class="text-muted">Veja o que a galera está compartilhando</p>
+                </div>
+
+                
+                <form action=" {{ url_for('main.home') }}" method="POST">
+
+                    <h3>Buscar publicações</h3>
+                    <div class="input-group rounded">
+                        <input type="search" class="form-control rounded" placeholder="Pesquisar..." name="search" aria-label="Search" aria-describedby="search-addon" />
+                        <span class="input-group-text border-0" id="search-addon">
+                            <i class="fas fa-search"></i>
+                        </span>
+                    </div>
+
+                    <div class="d-flex flex-wrap p-3 border-bottom gap-3">
+                        
+                        <div class="containter-type" style="min-width: 14rem;"> 
+                            <select class="form-select choice" name="filtro_topico_principal" aria-label="Tópico Principal">
+                                <option value="Todos"                   {% if f_topico_principal == "Todos" %}selected{% endif %}>Todos</option> 
+                                <option value="Programação Competitiva" {% if f_topico_principal == "Programação Competitiva" %}selected{% endif %}>Programação Competitiva</option>
+                                <option value="Projetos Pessoais"       {% if f_topico_principal == "Projetos Pessoais" %}selected{% endif %}>Projetos Pessoais</option>
+                                <option value="Outros"                  {% if f_topico_principal == "Outros" %}selected{% endif %}>Outros</option>
+                            </select>
+                        </div>
+                        
+                        <div class="containter-type" style="min-width: 10rem;">
+                            <select class="form-select choice" name="filtro_tipo_de_post" aria-label="Tipo de Post">
+                                    <option value="Todos"           {% if f_tipo_de_post == "Todos" %}selected{% endif %}>Todos</option>
+                                    <option value="Discussão"       {% if f_tipo_de_post == "Discussão" %}selected{% endif %}>Discussão</option>
+                                    <option value="Tutorial / Guia" {% if f_tipo_de_post == "Tutorial / Guia" %}selected{% endif %}>Tutorial / Guia</option>
+                                    <option value="Dúvidas"         {% if f_tipo_de_post == "Dúvidas" %}selected{% endif %}>Dúvidas</option>
+                                    <option value="Outros"          {% if f_tipo_de_post == "Outros" %}selected{% endif %}>Outros</option>
+                            </select>
+                        </div>
+                        
+                        <div class="containter-type" style="min-width: 6rem;">
+                            <select class="form-select choice" name="filtro_linguagem_selecionada" aria-label="Linguagem">
+                                <option value="Todos"      {% if f_linguagem_selecionada == "Todos" %}selected{% endif %}>Todos</option>
+                                <option value="C/C++"      {% if f_linguagem_selecionada == "C/C++" %}selected{% endif %}>C/C++</option>
+                                <option value="Python"     {% if f_linguagem_selecionada == "Python" %}selected{% endif %}>Python</option>
+                                <option value="JavaScript" {% if f_linguagem_selecionada == "JavaScript" %}selected{% endif %}>JavaScript</option>
+                                <option value="C#"         {% if f_linguagem_selecionada == "C#" %}selected{% endif %}>C#</option>
+                                <option value="Java"       {% if f_linguagem_selecionada == "Java" %}selected{% endif %}>Java</option>
+                                <option value="Rust"       {% if f_linguagem_selecionada == "Rust" %}selected{% endif %}>Rust</option>
+                                <option value="Ruby"       {% if f_linguagem_selecionada == "Ruby" %}selected{% endif %}>Ruby</option>
+                                <option value="Go"         {% if f_linguagem_selecionada == "Go" %}selected{% endif %}>Go</option>
+                                <option value="Outros"     {% if f_linguagem_selecionada == "Outros" %}selected{% endif %}>Outros</option>
+                            </select>
+                        </div>
+                        <div class="containter-type" style="min-width: 12rem;"> 
+                            <input class="btn btn-primary publish-content" type="submit" value="Buscar">
+                        </div>
+                    </div>
+                </form>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                       {% for category, message in messages %}
+                            <div class="alert-{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+
+                {% if posts %}
+                    <div class="posts-list">
+                        {% for post in posts %}
+                        <article class="post-card-vertical" id="post-{{ post.title }}">
+                            <div class="post-header">
+                                <div class="publish-header d-flex align-items-center gap-3">
+                                    <div class="publish-header d-flex align-items-center gap-3">
+                                    <img class="user-avatar" 
+                                         src="https://api.dicebear.com/9.x/lorelei/svg?seed={{ post.username }}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" 
+                                         alt="Avatar {{ post.username }}">
+                                    <div class="user-info">
+                                        
+                                        
+                                        <p class="username mb-0">{{ post.username if post.username else 'anônimo' }}</p>
+                                        
+
+                                        <small class="post-meta text-muted">
+                                            {% if post.topico_principal %}
+                                                {{ post.topico_principal }}
+                                            {% endif %}
+                                            {% if post.linguagem_selecionada %} • {{ post.linguagem_selecionada }}
+                                            {% endif %}
+                                        </small>
+                                    </div>
+                                    </div>
+                                    {% if session.get('usuario') and post.username == session['usuario']['nome_usuario'] %}
+                                    <div class="pos-f-t">
+                                        <nav class="navbar navbar-dark">
+                                            <button class="navbar-toggler" type="button" onclick="OpenModal('{{ post.title|e }}')">
+                                                <span class="navbar-toggler-icon"></span>
+                                            </button>
+                                        </nav>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="post-content">
+                                <h3 class="post-title">{{ post.title }}</h3>
+                                
+                                {% if post.description %}
+                                <pre class="code-card"><code>{{ post.description }}</code></pre>
+                                {% endif %}
+                            </div>
+
+                            {% if reacoes_post[post.title] %}
+                            <div id="reacoes-section-post-{{ loop.index }}">
+                                <div class="reacoes-container">
+                                    {% for reacao_id_emoji, reacao_valores in reacoes_post[post.title].items() %}
+                                        {% if reacao_id_emoji in reacoes_usuario[post.title] %}
+                                            <div class="reacoes-option reacoes-usuario-reagiu">
+                                                <span>{{ reacao_valores.figura }}</span>
+                                                <span>{{ reacao_valores.contador }}</span>
+                                            </div>
+                                        {% else %}
+                                            <div class="reacoes-option reacoes-usuario-nao-reagiu">
+                                                <span>{{ reacao_valores.figura }}</span>
+                                                <span>{{ reacao_valores.contador }}</span>
+                                            </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            {% endif %}
+
+                            <hr style="color:rgba(0, 0, 0, 0.4)">
+                            
+                            <div class="post-actions">
+                                <label class="action-btn" for="toggle-comment-{{ loop.index }}">
+                                    <i class="bi bi-chat-dots"></i> Comentários ({{ post.total_comentarios }})
+                                </label>
+
+                                <button class="action-btn" type="button" data-bs-toggle="collapse" data-bs-target="#emoji-section-post-{{ loop.index }}" aria-expanded="false" aria-controls="emoji-section-post-{{ loop.index }}">
+                                    <i class="bi bi-heart"></i> Reagir
+                                </button>
+
+                                <button class="action-btn" type="button">
+                                    <i class="bi bi-bookmark"></i> Salvar
+                                </button>
+                            </div>
+
+                            <input type="checkbox" id="toggle-comment-{{ loop.index }}" class="comment-toggle" hidden>
+                            <div class="collapse" id="emoji-section-post-{{ loop.index }}">
+                                <div class="emoji-section card card-body">
+                                    <nav>
+                                        <div class="nav nav-tabs nav-justified configuracao-emoji" id="nav-tab" role="tablist">
+                                            <button class="nav-link link-success active" id="emojis-para-reagir-tab-{{ loop.index }}" data-bs-toggle="tab" data-bs-target="#emojis-para-reagir-{{ loop.index }}" type="button" role="tab" aria-controls="emojis-para-reagir-{{ loop.index }}" aria-selected="true">Adicionar emojis</button>
+                                            <button class="nav-link link-danger" id="emojis-para-remover-tab-{{ loop.index }}" data-bs-toggle="tab" data-bs-target="#emojis-para-remover-{{ loop.index }}" type="button" role="tab" aria-controls="emojis-para-remover-{{ loop.index }}" aria-selected="false">Remover emojis</button>
+                                        </div>
+                                    </nav>
+
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show active" id="emojis-para-reagir-{{ loop.index }}" role="tabpanel" aria-labelledby="emojis-para-reagir-tab-{{ loop.index }}" tabindex="0">
+                                            {% if reacoes_usuario.get(post.title, []) | length != todos_emojis | length %}
+                                                <form method="post" action="{{ url_for('main.adicionar_reacoes') }}?titulo_post={{ post.title }}">
+                                                    <div class="emoji-container">
+                                                        {% for emoji in todos_emojis.values() %}
+                                                            {% if emoji.id not in reacoes_usuario[post.title] %}
+                                                            <label class="emoji-option emoji-option-adicionar">
+                                                                <input type="checkbox" name="emojis" value="{{ emoji.id }}">
+                                                                <span>{{ emoji.figura }}</span>
+                                                            </label>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    </div>
+                                                    <div class="emoji-button-envio">
+                                                        <input class="btn btn-primary" type="submit" value="Salvar">
+                                                    </div>
+                                                </form>
+                                            {% else %}
+                                                <p class="sem-emojis">Sem emojis para adicionar</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-content" id="nav-tabContent">
+                                        <div class="tab-pane fade show" id="emojis-para-remover-{{ loop.index }}" role="tabpanel" aria-labelledby="emojis-para-remover-tab-{{ loop.index }}" tabindex="0">
+                                            {% if reacoes_usuario[post.title] %}
+                                                <form method="post" action="{{ url_for('main.remover_reacoes') }}?titulo_post={{ post.title }}">
+                                                    <div class="emoji-container">
+                                                            {% for id_emoji in reacoes_usuario[post.title] %}
+                                                                <label class="emoji-option emoji-option-remover">
+                                                                    <input type="checkbox" name="emojis" value="{{ id_emoji }}">
+                                                                    <span>{{ todos_emojis[id_emoji].figura }}</span>
+                                                                </label>
+                                                            {% endfor %}
+                                                    </div>
+                                                    <div class="emoji-button-envio">
+                                                        <input class="btn btn-primary" type="submit" value="Salvar">
+                                                    </div>
+                                                </form>
+                                            {% else %}
+                                                <p class="sem-emojis">Sem emojis para remover</p>
+                                            {% endif %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="comments-section show">
+                                <div class="comments-list">
+                                    {% if post.comentarios %}
+                                        {% for comment in post.comentarios %}
+                                        <div class="comment-item">
+                                            <div class="d-flex align-items-start gap-2">
+                                                <img class="comment-avatar" 
+                                                     src="https://api.dicebear.com/9.x/lorelei/svg?seed={{ comment.username }}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" 
+                                                     alt="Avatar">
+                                                <div class="comment-content">
+                                                    <div class="comment-header">
+                                                        <span class="comment-user">{{ comment.username }}</span>
+                                                        <span class="comment-time">{{ comment.timestamp }}</span>
+                                                        {% if session.get('usuario') and comment.username == session['usuario']['nome_usuario'] %}
+                                                        <form action="{{ url_for('main.delete_comment') }}" method="POST" class="delete-comment-form" onsubmit="return confirm('Apagar este comentário?')">
+                                                            <input type="hidden" name="post_title" value="{{ post.title }}">
+                                                            <input type="hidden" name="username" value="{{ comment.username }}">
+                                                            <input type="hidden" name="timestamp" value="{{ comment.timestamp }}">
+                                                            <button type="submit" class="btn-delete-comment" title="Apagar comentário">
+                                                                <i class="bi bi-trash"></i>
+                                                            </button>
+                                                        </form>
+                                                        {% endif %}
+                                                    </div>
+                                                    <p class="comment-text">{{ comment.comment_text }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        
+                                        {% if post.tem_mais %}
+                                        <div class="text-center mt-4">
+                                            <a href="{{ url_for('main.ver_post', post_title=post.title) }}" class="btn btn-sm btn-outline-primary">
+                                                Ver todos os {{ post.total_comentarios }} comentários
+                                            </a>
+                                        </div>
+                                        {% endif %}
+                                    {% else %}
+                                        <p class="no-comments">Nenhum comentário ainda. Seja o primeiro!</p>
+                                    {% endif %}
+                                </div>
+
+                                <div class="comment-form-wrapper">
+                                    <form class="comment-form" action="{{ url_for('main.add_comment') }}" method="POST">
+                                        <input type="hidden" name="post_title" value="{{ post.title }}">
+                                        <div class="d-flex gap-2">
+                                            <img class="comment-avatar" 
+                                                 src="https://api.dicebear.com/9.x/lorelei/svg?seed={{ session['usuario']['nome_usuario'] }}&backgroundColor=b6e3f4,c0aede,d1d4f9,ffd5dc" 
+                                                 alt="Seu avatar">
+                                            <div class="flex-grow-1">
+                                                <textarea class="form-control comment-input" 
+                                                          name="comment_text" 
+                                                          placeholder="Escreva um comentário..." 
+                                                          rows="2" 
+                                                          required></textarea>
+                                                <button type="submit" class="btn btn-sm btn-primary mt-2">Comentar</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </article>
+                        {% endfor %}
+                        
+                        <div id="overlay" class="overlay" onclick="CloseModal()"></div>
+                        
+                        <div id="modal" class="modal">
+                            <h3 id="modal-title"></h3>
+                            <p>Deseja excluir esta publicação?</p>
+                            
+                            <form id="delete-form" action=" {{ url_for('main.delete_post') }}" method="POST">
+                                <input type="hidden" name="titulo_post" id="input-delete-title">
+
+                                <button type="button" id="delete_button" class="btn btn-danger" onclick="Confirm_delete()">Confirmar Exclusão</button>
+                                <button type="button" onclick="CloseModal()" class="btn btn-secondary">Cancelar</button>
+                            </form>
+                        </div>
+                    </div>
+                    
+                {% else %}
+                    <div class="empty text-center py-5">
+                        <i class="bi bi-inbox display-1 text-muted mb-3"></i>
+                        <h3 class="fw-bold">Ainda não há posts</h3>
+                        <p class="text-muted mb-4">Seja o primeiro a compartilhar algo com a comunidade!</p>
+                        <a href="{{ url_for('main.publish') }}" class="btn btn-primary btn-lg">
+                            <i class="bi bi-plus-lg"></i> Criar Primeiro Post
+                        </a>
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+    </div>
+</div>
+{% endblock %}
