@@ -501,12 +501,17 @@ def login():
             flash('Nome de usuário/email ou senha incorretos.', 'error')
             return redirect(url_for('main.login'))
         
+        # Lista de admins
+        ADMIN_USERS = ['harry1', 'admin']
+        
         with open(USERS_CSV, "r", encoding="utf-8") as arquivo_usuarios:
             conteudo = arquivo_usuarios.read().splitlines()[1:]
             for linha in conteudo:
                 nome_completo, email, nome_usuario, senha, bio, localizacao, link_github, avatar = linha.split(';')
                 if (identificador == nome_usuario or identificador == email) and senha_digitada == senha:
                     pode_autenticar_usuario = True
+                    session['usuario_logado'] = nome_usuario
+                    session['is_admin'] = nome_usuario in ADMIN_USERS
                     break
             
             if pode_autenticar_usuario:
@@ -534,7 +539,8 @@ def logout():
     session.pop('usuario', None)
     session.pop('form_cadastrar', None)
     session.pop('form_editar_dados', None)
-
+    session.pop('usuario_logado', None)
+    session.pop('is_admin', None)
     return redirect(url_for('main.landing'))
 
 @main_bp.route('/delete_post', methods=['POST'])

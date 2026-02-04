@@ -56,6 +56,12 @@
                                         <i class="bi bi-person"></i>
                                         <span>Profile</span>
                                     </a>
+                                    {% if session.get('is_admin') %}
+                                    <a href="{{ url_for('admin.dashboard') }}" class="profile-modal-item">
+                                        <i class="bi bi-shield-check"></i>
+                                        <span>Admin Dashboard</span>
+                                    </a>
+                                    {% endif %}
                                     <a href="#" class="profile-modal-item">
                                         <i class="bi bi-gear"></i>
                                         <span>Settings</span>
