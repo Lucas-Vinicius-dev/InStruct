@@ -1,12 +1,14 @@
 post_title,username,comment_text,timestamp
-Consegui resolver o Two Sum usando HashMap!,harry1,"testando
-",26/01/2026 18:31
-Consegui resolver o Two Sum usando HashMap!,harry1,"testando
-",26/01/2026 18:31
-Consegui resolver o Two Sum usando HashMap!,harry1,oioi,26/01/2026 18:32
-Finalmente entendi como funciona o algoritmo de Dijkstra,harry2,"eai 
-",26/01/2026 20:05
-Consegui resolver o Two Sum usando HashMap!,num2,brabo man,29/01/2026 22:01
-Finalmente entendi como funciona o algoritmo de Dijkstra,num2,c++ on top,29/01/2026 22:01
-Consegui resolver o Two Sum usando HashMap!,gabriel,teste,30/01/2026 22:34
-Mais uma publicação,teste,teste,01/02/2026 21:03
+Template de BFS para Grafos,algo_expert,Cuidado: usar queue.pop(0) em lista Python custa O(n). Melhor importar collections.deque.,28/01/2026 10:15
+Template de BFS para Grafos,estudante_pd,"Nossa, salvou demais. Tenho prova disso amanhã, valeu!",28/01/2026 14:22
+Template de BFS para Grafos,ana.silva,Boa sorte na prova! :),28/01/2026 15:00
+Como tipar props no React com TS?,frontend_newbie,"Sempre esqueço essa sintaxe, salvei aqui.",25/01/2026 09:10
+Como tipar props no React com TS?,dev_senior,Dica: Nas versões novas do React nem precisa importar o React ali em cima.,25/01/2026 11:45
+Fast IO em C++ para competições,code_warrior,Brabo! Copiei pro meu template aqui.,01/02/2026 18:30
+Fast IO em C++ para competições,iniciante_cpp,"Não entendi muito bem, o que o cin.tie(NULL) faz exatamente?",01/02/2026 19:15
+Fast IO em C++ para competições,marcos.cpp,"Ele desvincula o cin do cout, aí o programa não perde tempo limpando o buffer toda hora.",01/02/2026 20:00
+Controller Básico .NET 8,csharp_lover,Muito limpo o código. Parabéns.,20/01/2026 10:05
+Worker Pool Pattern em Go,gopher_lord,Cuidado que a main pode terminar antes das goroutines. Falta um WaitGroup aí.,03/02/2026 11:15
+Worker Pool Pattern em Go,lucas.go,Bem notado! Vou corrigir no próximo post.,03/02/2026 11:30
+Fast IO em C++ para competições,lucas123,"É normal, C++ parece uma criptografia de vez em quando",04/02/2026 21:52
+Tratamento de Erros com Result,admin,"Rust parece difícil, mas o código é bonito de ler.",04/02/2026 22:12

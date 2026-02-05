@@ -341,7 +341,6 @@ id;figura;legenda
 340;🌂;Closed Umbrella
 341;☂;Umbrella
 342;💼;Briefcase
-343;break;break
 344;🙈;See-No-Evil Monkey
 345;🙉;Hear-No-Evil Monkey
 346;🙊;Speak-No-Evil Monkey
@@ -512,7 +511,6 @@ id;figura;legenda
 511;✨;Sparkles
 512;🎋;Tanabata Tree
 513;🎍;Pine Decoration
-514;break;break
 515;🍇;Grapes
 516;🍈;Melon
 517;🍉;Watermelon
@@ -610,7 +608,6 @@ id;figura;legenda
 609;🍽;Fork and Knife With Plate
 610;🍴;Fork and Knife
 611;🥄;Spoon
-612;break;break
 613;👾;Alien Monster
 614;🧗‍♀️;Woman Climbing
 615;🧗‍♂️;Man Climbing
@@ -709,7 +706,6 @@ id;figura;legenda
 708;🥁;Drum
 709;🎬;Clapper Board
 710;🏹;Bow and Arrow
-711;break;break
 712;🚣;Person Rowing Boat
 713;🏎;Racing Car
 714;🏍;Motorcycle
@@ -835,7 +831,6 @@ id;figura;legenda
 834;🛃;Customs
 835;🛄;Baggage Claim
 836;🛅;Left Luggage
-837;break;break
 838;☠;Skull and Crossbones
 839;🛀;Person Taking Bath
 840;🛌;Person in Bed
@@ -1011,7 +1006,6 @@ id;figura;legenda
 1010;⚱;Funeral Urn
 1011;🗿;Moai
 1012;🚰;Potable Water
-1013;break;break
 1014;👁️‍🗨️;Eye in Speech Bubble
 1015;💘;Heart With Arrow
 1016;❤;Red Heart
@@ -1270,7 +1264,6 @@ id;figura;legenda
 1269;⚫;Black Circle
 1270;🔴;Red Circle
 1271;🔵;Blue Circle
-1272;break;break
 1273;🏁;Chequered Flag
 1274;🚩;Triangular Flag
 1275;🎌;Crossed Flags
@@ -1278,264 +1271,3 @@ id;figura;legenda
 1277;🏳;White Flag
 1278;🏳️‍🌈;Rainbow Flag
 1279;🏴‍☠️;Pirate Flag
-1280;🇦🇨;Ascension Island
-1281;🇦🇩;Andorra
-1282;🇦🇪;United Arab Emirates
-1283;🇦🇫;Afghanistan
-1284;🇦🇬;Antigua & Barbuda
-1285;🇦🇮;Anguilla
-1286;🇦🇱;Albania
-1287;🇦🇲;Armenia
-1288;🇦🇴;Angola
-1289;🇦🇶;Antarctica
-1290;🇦🇷;Argentina
-1291;🇦🇸;American Samoa
-1292;🇦🇹;Austria
-1293;🇦🇺;Australia
-1294;🇦🇼;Aruba
-1295;🇦🇽;Åland Islands
-1296;🇦🇿;Azerbaijan
-1297;🇧🇦;Bosnia & Herzegovina
-1298;🇧🇧;Barbados
-1299;🇧🇩;Bangladesh
-1300;🇧🇪;Belgium
-1301;🇧🇫;Burkina Faso
-1302;🇧🇬;Bulgaria
-1303;🇧🇭;Bahrain
-1304;🇧🇮;Burundi
-1305;🇧🇯;Benin
-1306;🇧🇱;St. Barthélemy
-1307;🇧🇲;Bermuda
-1308;🇧🇳;Brunei
-1309;🇧🇴;Bolivia
-1310;🇧🇶;Caribbean Netherlands
-1311;🇧🇷;Brazil
-1312;🇧🇸;Bahamas
-1313;🇧🇹;Bhutan
-1314;🇧🇻;Bouvet Island
-1315;🇧🇼;Botswana
-1316;🇧🇾;Belarus
-1317;🇧🇿;Belize
-1318;🇨🇦;Canada
-1319;🇨🇨;Cocos (Keeling) Islands
-1320;🇨🇩;Congo - Kinshasa
-1321;🇨🇫;Central African Republic
-1322;🇨🇬;Congo - Brazzaville
-1323;🇨🇭;Switzerland
-1324;🇨🇮;Côte D’Ivoire
-1325;🇨🇰;Cook Islands
-1326;🇨🇱;Chile
-1327;🇨🇲;Cameroon
-1328;🇨🇳;China
-1329;🇨🇴;Colombia
-1330;🇨🇵;Clipperton Island
-1331;🇨🇷;Costa Rica
-1332;🇨🇺;Cuba
-1333;🇨🇻;Cape Verde
-1334;🇨🇼;Curaçao
-1335;🇨🇽;Christmas Island
-1336;🇨🇾;Cyprus
-1337;🇨🇿;Czechia
-1338;🇩🇪;Germany
-1339;🇩🇬;Diego Garcia
-1340;🇩🇯;Djibouti
-1341;🇩🇰;Denmark
-1342;🇩🇲;Dominica
-1343;🇩🇴;Dominican Republic
-1344;🇩🇿;Algeria
-1345;🇪🇦;Ceuta & Melilla
-1346;🇪🇨;Ecuador
-1347;🇪🇪;Estonia
-1348;🇪🇬;Egypt
-1349;🇪🇭;Western Sahara
-1350;🇪🇷;Eritrea
-1351;🇪🇸;Spain
-1352;🇪🇹;Ethiopia
-1353;🇪🇺;European Union
-1354;🇫🇮;Finland
-1355;🇫🇯;Fiji
-1356;🇫🇰;Falkland Islands
-1357;🇫🇲;Micronesia
-1358;🇫🇴;Faroe Islands
-1359;🇫🇷;France
-1360;🇬🇦;Gabon
-1361;🇬🇧;United Kingdom
-1362;🇬🇩;Grenada
-1363;🇬🇪;Georgia
-1364;🇬🇫;French Guiana
-1365;🇬🇬;Guernsey
-1366;🇬🇭;Ghana
-1367;🇬🇮;Gibraltar
-1368;🇬🇱;Greenland
-1369;🇬🇲;Gambia
-1370;🇬🇳;Guinea
-1371;🇬🇵;Guadeloupe
-1372;🇬🇶;Equatorial Guinea
-1373;🇬🇷;Greece
-1374;🇬🇸;South Georgia & South Sandwich Islands
-1375;🇬🇹;Guatemala
-1376;🇬🇺;Guam
-1377;🇬🇼;Guinea-Bissau
-1378;🇬🇾;Guyana
-1379;🇭🇰;Hong Kong SAR China
-1380;🇭🇲;Heard & McDonald Islands
-1381;🇭🇳;Honduras
-1382;🇭🇷;Croatia
-1383;🇭🇹;Haiti
-1384;🇭🇺;Hungary
-1385;🇮🇨;Canary Islands
-1386;🇮🇩;Indonesia
-1387;🇮🇪;Ireland
-1388;🇮🇱;Israel
-1389;🇮🇲;Isle of Man
-1390;🇮🇳;India
-1391;🇮🇴;British Indian Ocean Territory
-1392;🇮🇶;Iraq
-1393;🇮🇷;Iran
-1394;🇮🇸;Iceland
-1395;🇮🇹;Italy
-1396;🇯🇪;Jersey
-1397;🇯🇲;Jamaica
-1398;🇯🇴;Jordan
-1399;🇯🇵;Japan
-1400;🇰🇪;Kenya
-1401;🇰🇬;Kyrgyzstan
-1402;🇰🇭;Cambodia
-1403;🇰🇮;Kiribati
-1404;🇰🇲;Comoros
-1405;🇰🇳;St. Kitts & Nevis
-1406;🇰🇵;North Korea
-1407;🇰🇷;South Korea
-1408;🇰🇼;Kuwait
-1409;🇰🇾;Cayman Islands
-1410;🇰🇿;Kazakhstan
-1411;🇱🇦;Laos
-1412;🇱🇧;Lebanon
-1413;🇱🇨;St. Lucia
-1414;🇱🇮;Liechtenstein
-1415;🇱🇰;Sri Lanka
-1416;🇱🇷;Liberia
-1417;🇱🇸;Lesotho
-1418;🇱🇹;Lithuania
-1419;🇱🇺;Luxembourg
-1420;🇱🇻;Latvia
-1421;🇱🇾;Libya
-1422;🇲🇦;Morocco
-1423;🇲🇨;Monaco
-1424;🇲🇩;Moldova
-1425;🇲🇪;Montenegro
-1426;🇲🇫;St. Martin
-1427;🇲🇬;Madagascar
-1428;🇲🇭;Marshall Islands
-1429;🇲🇰;Macedonia
-1430;🇲🇱;Mali
-1431;🇲🇲;Myanmar (Burma)
-1432;🇲🇳;Mongolia
-1433;🇲🇴;Macau SAR China
-1434;🇲🇵;Northern Mariana Islands
-1435;🇲🇶;Martinique
-1436;🇲🇷;Mauritania
-1437;🇲🇸;Montserrat
-1438;🇲🇹;Malta
-1439;🇲🇺;Mauritius
-1440;🇲🇻;Maldives
-1441;🇲🇼;Malawi
-1442;🇲🇽;Mexico
-1443;🇲🇾;Malaysia
-1444;🇲🇿;Mozambique
-1445;🇳🇦;Namibia
-1446;🇳🇨;New Caledonia
-1447;🇳🇪;Niger
-1448;🇳🇫;Norfolk Island
-1449;🇳🇬;Nigeria
-1450;🇳🇮;Nicaragua
-1451;🇳🇱;Netherlands
-1452;🇳🇴;Norway
-1453;🇳🇵;Nepal
-1454;🇳🇷;Nauru
-1455;🇳🇺;Niue
-1456;🇳🇿;New Zealand
-1457;🇴🇲;Oman
-1458;🇵🇦;Panama
-1459;🇵🇪;Peru
-1460;🇵🇫;French Polynesia
-1461;🇵🇬;Papua New Guinea
-1462;🇵🇭;Philippines
-1463;🇵🇰;Pakistan
-1464;🇵🇱;Poland
-1465;🇵🇲;St. Pierre & Miquelon
-1466;🇵🇳;Pitcairn Islands
-1467;🇵🇷;Puerto Rico
-1468;🇵🇸;Palestinian Territories
-1469;🇵🇹;Portugal
-1470;🇵🇼;Palau
-1471;🇵🇾;Paraguay
-1472;🇶🇦;Qatar
-1473;🇷🇪;Réunion
-1474;🇷🇴;Romania
-1475;🇷🇸;Serbia
-1476;🇷🇺;Russia
-1477;🇷🇼;Rwanda
-1478;🇸🇦;Saudi Arabia
-1479;🇸🇧;Solomon Islands
-1480;🇸🇨;Seychelles
-1481;🇸🇩;Sudan
-1482;🇸🇪;Sweden
-1483;🇸🇬;Singapore
-1484;🇸🇭;St. Helena
-1485;🇸🇮;Slovenia
-1486;🇸🇯;Svalbard & Jan Mayen
-1487;🇸🇰;Slovakia
-1488;🇸🇱;Sierra Leone
-1489;🇸🇲;San Marino
-1490;🇸🇳;Senegal
-1491;🇸🇴;Somalia
-1492;🇸🇷;Suriname
-1493;🇸🇸;South Sudan
-1494;🇸🇹;São Tomé & Príncipe
-1495;🇸🇻;El Salvador
-1496;🇸🇽;Sint Maarten
-1497;🇸🇾;Syria
-1498;🇸🇿;Swaziland
-1499;🇹🇦;Tristan Da Cunha
-1500;🇹🇨;Turks & Caicos Islands
-1501;🇹🇩;Chad
-1502;🇹🇫;French Southern Territories
-1503;🇹🇬;Togo
-1504;🇹🇭;Thailand
-1505;🇹🇯;Tajikistan
-1506;🇹🇰;Tokelau
-1507;🇹🇱;Timor-Leste
-1508;🇹🇲;Turkmenistan
-1509;🇹🇳;Tunisia
-1510;🇹🇴;Tonga
-1511;🇹🇷;Turkey
-1512;🇹🇹;Trinidad & Tobago
-1513;🇹🇻;Tuvalu
-1514;🇹🇼;Taiwan
-1515;🇹🇿;Tanzania
-1516;🇺🇦;Ukraine
-1517;🇺🇬;Uganda
-1518;🇺🇲;U.S. Outlying Islands
-1519;🇺🇳;United Nations
-1520;🇺🇸;United States
-1521;🇺🇾;Uruguay
-1522;🇺🇿;Uzbekistan
-1523;🇻🇦;Vatican City
-1524;🇻🇨;St. Vincent & Grenadines
-1525;🇻🇪;Venezuela
-1526;🇻🇬;British Virgin Islands
-1527;🇻🇮;U.S. Virgin Islands
-1528;🇻🇳;Vietnam
-1529;🇻🇺;Vanuatu
-1530;🇼🇫;Wallis & Futuna
-1531;🇼🇸;Samoa
-1532;🇽🇰;Kosovo
-1533;🇾🇪;Yemen
-1534;🇾🇹;Mayotte
-1535;🇿🇦;South Africa
-1536;🇿🇲;Zambia
-1537;🇿🇼;Zimbabwe
-1538;🏴󠁧󠁢󠁥󠁮󠁧󠁿;England
-1539;🏴󠁧󠁢󠁳󠁣󠁴󠁿;Scotland
-1540;🏴󠁧󠁢󠁷󠁬󠁳󠁿;Wales

@@ -1,5 +1,27 @@
 nome_completo;email;nome_usuario;senha;bio;localizacao;link_github;avatar
-teste;teste@t.com;teste;teste123#;None;None;None;None
-maca vermelha;nova_maca@gmail.com;maca_renovadaohhh;maca_v123;Mudei de vida;Bai;None;None.png
-eita massa;fdfteste@t.com;testefdf;12345%Fgggg;None;None;None;None
-admin;admin@gmail.com;admin;admin123;None;None;None;None
+Gabriel Admin;gabriel@devhub.com;gabriel;admin#2026;None;None;None;None
+Ana Silva;ana.silva@tech.com;ana.silva;Ana#Python26;None;None;None;None
+João Pereira;joao.dev@frontend.com;dev_joao;ReactIsLife!;None;None;None;None
+Marcos Oliveira;marcos.cpp@compet.com;marcos.cpp;Speed++123;None;None;None;None
+Júlia Santos;julia.rust@sys.com;julia.rust;RustyCrab!;None;None;None;None
+Roberto Costa;roberto.net@enterprise.com;roberto.csharp;DotNetCore#8;None;None;None;None
+Francisco Petronio;petronio@gmail.com;petronio123;petronio123#;None;None;None;None
+Lucas Lima;lucas.go@cloud.com;lucas.go;GoRoutine2026;None;None;None;None
+Beatriz Souza;bia.java@corp.com;beatriz.java;SpringBoot!;None;None;None;None
+Carlos Algoritmo;algo@expert.com;algo_expert;BigO#LogN;None;None;None;None
+Pedro Dias;pedro.estuda@uni.com;estudante_pd;Passei#2026;None;None;None;None
+Lucas Junior;lucas.jr@web.com;frontend_newbie;React#Start;None;None;None;None
+Ricardo Sênior;senior@techlead.com;dev_senior;CleanCode!;None;None;None;None
+Amanda Warrior;amanda.code@contest.com;code_warrior;Codeforces123;None;None;None;None
+Bruno Novato;bruno.cpp@learn.com;iniciante_cpp;Cpp#Help;None;None;None;None
+Felipe Rust;felipe.rs@try.com;curioso_rust;BorrowCheck?;None;None;None;None
+Mariana Sharp;mari.net@love.com;csharp_lover;CSharp<3;None;None;None;None
+Gustavo Go;gus.go@google.com;gopher_lord;GoLang!Fast;None;None;None;None
+Enzo Py;enzo.script@hate.com;java_hater;PythonRules!;None;None;None;None
+Maria Eduarda;maria.codes@dev.com;maria.codes;Maria#Dev;None;None;None;None
+João Backend;joao.back@server.com;backend_dev;Docker#Kubernetes;None;None;None;None
+Senhor Java;sr.java@legacy.com;java_senhor;Java8Forever;None;None;None;None
+Eduardo Corp;edu.corp@enterprise.com;enterprise_dev;SoapXML!;None;None;None;None
+Paulo Competitivo;paulo.cp@obi.com;competitive_guy;Segtree!;None;None;None;None
+admin;admin@gmail.com;admin;admin123#;None;None;None;None
+harry1;harry1@gmail.com;harry1;admin123#;harry1;None;None;None
