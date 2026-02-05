@@ -1,52 +1,91 @@
 username,title,description,topico_principal,tipo_de_post,linguagem_selecionada,image,visibility
-ana.silva,Consegui resolver o Two Sum usando HashMap!,"def twoSum(nums, target):
-    hashmap = {}  # valor -> índice
-    
-    for i, num in enumerate(nums):
-        complemento = target - num
-        
-        if complemento in hashmap:
-            return [hashmap[complemento], i]
-        
-        hashmap[num] = i
-    
-    return None",Programação Competitiva,Discussão,Python,Discussão,public
-carlos.dev,Estou travado no problema de Binary Search Tree,"class Node:
-    def __init__(self, v):
-        self.v = v
-        self.left = None
-        self.right = None
+ana.silva,Template de BFS para Grafos,"def bfs(graph, start):
+    visited = set()
+    queue = [start]
+    visited.add(start)
 
-class BST:
-    def __init__(self):
-        self.root = None
+    while queue:
+        vertex = queue.pop(0)
+        print(vertex, end=' ')
 
-    def insert(self, v):
-        if self.root is None:
-            self.root = Node(v)
-            return
-        cur = self.root
-        while True:
-            if v < cur.v:
-                if cur.left is None:
-                    cur.left = Node(v)
-                    return
-                cur = cur.left
-            else:
-                if cur.right is None:
-                    cur.right = Node(v)
-                    return
-                cur = cur.right
+        for neighbor in graph[vertex]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)",Programação Competitiva,Tutorial / Guia,Python,,public
+dev_joao,Como tipar props no React com TS?,"Estou migrando um projeto pessoal e travei nessa interface. É assim que se faz para passar funções?
 
-    def search(self, v):
-        cur = self.root
-        while cur is not None:
-            if v == cur.v:
-                return True
-            if v > cur.v:
-                cur = cur.left   
-            else:
-                cur = cur.right  
-        return False  ",Programação Competitiva,Discussão,Python,Discussão,public
-maria.codes,Finalmente entendi como funciona o algoritmo de Dijkstra,Depois de implementar 3 vezes consegui. A persistência vale a pena!,Programação Competitiva,Discussão,C/C++,,public
-gabriel,teste de publicação,Que legal,Programação Competitiva,Discussão,C/C++,Captura de tela de 2026-01-26 06-40-47.png,public
+interface ButtonProps {
+  label: string;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  variant?: 'primary' | 'secondary';
+  disabled?: boolean;
+}
+
+export const Button = ({ label, onClick }: ButtonProps) => {
+  return <button onClick={onClick}>{label}</button>;
+}",Projetos Pessoais,Dúvidas,JavaScript,,public
+marcos.cpp,Fast IO em C++ para competições,"Para quem está tomando TLE por causa de input lento, usem sempre isso no início do main:
+
+void setup() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+}
+
+int main() {
+    setup();
+    int t;
+    cin >> t;
+    while(t--) {
+        solve();
+    }
+    return 0;
+}",Programação Competitiva,Tutorial / Guia,C/C++,,public
+julia.rust,Tratamento de Erros com Result,"Rust força você a tratar o erro. Veja como ler um arquivo de forma segura:
+
+use std::fs::File;
+use std::io::Read;
+
+fn read_file_contents(path: &str) -> Result<String, std::io::Error> {
+    let mut file = File::open(path)?;
+    let mut contents = String::new();
+    file.read_to_string(&mut contents)?;
+    Ok(contents)
+}",Outros,Discussão,Rust,,public
+roberto.csharp,Controller Básico .NET 8,"Estrutura base que estou usando no meu projeto de ecommerce:
+
+[ApiController]
+[Route(""api/[controller]"")]
+public class ProductsController : ControllerBase
+{
+    private readonly IProductService _service;
+
+    public ProductsController(IProductService service)
+    {
+        _service = service;
+    }
+
+    [HttpGet(""{id}"")]
+    public async Task<IActionResult> GetById(int id)
+    {
+        var product = await _service.GetByIdAsync(id);
+        return product != null ? Ok(product) : NotFound();
+    }
+}",Projetos Pessoais,Discussão,C#,,public
+lucas.go,Worker Pool Pattern em Go,"Snippet para processamento concorrente limitado (Projetos Pessoais):
+
+func worker(id int, jobs <-chan int, results chan<- int) {
+    for j := range jobs {
+        fmt.Println(""worker"", id, ""started job"", j)
+        time.Sleep(time.Second)
+        results <- j * 2
+    }
+}
+
+func main() {
+    jobs := make(chan int, 100)
+    results := make(chan int, 100)
+
+    for w := 1; w <= 3; w++ {
+        go worker(w, jobs, results)
+    }
+}",Projetos Pessoais,Tutorial / Guia,Go,,public
